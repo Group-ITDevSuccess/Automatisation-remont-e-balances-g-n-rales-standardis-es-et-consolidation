@@ -20,7 +20,7 @@ def is_user_not_authenticated(user):
 class LoginLDAP(View):
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect('home:index')
+            return redirect('app:index')
 
         form = LoginForm()  # Use singular form name for consistency
         context = {'form': form}
@@ -32,7 +32,7 @@ class LoginLDAP(View):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
 
-            if username != 'admin':
+            if username not in ['admin.dev', 'user.dev']:
                 try:
                     user = CustomUser.objects.get(username=username)
                     if user.autoriser:
@@ -48,7 +48,7 @@ class LoginLDAP(View):
                                 user.email = email
                                 user.save()
                             login(request, user)
-                            return redirect('home:index')
+                            return redirect('app:index')
                         else:
                             messages.error(request, "Identifiant ou mot de passe incorrecte, réessayez !")
                     else:
@@ -81,7 +81,7 @@ class LoginLDAP(View):
                 user = authenticate(request, username=username, password=password)
                 if user is not None:
                     login(request, user)
-                    return redirect('home:index')
+                    return redirect('app:index')
                 else:
                     messages.error(request, "Authentification incorrecte")
         else:
@@ -169,4 +169,4 @@ def delete_user(request, uid):
     user = get_object_or_404(CustomUser, uid=uid)
     user.delete()
     messages.success(request, "Utilisateur Supprimer")
-    return redirect('home:index')
+    return redirect('app:index')
