@@ -1,99 +1,62 @@
-{% extends 'guard/index.html' %}
+{% extends 'base.html' %}
 {% load static %}
-{% block title %}Login{% endblock %}
+{% block title %}
+    Authentification
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'dist/auths/style.css' %}">
+    <style>
+        .div-logo > img {
+            width: 80px;
+            height: 80px;
+            -webkit-animation-name: bounce;
+            -webkit-animation-duration: 0.7s;
+            -webkit-animation-direction: alternate;
+            -webkit-animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+            -webkit-animation-iteration-count: infinite;
+        }
+    </style>
+{% endblock %}
 {% block content %}
-    {% if messages %}
-        <div class="messages mt-2">
-            {% for message in messages %}
-                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show"
-                     role="alert">
-                    <strong>{{ message.tags|title }}! </strong> {{ message }}
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h4 class="heading-section">Connexion <span class="fw-bold" style="color: #138808;">Inventaire</span></h4>
                 </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-    <div class="container mt-5">
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-3">
-                <div class="card px-3 py-5 shadow" id="form1">
-                    <div class="justify-content-center align-items-center text-center">
-                        <img src="{% static 'img/logo-inviso.ico' %}" alt="" class="img-fluid" width="100">
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-4 p-md-5 shadow">
+                        <div class="icon d-flex align-items-center justify-content-center bg-white text-success">
+                            <div class="div-logo">
+                                <img src="{% static 'assets/images/inviso-group.png' %}"
+                                     style="max-width: 120px; border: 1px solid #138808;border-radius: 100%;" alt="">
+                            </div>
+                        </div>
+                        <h3 class="text-center mb-4 text-success">Identifier Vous</h3>
+                        <form action="{% url 'auths:login' %}" method="post" class="login-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.username }}
+                            </div>
+                            <div class="form-group d-flex">
+                                {{ form.password }}
+                            </div>
+                            <div class="form-group d-md-flex">
+                                <div class="w-100 mb-5">
+                                    <div class="form-group">
+                                        <button type="submit"
+                                                class="btn btn-success rounded submit p-3 px-5">
+                                            Connexion
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-
-                    <h5 class="text-center mt-4">Authentification</h5>
-                    <form id="" class="form-data mt-3 mb-3" method="post" action="{% url 'guard:login' %}">
-                        {% csrf_token %}
-                        <div class="forms-inputs mb-4">
-                            <span>{{ form.username.label_tag }}</span>
-                            {{ form.username }}
-                            {% if form.username.errors %}
-                                <div class="invalid-feedback">{{ form.username.errors }}!</div>
-                            {% endif %}
-                        </div>
-                        <div class="forms-inputs mb-4">
-                            <span>{{ form.password.label_tag }}</span>
-                            {{ form.password }}
-                            {% if form.password.errors %}
-                                <div class="invalid-feedback">{{ form.password.errors }}!</div>
-                            {% endif %}
-                        </div>
-                        <div class="">
-                            <button type="submit" class="btn btn-dark w-100">Connexion</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
-    </div>
-{% endblock %}
-{% block style %}{% endblock %}
-{% block script %}
-{#    <script>#}
-{#        let app = new Vue({#}
-{#            el: '#form1',#}
-{#            data: function () {#}
-{#                return {#}
-{#                    email: "",#}
-{#                    emailBlured: false,#}
-{#                    valid: false,#}
-{#                    submitted: false,#}
-{#                    password: "",#}
-{#                    passwordBlured: false#}
-{#                }#}
-{#            },#}
-{##}
-{#            methods: {#}
-{##}
-{#                validate: function () {#}
-{#                    this.emailBlured = true;#}
-{#                    this.passwordBlured = true;#}
-{#                    if (this.validEmail(this.email) && this.validPassword(this.password)) {#}
-{#                        this.valid = true;#}
-{#                    }#}
-{#                },#}
-{##}
-{#                validEmail: function (email) {#}
-{##}
-{#                    let re = /(.+)@(.+){2,}\.(.+){2,}/;#}
-{#                    if (re.test(email.toLowerCase())) {#}
-{#                        return true;#}
-{#                    }#}
-{##}
-{#                },#}
-{##}
-{#                validPassword: function (password) {#}
-{#                    if (password.length > 7) {#}
-{#                        return true;#}
-{#                    }#}
-{#                },#}
-{##}
-{#                submit: function () {#}
-{#                    this.validate();#}
-{#                    if (this.valid) {#}
-{#                        this.submitted = true;#}
-{#                    }#}
-{#                }#}
-{#            }#}
-{#        });#}
-{#    </script>#}
+    </section>
 {% endblock %}

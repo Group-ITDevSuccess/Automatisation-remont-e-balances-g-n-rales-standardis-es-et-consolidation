@@ -1,9 +1,5 @@
-{% load static %}
-<nav class="navbar navbar-expand-lg navbar-white bg-dark">
-    <a class="navbar-brand" href="{% url 'app:get' %}">
-        <img src="{% static 'img/logo-inviso.ico' %}" width="30" height="30" class="d-inline-block align-top" alt=""
-             loading="lazy">
-    </a>
+<nav class="navbar navbar-expand-lg navbar-light pl-2 pr-2 mb-3 shadow" style="background-color: #e3f2fd; width: 100%">
+    <a class="navbar-brand navbar-expand-sm fw-bold text-success" href="#">{{ title_name|title }} {{ societe }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -11,67 +7,15 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item {% if path == '/' %}active{% endif %}">
-                <a class="nav-link text-white" href="{% url 'app:get' %}">Home <span
-                        class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item {% if path == '/administrations/' %}active text-white{% endif %} {% if not user.is_staff %}disabled{% endif %}">
-                <a class="nav-link " href="{% url 'app:admin_view' %}" tabindex="-1">Administration</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home:index' %}">Home</a>
             </li>
         </ul>
-        <div class="navbar-text d-flex my-2 my-lg-0">
-            <form method="post" class="d-flex align-items-center mr-2">
-                {% csrf_token %}
-                <div class="col-auto">
-                    <div class="input-group">
-                        {{ form.societe }}
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="label_{{ form.debut.id_for_label }}">Début</span>
-                        </div>
-                        {{ form.debut }}
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="label_{{ form.fin.id_for_label }}">Fin</span>
-                        </div>
-                        {{ form.fin }}
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-outline-success"><i class="fas fa-forward-fast"></i></button>
-                    <button type="reset" class="btn btn-outline-danger"><i class="fas fa-backspace"></i></button>
-                </div>
-            </form>
-            <form action="#" id="depotForm" class="d-flex align-items-center">
-                <div class="col-auto">
-                    <div class="input-group-prepend">
-                        <label for="filtersSelect"></label>
-                        <select id="filtersSelect" name="filtersSelect" class="selectpicker show-tick"
-                                data-live-search="true" data-size="8" data-style="btn-warning"
-                                title="Choisir un dépôt..." multiple
-                                data-selected-text-format="count"
-                                data-actions-box='true'
-                                data-size=10>
-                            {% for filter_item in filters %}
-                                <option value="{{ filter_item.DE_NO }}">{{ filter_item.DE_NO }}
-                                    - {{ filter_item.DE_INTITULE }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <button type="submit" id="submitButtonDepot" class="btn btn-outline-success"><i
-                            class="fas fa-search"></i></button>
-                </div>
-            </form>
-            <a href="{% url 'guard:logout' %}" class="btn btn-outline-danger ml-1 my-2 my-sm-0">Déconnecter</a>
-        </div>
-
+        <form class="form-inline my-2 my-lg-0" method="post">
+            {% csrf_token %}
+            {{ form.dates }}
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
+            </button>
+        </form>
     </div>
 </nav>

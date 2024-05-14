@@ -1,0 +1,42 @@
+{% load static %}
+{% load fontawesome_6 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentification | {% block title %}{% endblock %}</title>
+    {% fontawesome_6_static %}
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/datatable/jquery.dataTables.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/datatable/dataTables.bootstrap4.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
+
+        *, body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html, body {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    {% block style %}{% endblock %}
+
+</head>
+<body>
+{% block content %}{% endblock %}
+<script src="{% static 'assets/js/datatable/jquery-3.7.0.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/datatable/jquery.dataTables.js' %}"></script>
+<script src="{% static 'assets/js/datatable/datatables.js' %}"></script>
+<script src="{% static 'assets/js/datatable/dataTables.bootstrap4.js' %}"></script>
+<script src="{% static 'assets/js/datatable/popper.min.js' %}"></script>
+{% block script %}{% endblock %}
+</body>
+</html>
