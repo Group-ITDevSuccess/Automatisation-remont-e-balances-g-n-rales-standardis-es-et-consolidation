@@ -1,0 +1,104 @@
+{% load static %}
+{% load fontawesome_6 %}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flash Stock | {% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/ico" sizes="16x16" href="{% static 'assets/images/logo-inviso.ico' %}">
+    {% fontawesome_6_static %}
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    {#    <link rel="stylesheet" href="{% static 'assets/app/client.css' %}">#}
+    {#    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">#}
+    <link rel="stylesheet" href="{% static 'dist/css/dataTables.dataTables.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/fixedColumns.dataTables.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/buttons.dataTables.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/datatable/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/stateRestore.dataTables.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/searchBuilder.dataTables.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/colReorder.dataTables.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/responsive.dataTables.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/dataTables.dateTime.min.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
+
+        *, body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Variables */
+        :root {
+            --bg: #fff;
+            --text: #7288a2;
+            --gray: #4d5974;
+            --lightgray: #e5e5e5;
+            --blue: #03b5d2;
+        }
+
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+        }
+
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    {% block style %}{% endblock %}
+</head>
+<body>
+{% include 'partials/_navbar.html' %}
+{% if messages %}
+	{% for message in messages %}
+		<p>{{ message }}</p>
+	{% endfor %}
+	
+{% endif %} 
+{% block content %}{% endblock %}
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'dist/js/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/moment.min.js' %}"></script>
+<script src="{% static 'dist/js/dataTables.js' %}"></script>
+<script src="{% static 'assets/js/datatable/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'dist/js/dataTables.fixedColumns.js' %}"></script>
+<script src="{% static 'dist/js/fixedColumns.dataTables.js' %}"></script>
+<script src="{% static 'dist/js/dataTables.stateRestore.js' %}"></script>
+<script src="{% static 'dist/js/stateRestore.dataTables.js' %}"></script>
+<script src="{% static 'dist/js/dataTables.buttons.js' %}"></script>
+<script src="{% static 'dist/js/buttons.dataTables.js' %}"></script>
+<script src="{% static 'dist/js/jszip.min.js' %}"></script>
+<script src="{% static 'dist/js/pdfmake.min.js' %}"></script>
+<script src="{% static 'dist/js/vfs_fonts.js' %}"></script>
+<script src="{% static 'dist/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'dist/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'dist/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'dist/js/dataTables.select.js' %}"></script>
+<script src="{% static 'dist/js/select.dataTables.js' %}"></script>
+<script src="{% static 'dist/js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'dist/js/dataTables.scroller.js' %}"></script>
+<script src="{% static 'dist/js/scroller.dataTables.js' %}"></script>
+<script src="{% static 'dist/js/dataTables.searchBuilder.js' %}"></script>
+<script src="{% static 'dist/js/searchBuilder.dataTables.js' %}"></script>
+<script src="{% static 'dist/js/dataTables.colReorder.js' %}"></script>
+<script src="{% static 'dist/js/colReorder.dataTables.js' %}"></script>
+<script src="{% static 'dist/js/dataTables.responsive.js' %}"></script>
+<script src="{% static 'dist/js/responsive.dataTables.js' %}"></script>
+<script src="{% static 'dist/js/dataTables.dateTime.min.js' %}"></script>
+{% block script %}{% endblock %}
+</body>
+</html>

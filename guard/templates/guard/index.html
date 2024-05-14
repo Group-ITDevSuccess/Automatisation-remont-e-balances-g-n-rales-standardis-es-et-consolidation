@@ -1,0 +1,19 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <title>Guard | {% block title %}Login{% endblock %}</title>
+
+    {% block style %}Login{% endblock %}
+</head>
+<body>
+{% block content %}Login{% endblock %}
+{% block script %}Login{% endblock %}
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

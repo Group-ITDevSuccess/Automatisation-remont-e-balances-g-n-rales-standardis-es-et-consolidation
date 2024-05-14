@@ -1,0 +1,50 @@
+<div class="modal fade" id="societeModal" tabindex="-1" role="dialog" aria-labelledby="societeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="societeModalLabel">Liste des Sociétés</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Tableau pour afficher les sociétés -->
+                <table class="table" id="societeTable">
+                    <thead>
+                    <tr>
+                        <th class="bg-dark text-light text-center">Nom</th>
+                        <th class="bg-dark text-light text-center">Valeur</th>
+                        <th class="bg-dark text-light text-center">Base</th>
+                        <th class="bg-dark text-light text-center">Serveur</th>
+                        <th class="bg-dark text-light text-center">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for societe in societes %}
+                        <tr>
+                            <td class="societe-name" id="societe-name-{{ forloop.counter }}">
+                                {{ societe.name }}
+                                <span class="copy-icon pe-auto" role="button"
+                                      data-clipboard-target="#societe-name-{{ forloop.counter }}">
+                                        <i class="fa fa-copy text-primary"></i>
+                                    </span>
+                            </td>
+                            <td>{{ societe.value }}</td>
+                            <td>{{ societe.base }}</td>
+                            <td>{{ societe.connexion.server }}</td>
+                            <td class="text-center">
+                                <div class="form-check form-switch d-flex justify-content-center">
+                                    <input class="form-check-input societe-checkbox" name="active" type="checkbox"
+                                           role="switch"
+                                           {% if societe.active %}checked{% endif %}
+                                           data-societe-id="{{ societe.uid }}">
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
