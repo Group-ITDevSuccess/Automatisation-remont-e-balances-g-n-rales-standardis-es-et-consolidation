@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/tabulator/css/tabulator.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/tabulator/css/tabulator_site_dark.min.css' %}">
     {% fontawesome_6_static %}
     <link rel="icon" type="image/ico" sizes="16x16" href="{% static 'assets/images/logo-inviso.ico' %}">
 
@@ -21,7 +23,7 @@
 </head>
 <body>
 {% if user.is_authenticated %}
-    {% include "app/partials/_navbar.html" %}
+    {% include "partials/_navbar.html" %}
 {% endif %}
 <div class="container mt-2 " style="max-width: 100vw;">
     {% if messages %}
@@ -42,6 +44,7 @@
 <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'assets/js/moment.min.js' %}"></script>
 <script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'dist/tabulator/js/tabulator.min.js' %}"></script>
 {% block script %}{% endblock %}
 </body>
 </html>

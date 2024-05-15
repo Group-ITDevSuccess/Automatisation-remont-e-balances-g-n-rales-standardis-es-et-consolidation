@@ -1,3 +1,5 @@
+from datetime import date
+
 from django import forms
 from django.contrib.auth.forms import UserChangeForm
 
@@ -6,33 +8,12 @@ from guard.models import CustomUser
 
 
 class SearchForm(forms.Form):
-    debut = forms.DateField(
-        label='Début',
-        widget=forms.DateInput(format='%d/%m/%Y', attrs={'type': 'date', 'class': 'form-control'})
+    target = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'selectpicker'}),
+        choices=[(year, str(year)) for year in range(date.today().year, 2016, -1)],
+        required=True,
+        label="Date antérieure",
     )
-
-    fin = forms.DateField(
-        label='Fin',
-        widget=forms.DateInput(format='%d/%m/%Y',attrs={'type': 'date', 'class': 'form-control'})
-    )
-
-    def __init__(self, *args, **kwargs):
-        super(SearchForm, self).__init__(*args, **kwargs)
-
-        # Dynamically populate the choices for the 'societe' field
-        societe_choices = []
-        societe_choices.extend(
-            (societe.name, societe.name) for societe in Societe.objects.filter(active__exact=True).order_by('name')
-        )
-
-        self.fields['societe'] = forms.ChoiceField(
-            choices=societe_choices,
-            label='Société',
-            widget=forms.Select(
-                attrs={'class': 'selectpicker me-2 ', 'data-style': "btn-primary", "data-live-search": "true",
-                       "data-header": "Choisir un Societe...", "data-size": "8"}),
-            required=True
-        )
 
 
 class ChoiseForm(forms.Form):

@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_browser_reload',
+
     "admin_interface",
     'import_export',
     'fontawesome_6',
@@ -43,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'guard.apps.GuardConfig',
     'app.apps.AppConfig',
-    'django_browser_reload',
 
 ]
 
