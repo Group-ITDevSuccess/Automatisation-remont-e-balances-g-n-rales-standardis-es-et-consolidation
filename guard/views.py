@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from app.models import Societe
 from utils.ldap import ldap_login_connection, write_log
-from utils.script import are_valid_uuids
+from utils.script import are_valid_uuids, connexion
 from .forms import LoginForm, ProfileForm
 from .models import CustomUser
 
@@ -170,3 +170,10 @@ def delete_user(request, uid):
     user.delete()
     messages.success(request, "Utilisateur Supprimer")
     return redirect('app:index')
+
+
+def administration(request):
+
+    return render(request, 'guard/administration.html', {
+        'path': request.path
+    })

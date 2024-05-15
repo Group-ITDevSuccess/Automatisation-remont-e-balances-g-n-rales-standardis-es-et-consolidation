@@ -13,18 +13,19 @@ from django.conf import settings
 from utils.ldap import write_log
 
 
-def connexion(server, name, base, username, password):
+def connexion(value):
     conn = None
-    value_input = f"Driver={{ODBC Driver 17 for SQL Server}};Server={server};Database={base};UID={username};" \
-                  f"PWD={password}"
+    value_input = f"Driver={{ODBC Driver 17 for SQL Server}};Server={value.connexion.server};Database={value.base};UID={value.connexion.login};" \
+                  f"PWD={value.connexion.password}"
+    print(value_input)
     try:
         # print(value_input)
         conn = pyodbc.connect(value_input)
-    # except pyodbc.Error as e:
-    #     write_log(f"Erreur de connexion : {str(e)}")
+    except pyodbc.Error as e:
+        write_log(f"Erreur de connexion : {str(e)}")
     except Exception as e:
-        # write_log(str(e))
-        print(f"Erreur de connexion sur {name}: {value_input}")
+        write_log(str(e))
+        print(f"Erreur de connexion sur {value.name}: {value_input}")
         pass
 
     return conn

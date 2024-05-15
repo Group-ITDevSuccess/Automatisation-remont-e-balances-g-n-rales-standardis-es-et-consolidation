@@ -15,8 +15,8 @@
                 <a class="nav-link" href="{% url 'app:index' %}">Accueil <span
                         class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item {% if path == '/administation/' %}active{% endif %}">
-                <a class="nav-link {% if not user.is_staff %}disabled{% endif %}" href="">Administration</a>
+            <li class="nav-item {% if path == '/accounts/administration/' %}active{% endif %}">
+                <a class="nav-link {% if not user.is_staff %}disabled{% endif %}" href="{% url 'auths:administration' %}">Administration</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'app:index' %}">

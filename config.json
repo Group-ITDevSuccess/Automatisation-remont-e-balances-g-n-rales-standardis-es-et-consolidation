@@ -1,0 +1,54 @@
+{
+  "COLUMNS": {
+    "BLG": [
+      "COMPTE_SAGE",
+      "DESIGNATION_COMPTE",
+      "SOLDE"
+    ],
+    "ALL": [
+      "AGFRM",
+      "AGRIFEED",
+      "AGRICORP",
+      "AGKOB",
+      "AGRIMOTORS",
+      "AGVAL",
+      "AGVET",
+      "AGRIVETAM",
+      "AMCHO",
+      "AMIP",
+      "BOVIMA",
+      "CONFORTIS",
+      "CSS_SAKAY",
+      "DISCOI",
+      "EUROPAINTS",
+      "FERRIS",
+      "FIRST_ENERGY",
+      "FIRST_INVESTISSEMENT",
+      "FLY_TECH",
+      "IDF",
+      "ID_MOTORS",
+      "ID_RENTAL",
+      "INVISO",
+      "IRS_IMMO",
+      "ISF",
+      "LMOI",
+      "MABEL",
+      "MADATRADE",
+      "MCM",
+      "NMP",
+      "NOAH",
+      "NUTRIFOOD",
+      "RYA",
+      "SEM",
+      "SIM",
+      "SMTP",
+      "TARTINE",
+      "UNITED_MALAGASY",
+      "VET_ABE",
+      "VET_FIA"
+    ]
+  },
+  "SQL": {
+    "BLG": ""
+  }
+}

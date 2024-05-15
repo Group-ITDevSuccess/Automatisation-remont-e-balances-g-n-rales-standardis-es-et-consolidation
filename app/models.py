@@ -33,7 +33,7 @@ class Societe(models.Model):
     value = models.CharField(max_length=150)
     base = models.CharField(max_length=150)
     table = models.CharField(max_length=150, null=True, default='')
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
     connexion = models.ForeignKey(Connexion, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)

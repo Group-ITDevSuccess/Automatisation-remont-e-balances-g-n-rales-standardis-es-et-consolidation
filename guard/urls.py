@@ -4,6 +4,7 @@ from guard import views
 
 app_name = 'auths'
 urlpatterns = [
+    path('administation/', views.administration, name='administration'),
     path('login/', views.LoginLDAP.as_view(), name='login'),
     path('logout/', views.logout_ldap, name='logout'),
     path('update/', views.update_field, name='update_field'),

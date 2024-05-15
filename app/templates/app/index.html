@@ -23,25 +23,95 @@
             w2utils
         } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.min.js' %}";
 
-
+        let CreateTable = function (id, columns) {
+            let table = new Tabulator('#' + id, {
+                height: '90vh',
+                editorEmptyValue: '',
+                downloadConfig: {
+                    columnHeaders: true,
+                    columnGroups: false,
+                    rowHeaders: false,
+                    rowGroups: false,
+                    columnCalcs: true,
+                    dataTree: true,
+                },
+                ajaxURL: "{% url 'app:get-data-for-table' %}",
+                ajaxContentType: "json",
+                ajaxParams: {'value': id},
+                ajaxConfig:"POST",
+                progressiveLoad:"load",
+                progressiveLoadDelay:200,
+                layout: "fitData",
+                printAsHtml: true,
+                printStyled: true,
+                printRowRange: "all",
+                printHeader: "<h1>Example Table Header<h1>",
+                printFooter: "<h2>Example Table Footer<h2>",
+                footerElement: `<button type='button' class='btn btn-warning btn-sm mr-2' id='reload-table' onClick=""><i class='fas fa-sync-alt'></i></button>`,
+                tooltipsHeader: false,
+                rowHeader: {
+                    title: `<button type='button' class='btn btn-primary btn-sm' id='add-row' onclick=""><i class='fas fa-plus'></i></button>`,
+                    headerSort: false,
+                    resizable: false,
+                    width: 45,
+                    frozen: true,
+                    rowHandle: true,
+                    editor: false,
+                    formatter: "handle",
+                },
+                movableColumns: true,
+                success: function (data) {
+                    if (data.status !== 200 && data.status !== 201) {
+                        alert(data.error || "An error occurred while fetching data.");
+                        return;
+                    }
+                    const breakdowns = data.data;
+                    table.setData(breakdowns);
+                },
+                headerSortClickElement: 'icon',
+                selectableRangeClearCells: true,
+                columnHeaderVertAlign: "bottom",
+                resizableColumnGuide: true,
+                dataTree: true,
+                dataTreeStartExpanded: false,
+                dataTreeFilter: false,
+                dataTreeSort: false,
+                dataTreeSelectPropagate: true,
+                placeholder: "Aucun Donnée",
+                placeholderHeaderFilter: 'Aucun Donnée Correspondent',
+                groupClosedShowCalcs: true,
+                headerSort: true,
+                columnDefaults: {
+                    tooltip: true,
+                    headerHozAlign: "center",
+                    editor: false,
+                    resizable: "header",
+                },
+                columns: columns
+            })
+        }
         let configTable = function (event) {
             let table;
+            let id;
+
             switch (event.target) {
                 case 1:
-                    table = '<main id="BLG" style="padding: 10px"></main>'
+                    id = 'BLG'
                     break;
                 case 2:
-                    table = '<main id="ALL" style="padding: 10px">2</main>'
+                    id = 'ALL'
                     break;
                 case 3:
-                    table = '<main id="BILLAN" style="padding: 10px">3</main>'
+                    id = 'BILAN'
                     break;
                 case 4:
-                    table = '<main id="CN" style="padding: 10px">4</main>'
+                    id = 'CN'
                     break;
                 default:
-                    table = '<main id="BLG" style="padding: 10px">1</main>'
+                    id = 'BLG'
             }
+            table = '<main id="' + id + '" style="padding: 10px"></main>'
+
             return table
         }
 
@@ -62,14 +132,14 @@
                 nodes: [
                     {
                         id: 'general',
-                        text: 'General',
+                        text: '{{ target }}',
                         group: true,
                         expanded: true,
                         groupShowHide: false,
                         nodes: [
                             {id: '1', text: 'BLG', icon: 'fas fa-list-alt', selected: true},
                             {id: '2', text: 'ALL', icon: 'fas fa-list-alt'},
-                            {id: '3', text: 'BILLAN', icon: 'fas fa-list-alt'},
+                            {id: '3', text: 'BILAN', icon: 'fas fa-list-alt'},
                             {id: '4', text: 'CN', icon: 'fas fa-list-alt'},
                         ],
                         onCollapse(event) {
@@ -89,6 +159,7 @@
                         .css({
                             'border-left': '1px solid #efefef'
                         })
+                    CreateTable('BLG', config.BLG)
                 },
                 onClick(event) {
                     let table = configTable(event)
@@ -98,9 +169,88 @@
                         .css({
                             'border-left': '1px solid #efefef'
                         })
+                    let target;
+                    switch (event.target) {
+                        case 1:
+                            target = config.BLG
+                            break;
+                        case 2:
+                            target = config.ALL
+                            break;
+                        case 3:
+                            target = config.BILAN
+                            break;
+                        case 4:
+                            target = config.CN
+                            break;
+                        default:
+                            target = config.BLG
+                    }
+                    CreateTable(event.object.text, target)
                 }
-            }
-
+            },
+            BLG: [
+                {title: "SOCIETE", field: "SOCIETE", width: 125, frozen: true},
+                {title: "COMPTE SAGE", field: "COMPTE_SAGE", width: 125, frozen: true},
+                {title: "NBCAR", field: "NBCAR", width: 100,},
+                {title: "COMPTE UNIF", field: "COMPTE_UNIF", width: 125,},
+                {title: "DESIGNATION COMPTE", field: "DESIGNATION_COMPTE", width: 300,},
+                {title: "SD", field: "SD", width: 150},
+                {title: "SC", field: "SC", width: 150},
+                {title: "SOLDE 311222", field: "SOLDE_311222", width: 150, frozen: true},
+            ],
+            ALL: [
+                {title: "C1", field: "C1", width: 75, frozen: true},
+                {title: "C2", field: "C2", width: 75, frozen: true},
+                {title: "C3", field: "C3", width: 75, frozen: true},
+                {title: "Compte", field: "COMPTE", width: 125, frozen: true},
+                {title: "Affectation", field: "AFFECTATION", width: 125, frozen: true},
+                {title: "Désignation", field: "DESIGNATION", width: 250, frozen: true},
+                {title: "AGRIFARM", field: "AGFRM", width: 100,},
+                {title: "AGRIFEED", field: "AGRIFEED", width: 100,},
+                {title: "AGRICORP", field: "AGRICORP", width: 100,},
+                {title: "AGRIKOBA", field: "AGKOB", width: 100,},
+                {title: "AGRIMOTORS", field: "AGRIMOTORS", width: 100,},
+                {title: "AGRIVAL", field: "AGVAL", width: 100,},
+                {title: "AGRIVET", field: "AGVET", width: 100,},
+                {title: "AGRIVETAM", field: "AGRIVETAM", width: 100,},
+                {title: "AMCHO", field: "AMCHO", width: 100,},
+                {title: "AMIP", field: "AMIP", width: 100,},
+                {title: "BOVIMA", field: "BOVIMA", width: 100,},
+                {title: "CONFORTIS", field: "CONFORTIS", width: 100,},
+                {title: "CSS SAKAY", field: "CSS_SAKAY", width: 100,},
+                {title: "DISCOI", field: "DISCOI", width: 100,},
+                {title: "EUROPAINTS", field: "EUROPAINTS", width: 100,},
+                {title: "FERRIS", field: "FERRIS", width: 100,},
+                {title: "FIRST ENERGY", field: "FIRST_ENERGY", width: 100,},
+                {title: "FIRST INVESTISSEMENT", field: "FIRST_INVESTISSEMENT", width: 100,},
+                {title: "FLY TECH", field: "FLY_TECH", width: 100,},
+                {title: "IDF", field: "IDF", width: 100,},
+                {title: "ID MOTORS", field: "ID_MOTORS", width: 100,},
+                {title: "ID RENTAL", field: "ID_RENTAL", width: 100,},
+                {title: "INVISO", field: "INVISO", width: 100,},
+                {title: "IRS IMMO", field: "IRS_IMMO", width: 100,},
+                {title: "ISF", field: "ISF", width: 100,},
+                {title: "LMOI", field: "LMOI", width: 100,},
+                {title: "MABEL", field: "MABEL", width: 100,},
+                {title: "MADATRADE", field: "MADATRADE", width: 100,},
+                {title: "MCM", field: "MCM", width: 100,},
+                {title: "NMP", field: "NMP", width: 100,},
+                {title: "NOAH", field: "NOAH", width: 100,},
+                {title: "NUTRIFOOD", field: "NUTRIFOOD", width: 100,},
+                {title: "RYA", field: "RYA", width: 100,},
+                {title: "SEM", field: "SEM", width: 100,},
+                {title: "SIM", field: "SIM", width: 100,},
+                {title: "SMTP", field: "SMTP", width: 100,},
+                {title: "TARTINE", field: "TARTINE", width: 100,},
+                {title: "UNITED MALAGASY", field: "UNITED_MALAGASY", width: 100,},
+                {title: "VET ABE", field: "VET_ABE", width: 100,},
+                {title: "VET FIA", field: "VET_FIA", width: 100,},
+                {title: "CONSO", field: "CONSO", width: 100, frozen: true},
+                {title: "Cours Moyen EUR Exo", field: "MOYEN", width: 100, frozen: true},
+            ],
+            BILAN: [],
+            CN: [],
 
         }
 
@@ -123,7 +273,7 @@
         let champs = [
             {id: 1, text: 'BLG'},
             {id: 2, text: 'ALL'},
-            {id: 3, text: 'BILLAN'},
+            {id: 3, text: 'BILAN'},
             {id: 4, text: 'CN'},
         ]
 
