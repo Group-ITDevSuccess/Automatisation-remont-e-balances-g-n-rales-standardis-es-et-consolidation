@@ -17,7 +17,7 @@ def connexion(value):
     conn = None
     value_input = f"Driver={{ODBC Driver 17 for SQL Server}};Server={value.connexion.server};Database={value.base};UID={value.connexion.login};" \
                   f"PWD={value.connexion.password}"
-    print(value_input)
+    # print(value_input)
     try:
         # print(value_input)
         conn = pyodbc.connect(value_input)
@@ -31,44 +31,57 @@ def connexion(value):
     return conn
 
 
-def get_data_sql(sql, connection, colonnes, societe, target, site):
+def get_data_sql(connection, societe, value, target):
     df = None
     try:
+        with open('config.json', 'r') as fichier:
+            contenu_json = json.load(fichier)
+        columns = contenu_json['COLUMNS'][value]
+        sql = contenu_json['SQL'][value][societe.type]
+
         sql = str(sql) \
             .replace('{table}', str(societe.table)) \
-            .replace('<base>', str(societe.base)) \
-            .replace('<value>', str(societe.value)) \
-            .replace('<site>', str(site)) \
-            .replace('<target>', str(target))
+            .replace('{base}', str(societe.base)) \
+            .replace('{value}', str(societe.value)) \
+            .replace('{target}', str(target))
 
-        # print("===============================")
-        # print(f"SQL : {sql} ")
-        # print("===============================")
-        with connection.cursor() as cursor:
-            cursor.execute(sql)
-            rows = cursor.fetchall()
-            if rows:
-                rows = [tuple(row) for row in rows]
-                if all(isinstance(row, tuple) for row in rows):
-                    df = pd.DataFrame(rows, columns=colonnes)
-                    if not df.empty:
-                        df['UID'] = ''
-                        df['CPTE_PCU'] = 0
-                        df['CPTE_STU'] = 0
-                        df['FICHE'] = 0
-                        df['ECART'] = 0
-                        df['VAL_ECART'] = 0
-                        df['ACTEUR'] = None
-                        df['COMMENT'] = ''
+        sql_plan = str(contenu_json['PLAN_COMPTABLE'][societe.type]).replace('{table}', str(societe.table)).replace(
+            '{base}', str(societe.base))
+
+        if sql != "" and sql_plan != "":
+            with connection.cursor() as cursor:
+                plan_df = None
+
+                try:
+                    cursor.execute(sql_plan)
+                    plan = cursor.fetchall()
+                    if plan:
+                        plans = [tuple(row) for row in plan]
+                        plan_df = pd.DataFrame(plans, columns=['COMPTE_SAGE', 'DESIGNATION'])
                     else:
-                        print("Warning: DataFrame is empty. 'ECART' column not added.")
+                        print("Plan data does not match the expected column count.")
+                except Exception as e:
+                    write_log(f"Erreur de plan {societe.type}: {str(e)}")
+                    print(f"Erreur de plan {societe.type}: {str(e)}")
+                    pass
 
+                cursor.execute(sql)
+                rows = cursor.fetchall()
+                if rows:
+                    rows = [tuple(row) for row in rows]
+                    if all(isinstance(row, tuple) for row in rows):
+                        df = pd.DataFrame(rows, columns=columns)
+                        df = df.assign(SOCIETE=societe.name)
+                        df['DEBIT'] = df.apply(lambda row: row['SOLDE'] if row['SOLDE'] > 0 else 0, axis=1)
+                        df['CREDIT'] = df.apply(lambda row: abs(row['SOLDE']) if row['SOLDE'] < 0 else 0, axis=1)
+                        if plan_df is not None:
+                            plan_dict = dict(zip(plan_df['COMPTE_SAGE'], plan_df['DESIGNATION']))
+                            df['DESIGNATION'] = df['COMPTE_SAGE'].map(plan_dict).fillna('')
+                        else:
+                            df['DESIGNATION'] = ''
     except pyodbc.Error as e:
         write_log(f"Erreur execute_sql : {str(e)}")
-        print(f"Erreur execute_sql by pydodbc : {str(e)}")
-        print("===============================")
-        print(f"SQL : {sql} ")
-        print("===============================")
+        print(f"Erreur execute_sql by pyodbc : {str(e)}")
     except Exception as e:
         write_log(f"Erreur execute_sql : {str(e)}")
         print(f"Erreur execute_sql : {str(e)}")

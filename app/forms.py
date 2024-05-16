@@ -6,11 +6,14 @@ from django.contrib.auth.forms import UserChangeForm
 from app.models import Societe
 from guard.models import CustomUser
 
+choise = [('', '---')]
+choise.extend((year, str(year)) for year in range(date.today().year, 2016, -1))
+
 
 class SearchForm(forms.Form):
     target = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'selectpicker'}),
-        choices=[(year, str(year)) for year in range(date.today().year, 2016, -1)],
+        choices=choise,
         required=True,
         label="Date antérieure",
     )

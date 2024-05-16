@@ -18,12 +18,12 @@ def image_upload_path(instance, filename):
 
 class Connexion(models.Model):
     uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    server = models.CharField(verbose_name='Server', max_length=150)
+    server = models.CharField(verbose_name='Server', max_length=150, unique=True)
     login = models.CharField(verbose_name='Identifiant', max_length=50, null=True, default='reader')
     password = models.CharField(verbose_name='Mot de Passe', max_length=500, default='m1234')
 
     def __str__(self):
-        return f"{self.server}"
+        return self.server
 
 
 class Societe(models.Model):
@@ -32,9 +32,10 @@ class Societe(models.Model):
     name = models.CharField(max_length=150, unique=True)
     value = models.CharField(max_length=150)
     base = models.CharField(max_length=150)
-    table = models.CharField(max_length=150, null=True, default='')
+    table = models.CharField(max_length=150, blank=True, null=True, default='')
     active = models.BooleanField(default=True)
-    connexion = models.ForeignKey(Connexion, on_delete=models.CASCADE, null=True)
+    type = models.CharField(max_length=150, null=True, blank=True, choices=[('X3', 'X3'), ('SAGE100', 'SAGE100')])
+    connexion = models.ForeignKey(Connexion, on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 

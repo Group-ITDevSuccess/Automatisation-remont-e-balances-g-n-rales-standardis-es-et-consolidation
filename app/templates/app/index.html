@@ -23,7 +23,7 @@
             w2utils
         } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.min.js' %}";
 
-        let CreateTable = function (id, columns) {
+        let CreateTable = function (id, columns, groupBy) {
             let table = new Tabulator('#' + id, {
                 height: '90vh',
                 editorEmptyValue: '',
@@ -37,13 +37,14 @@
                 },
                 ajaxURL: "{% url 'app:get-data-for-table' %}",
                 ajaxContentType: "json",
-                ajaxParams: {'value': id},
-                ajaxConfig:"POST",
-                progressiveLoad:"load",
-                progressiveLoadDelay:200,
+                ajaxParams: {'value': id, 'target': '{{ target }}'},
+                ajaxConfig: "POST",
+                progressiveLoad: "load",
+                progressiveLoadDelay: 200,
                 layout: "fitData",
                 printAsHtml: true,
                 printStyled: true,
+                groupStartOpen:false,
                 printRowRange: "all",
                 printHeader: "<h1>Example Table Header<h1>",
                 printFooter: "<h2>Example Table Footer<h2>",
@@ -57,7 +58,8 @@
                     frozen: true,
                     rowHandle: true,
                     editor: false,
-                    formatter: "handle",
+                    hozAlign: "center",
+                    formatter: "rownum",
                 },
                 movableColumns: true,
                 success: function (data) {
@@ -87,6 +89,7 @@
                     editor: false,
                     resizable: "header",
                 },
+                groupBy: groupBy,
                 columns: columns
             })
         }
@@ -114,6 +117,7 @@
 
             return table
         }
+
 
         let config = {
             layout: {
@@ -159,7 +163,7 @@
                         .css({
                             'border-left': '1px solid #efefef'
                         })
-                    CreateTable('BLG', config.BLG)
+                    CreateTable('BLG', config.BLG, 'SOCIETE')
                 },
                 onClick(event) {
                     let table = configTable(event)
@@ -170,9 +174,11 @@
                             'border-left': '1px solid #efefef'
                         })
                     let target;
+                    let groupBy = '';
                     switch (event.target) {
                         case 1:
                             target = config.BLG
+                            groupBy = 'SOCIETE'
                             break;
                         case 2:
                             target = config.ALL
@@ -186,18 +192,67 @@
                         default:
                             target = config.BLG
                     }
-                    CreateTable(event.object.text, target)
+                    CreateTable(event.object.text, target, groupBy)
                 }
             },
             BLG: [
                 {title: "SOCIETE", field: "SOCIETE", width: 125, frozen: true},
-                {title: "COMPTE SAGE", field: "COMPTE_SAGE", width: 125, frozen: true},
+                {title: "COMPTE SAGE", hozAlign: "right", field: "COMPTE_SAGE", width: 125, frozen: true},
                 {title: "NBCAR", field: "NBCAR", width: 100,},
-                {title: "COMPTE UNIF", field: "COMPTE_UNIF", width: 125,},
-                {title: "DESIGNATION COMPTE", field: "DESIGNATION_COMPTE", width: 300,},
-                {title: "SD", field: "SD", width: 150},
-                {title: "SC", field: "SC", width: 150},
-                {title: "SOLDE 311222", field: "SOLDE_311222", width: 150, frozen: true},
+                {title: "COMPTE UNIF", hozAlign: "right", field: "COMPTE_UNIF", width: 125,},
+                {title: "DESIGNATION COMPTE", field: "DESIGNATION", width: 300,},
+                {
+                    title: "SOLDE DEBIT",
+                    field: "DEBIT",
+                    sorter: "number",
+                    bottomCalc: "sum",
+                    bottomCalcParams: {precision: 2},
+                    hozAlign: "right",
+                    width: 150,
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: true,
+                        precision: false,
+                    }
+                },
+                {
+                    title: "SOLDE CREDIT",
+                    field: "CREDIT",
+                    sorter: "number",
+                    bottomCalc: "sum",
+                    bottomCalcParams: {precision: 2},
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: true,
+                        precision: false,
+                    }
+                },
+                {
+                    title: "SOLDE 311222",
+                    field: "SOLDE",
+                    width: 150,
+                    frozen: true, hozAlign: "right",
+                    formatter: "money",
+                    sorter: "number", bottomCalc: "sum", bottomCalcParams: {precision: 2},
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: false,
+                    }
+                },
             ],
             ALL: [
                 {title: "C1", field: "C1", width: 75, frozen: true},
