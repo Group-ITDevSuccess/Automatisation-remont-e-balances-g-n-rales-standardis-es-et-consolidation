@@ -8,7 +8,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'dist/w2ui-2.0/w2ui-2.0.min.css' %}">
 {% endblock %}
 {% block content %}
-    <main id="main" class="" style="width: 100vw; height: 90vh;"></main>
+
+    <main id="contents">
+        <div id="main" class="" style="width: 100vw; height: 90vh;"></div>
+    </main>
 {% endblock %}
 {% block script %}
     <script type="text/javascript">
@@ -58,14 +61,18 @@
             w2sidebar,
             w2alert,
             query,
-            w2toolbar
+            w2toolbar,
+            w2utils,
+            w2popup,
+            w2ui,
+            w2form
         } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.min.js' %}";
 
 
         let CreateTable = function (id, columns, groupBy) {
 
             let table = new Tabulator('#' + id, {
-                height: '90vh',
+                height: '80vh',
                 editorEmptyValue: '',
                 downloadConfig: {
                     columnHeaders: true,
@@ -167,7 +174,7 @@
                 padding: 5,
                 panels: [
                     {type: 'top', size: 35, overflow: 'hidden'},
-                    {type: 'left', size: 100, resizable: true, minSize: 35},
+                    {type: 'left', size: 100, resizable: true, minSize: 30},
                     {type: 'main', size: 550, overflow: 'hidden'}
                 ]
             },
@@ -194,7 +201,7 @@
                     }
                 ],
                 onFlat(event) {
-                    layout.sizeTo('left', (event.detail.goFlat ? 35 : 100), true)
+                    layout.sizeTo('left', (event.detail.goFlat ? 30 : 100), true)
                 },
                 onRender(event) {
                     let table = configTable(event)
@@ -241,10 +248,15 @@
                 name: 'toolbar',
                 style: 'margin: -2px 3px; padding: 2px; border-radius: 4px; border: #9bb5ff; border-width: 1px 2px; border-style: solid;',
                 items: [
-                    {type: 'button', id: 'insert', text: 'Ajouter', icon: 'w2ui-icon-plus'},
+                    {type: 'button', id: 'add', text: 'Ajouter', icon: 'w2ui-icon-plus'},
                     {type: 'button', id: 'append', text: 'Valider', icon: 'w2ui-icon-check'},
                     {type: 'button', id: 'delete', text: 'Suprimer', icon: 'w2ui-icon-cross'},
-                ]
+                ],
+                onClick(event) {
+                    {#if (event.target === 'add') lock({spinner: true, msg: 'Enregistrement ...'})#}
+                    {#if (event.target === 'hide') unlock(true)#}
+                    if (event.target === 'add') openPopup()
+                }
             },
             BLG: [
                 {title: "SOCIETE", field: "SOCIETE", width: 125, frozen: true},
@@ -375,6 +387,55 @@
                 .ok(() => {
                     console.log(message)
                 })
+        }
+
+        window.lock = function (opts = {}) {
+            w2utils.lock(query('#contents'), opts)
+        }
+        window.unlock = function () {
+            w2utils.unlock(query('#contents'))
+        }
+
+        window.openPopup = function () {
+            if (!w2ui.foo) {
+                new w2form({
+                    name: 'foo',
+                    style: 'border: 0px; background-color: transparent;',
+                    fields: [
+                        {
+                            field: 'target', type: 'list',
+                            html: {label: 'Date'},
+                            options: {items: ['2024', '2023', '2022', '2021']}
+                        }
+                    ],
+                    record: {
+                        target: '{{ target }}',
+                    },
+                    actions: {
+                        Reset() {
+                            this.clear()
+                        },
+                        Save() {
+                            this.validate()
+                        }
+                    }
+                });
+            }
+            w2popup.open({
+                title: 'Enregistrement Bilan',
+                body: '<div id="form" style="width: 100%; height: 100%;"></div>',
+                style: 'padding: 15px 0px 0px 0px',
+                width: 500,
+                height: 280,
+                showMax: true,
+                async onToggle(event) {
+                    await event.complete
+                    w2ui.foo.resize();
+                }
+            })
+                .then((event) => {
+                    w2ui.foo.render('#form')
+                });
         }
 
 
