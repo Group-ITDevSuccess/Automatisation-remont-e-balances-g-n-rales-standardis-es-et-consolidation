@@ -43,6 +43,40 @@ class Societe(models.Model):
         return self.name
 
 
+class Compte(models.Model):
+    uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    societe = models.CharField(max_length=150, null=True, blank=True)
+    compte_sage = models.CharField(max_length=150, null=True, blank=True)
+    compte_unif = models.CharField(max_length=150, null=True, blank=True)
+
+    def __str__(self):
+        return self.societe
+
+
+class Balance(models.Model):
+    societe = models.ForeignKey('Societe', on_delete=models.CASCADE, null=True)
+    compte_sage = models.CharField(max_length=150, null=True, blank=True)
+    compte_unif = models.CharField(max_length=150, null=True, blank=True)
+    designation = models.TextField(blank=True)
+    debit = models.FloatField(default=0)
+    credit = models.FloatField(default=0)
+    montant = models.FloatField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.societe.name
+
+
+class Events(models.Model):
+    uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    date = models.IntegerField(blank=False, unique=True)
+    balance = models.ManyToManyField('Balance', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.date}"
+
+
 @receiver(pre_delete, sender=Societe)
 def delete_societe_image(sender, instance, **kwargs):
     if instance.image and instance.image.path:

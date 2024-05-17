@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from .models import Connexion, Societe
+from .models import Connexion, Societe, Compte, Balance, Events
 from import_export import resources, fields
 from import_export.widgets import ForeignKeyWidget
 
@@ -13,6 +13,34 @@ class SocieteResource(resources.ModelResource):
         model = Societe
         fields = ('uid', 'name', 'value', 'base', 'table', 'active', 'type', 'connexion')
         import_id_fields = ('uid',)
+
+
+class CompteResource(resources.ModelResource):
+    class Meta:
+        model = Compte
+        fields = ('societe', 'compte_sage', 'compte_unif', 'uid')
+        import_id_fields = ('uid',)
+
+
+@admin.register(Balance)
+class BalanceAdmin(admin.ModelAdmin):
+    list_display = (
+    'societe', 'compte_sage', 'compte_unif', 'designation', 'debit', 'credit', 'montant', 'created_at', 'updated_at')
+    list_filter = ('societe',)
+    search_fields = ('compte_sage', 'compte_unif', 'designation')
+
+
+@admin.register(Events)
+class EventsAdmin(admin.ModelAdmin):
+    list_display = ('uid', 'date',)
+    search_fields = ('date',)
+    list_per_page = 20
+
+
+@admin.register(Compte)
+class CompteAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = CompteResource
+    list_display = ('societe', 'compte_sage', 'compte_unif')
 
 
 @admin.register(Connexion)

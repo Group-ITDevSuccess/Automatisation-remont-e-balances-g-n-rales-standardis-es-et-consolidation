@@ -11,19 +11,59 @@
     <main id="main" class="" style="width: 100vw; height: 90vh;"></main>
 {% endblock %}
 {% block script %}
+    <script type="text/javascript">
+        let addEventData = function (type) {
+            // URL of the server endpoint
+            const url = "{% url 'app:add-data-for-table' %}";
+
+            // Data to be sent in the request body
+            const data = {
+                target: '{{ target }}',
+                type: type
+            };
+
+            // Sending a POST request using fetch
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    // Check if the response is OK (status code 200-299)
+                    if (!response.ok) {
+                        // Throw an error if the response status is not OK
+                        return response.json().then(error => {
+                            throw new Error(error.message || 'An error occurred');
+                        });
+                    }
+                    // Parse and return the JSON response
+                    return response.json();
+                })
+                .then(jsonData => {
+                    // Handle the JSON response data
+                    console.log('Success:', jsonData);
+                })
+                .catch(error => {
+                    // Display the error message
+                    console.error('Error:', error.message);
+                    alert(`Error: ${error.message}`);
+                });
+        }
+    </script>
     <script type="module">
         import {
             w2layout,
             w2sidebar,
             w2alert,
             query,
-            w2form,
-            w2ui,
-            w2popup,
-            w2utils
+            w2toolbar
         } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.min.js' %}";
 
+
         let CreateTable = function (id, columns, groupBy) {
+
             let table = new Tabulator('#' + id, {
                 height: '90vh',
                 editorEmptyValue: '',
@@ -44,14 +84,14 @@
                 layout: "fitData",
                 printAsHtml: true,
                 printStyled: true,
-                groupStartOpen:false,
+                groupStartOpen: false,
                 printRowRange: "all",
                 printHeader: "<h1>Example Table Header<h1>",
                 printFooter: "<h2>Example Table Footer<h2>",
                 footerElement: `<button type='button' class='btn btn-warning btn-sm mr-2' id='reload-table' onClick=""><i class='fas fa-sync-alt'></i></button>`,
                 tooltipsHeader: false,
                 rowHeader: {
-                    title: `<button type='button' class='btn btn-primary btn-sm' id='add-row' onclick=""><i class='fas fa-plus'></i></button>`,
+                    title: `<button type='button' class='btn btn-primary btn-sm' id='add-row' onClick=""><i class='fas fa-plus'></i></button>`,
                     headerSort: false,
                     resizable: false,
                     width: 45,
@@ -124,8 +164,9 @@
                 name: 'layout',
                 overflow: 'auto',
                 resizable: false,
-                padding: 0,
+                padding: 5,
                 panels: [
+                    {type: 'top', size: 35, overflow: 'hidden'},
                     {type: 'left', size: 100, resizable: true, minSize: 35},
                     {type: 'main', size: 550, overflow: 'hidden'}
                 ]
@@ -194,6 +235,16 @@
                     }
                     CreateTable(event.object.text, target, groupBy)
                 }
+            },
+            topbar: {
+                box: '#toolbar',
+                name: 'toolbar',
+                style: 'margin: -2px 3px; padding: 2px; border-radius: 4px; border: #9bb5ff; border-width: 1px 2px; border-style: solid;',
+                items: [
+                    {type: 'button', id: 'insert', text: 'Ajouter', icon: 'w2ui-icon-plus'},
+                    {type: 'button', id: 'append', text: 'Valider', icon: 'w2ui-icon-check'},
+                    {type: 'button', id: 'delete', text: 'Suprimer', icon: 'w2ui-icon-cross'},
+                ]
             },
             BLG: [
                 {title: "SOCIETE", field: "SOCIETE", width: 125, frozen: true},
@@ -312,272 +363,17 @@
 
         let layout = new w2layout(config.layout);
         let sidebar = new w2sidebar(config.sidebar);
+        let topbar = new w2toolbar(config.topbar);
 
         layout.render('#main');
         layout.html('left', sidebar)
-        layout.html('top', toolbar)
+        layout.html('top', topbar)
 
 
         window.showAlert = function (message) {
             w2alert(message)
                 .ok(() => {
                     console.log(message)
-                })
-        }
-
-        let champs = [
-            {id: 1, text: 'BLG'},
-            {id: 2, text: 'ALL'},
-            {id: 3, text: 'BILAN'},
-            {id: 4, text: 'CN'},
-        ]
-
-        window.showRegister = function () {
-            if (!w2ui.foo) {
-                let form = new w2form({
-                    box: '#foo',
-                    name: 'foo',
-
-                    url: "",
-                    record: {
-                        uid: '{{ uid }}',
-                        destinataire: '{{ user.email }}',
-                        copie: 'sage@inviso-group.com',
-                        societe: '{{ societe }}',
-                        target: '{{ target }}',
-                        champs: [
-                            {'id': 1, 'text': 'AI'}, {'id': 2, 'text': 'ANDR'}, {'id': 3, 'text': 'ADR'}, {
-                                'id': 4, 'text': 'PSV'
-                            }, {'id': 5, 'text': 'MV'}, {'id': 6, 'text': 'SVT'}, {'id': 7, 'text': 'PL'}, {
-                                'id': 8,
-                                'text': 'PLP'
-                            }, {'id': 9, 'text': 'DEB'}],
-                        message: "Bonjour\n\nVoici en jointe le Droite de COM de {{ societe }} à l'années {{ target }}.\n\nCordialement,"
-                    },
-                    fields: [
-                        {
-                            field: 'destinataire', type: 'text', required: true,
-                            html: {
-                                group: 'Envoyée par Mail',
-                                column: 'before',
-                                span: 4,
-                                label: 'Déstinataire (,)',
-                                attr: 'style="width: calc(100% - 40px)"'
-                            }
-                        },
-                        {
-                            field: 'copie', type: 'text',
-                            html: {
-                                column: 'before',
-                                span: 4,
-                                label: 'Copie (,)',
-                                attr: 'style="width: calc(100% - 40px)"'
-                            }
-                        },
-                        {
-                            field: 'champs', type: 'enum', required: true,
-                            html: {
-                                group: 'Les Feuilles',
-                                column: 'before',
-                                groupStyle: 'border: 1px solid green; background-color: #eaffea',
-                                required: true,
-                                span: 3,
-                                label: 'Champs', attr: 'style="width: calc(100% - 40px)"'
-                            },
-                            options: {openOnFocus: true, items: w2utils.clone(champs)}
-                        },
-                        {
-                            field: 'societe', type: 'text', required: true,
-                            html: {
-                                column: 'before',
-                                text: ' %attach1%',
-                                span: 4,
-                                label: 'Société',
-                                attr: 'placeholder="Nom du Société",style="width: calc(60% - 100px)"'
-
-                            }
-                        },
-                        {
-                            field: 'target', type: 'text', required: true,
-                            html: {
-                                label: '',
-                                anchor: '%attach1%',
-                                attr: 'placeholder="state" style="width: calc(40% - 60px)"'
-                            }
-                        },
-                        {
-                            field: 'message', type: 'textarea',
-                            html: {
-                                group: 'Message',
-                                column: 'after',
-                                span: -1,
-                                label: '',
-                                attr: 'style="width: 100%; height: 100px; resize: none"'
-                            }
-                        }
-                    ],
-                    actions: {
-                        Clear() {
-                            this.clear();
-                        },
-                        Save() {
-                            this.save();
-                            this.validate();
-                        },
-                        custom2: {
-                            text: '<span style="font-size: 16px">←</span> clicker pour télécharger',
-                            class: 'custom-class',
-                            style: 'background-image: none; background-color: transparent; border: 0px; margin: 0 0 0 -10px;',
-                            onClick() {
-                                w2alert('Not me!! The other button')
-                            }
-                        }
-                    },
-                    onSave: function (event) {
-                        w2popup.close()
-                    },
-                    onSubmit: function (event) {
-                    },
-                    onRequest: function (data) {
-                    },
-                    onProgress: function (event) {
-                    },
-                    onLoad: function (target, data) {
-                    },
-                    onError: function (event) {
-                    }
-
-                })
-            }
-            w2popup.open({
-                title: 'Panel et Outils',
-                body: '<div id="form" style="width: 100%; height: 100%;"></div>',
-                style: 'padding: 15px 0px 0px 0px',
-                width: 725,
-                height: 600,
-                showMax: true,
-                async onToggle(event) {
-                    await event.complete
-                    w2ui.foo.resize();
-                }
-            })
-                .then((event) => {
-                    w2ui.foo.render('#form')
-                });
-        }
-
-
-        let configPopup = {
-            layoutPopup: {
-                name: 'layoutPopup',
-                padding: 4,
-                panels: [
-                    {type: 'left', size: '50%', resizable: true, minSize: 300},
-                    {type: 'main', minSize: 300, style: 'overflow: hidden'}
-                ]
-            },
-            grid1: {
-                name: 'grid',
-                liveSearch: true,
-                multiSearch: true,
-                multiSelect: true,
-                showExtraOnSearch: 1,
-                show: {
-                    header: true,
-                    footer: true,
-                    toolbar: true,
-                    lineNumbers: true
-                },
-                style: 'border: 1px solid #efefef',
-                columns: [
-                    {field: 'societe', text: 'Societe', size: '50%', sortable: true, searchable: true},
-                    {field: 'target', text: 'Année', size: '33%', sortable: true, searchable: true},
-                    {field: 'destinataire', text: 'Destinataire'},
-                    {field: 'copie', text: 'Copie',},
-                    {
-                        field: 'status',
-                        text: 'Status',
-                        size: '40px',
-                        sortable: true,
-                        resizable: false,
-                        info: {
-                            fields: {
-                                'Status': (rec, ind, col_ind) => {
-                                    return rec.societe + ' (' + rec.target + ')'
-                                },
-                                'Spacer': '---',
-                                'Destinataire': 'destinataire',
-                                'Copie': 'copie',
-                                'Date': 'created_at',
-                            },
-                            showOn: 'mouseenter',
-                            options: {position: 'top'},
-                            style: 'color: green'
-                        },
-                        render: () => '<span style="color: silver"></span>',
-                        style: 'text-align: center',
-                    }
-                ],
-                async onClick(event) {
-                    await event.complete
-                    let record = this.get(event.detail.recid)
-                    gridPopup2.clear()
-                    gridPopup2.add([
-                        {recid: 0, name: 'Uid ', value: record.recid},
-                        {recid: 1, name: 'Societe ', value: record.societe},
-                        {recid: 2, name: 'Année ', value: record.target},
-                        {recid: 3, name: 'Destinataire ', value: record.destinataire},
-                        {recid: 4, name: 'Copie ', value: record.copie},
-                        {
-                            recid: 5, name: 'Status ', value: record.status, render(record, extra) {
-                                console.log(record)
-                                if (extra.value === true) {
-                                    return '(Envoyer)'
-                                } else if (extra.value === false) {
-                                    return '(Non Envoyer)'
-                                }
-                                return extra.value
-                            }
-                        },
-                        {recid: 6, name: 'Message ', value: record.message},
-                        {recid: 7, name: "Date d'envoie ", value: record.created_at},
-                    ])
-                }
-            },
-            grid2: {
-                name: 'grid2',
-                box: '#grid2',
-                header: 'Details',
-                show: {header: true, columnHeaders: false},
-                columns: [
-                    {
-                        field: 'name',
-                        text: 'Name',
-                        size: '100px',
-                        style: 'background-color: #efefef; border-bottom: 1px solid white; padding-right: 5px;',
-                        attr: "align=right"
-                    },
-                    {field: 'value', text: 'Value', size: '100%'}
-                ]
-            }
-        }
-
-        // initialization in memory
-        let layoutPopup = new w2layout(configPopup.layoutPopup)
-
-
-        window.showHistory = function () {
-            w2popup.open({
-                title: 'Historique',
-                width: 1000,
-                height: 600,
-                showMax: true,
-                body: '<div id="main" style="position: absolute; left: 2px; right: 2px; top: 0px; bottom: 3px;"></div>'
-            })
-                .then(e => {
-                    layoutPopup.render('#w2ui-popup #main')
-                    layoutPopup.html('left', gridPopup1)
-                    layoutPopup.html('main', gridPopup2)
                 })
         }
 

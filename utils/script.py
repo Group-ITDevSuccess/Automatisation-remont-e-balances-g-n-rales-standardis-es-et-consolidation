@@ -13,6 +13,27 @@ from django.conf import settings
 from utils.ldap import write_log
 
 
+def load_comptes(filepath):
+    with open(filepath, 'r') as fichier:
+        comptes = pd.read_json(fichier)
+    return comptes
+
+
+# Fonction pour obtenir le compte UNIF correspondant
+def get_compte_unif(comptes, societe, compte_sage):
+    # Vérification des types de données et affichage des valeurs pour le débogage
+    # print(f"Recherche pour SOCIETE: {societe}, COMPTE SAGE: {compte_sage}")
+
+    # Assurez-vous que les types de données correspondent
+    compte_sage = int(compte_sage)  # Conversion au type int pour correspondre aux données
+
+    result = comptes.loc[
+        (comptes['SOCIETE'].str.strip() == societe) & (comptes['COMPTE SAGE'] == compte_sage), 'COMPTE UNIF'].values
+
+    # print(f"Résultat trouvé : {result}")
+    return result[0] if len(result) > 0 else ''
+
+
 def connexion(value):
     conn = None
     value_input = f"Driver={{ODBC Driver 17 for SQL Server}};Server={value.connexion.server};Database={value.base};UID={value.connexion.login};" \
@@ -36,22 +57,23 @@ def get_data_sql(connection, societe, value, target):
     try:
         with open('config.json', 'r') as fichier:
             contenu_json = json.load(fichier)
+
         columns = contenu_json['COLUMNS'][value]
         sql = contenu_json['SQL'][value][societe.type]
-
         sql = str(sql) \
             .replace('{table}', str(societe.table)) \
             .replace('{base}', str(societe.base)) \
             .replace('{value}', str(societe.value)) \
             .replace('{target}', str(target))
 
-        sql_plan = str(contenu_json['PLAN_COMPTABLE'][societe.type]).replace('{table}', str(societe.table)).replace(
-            '{base}', str(societe.base))
+        sql_plan = str(contenu_json['PLAN_COMPTABLE'][societe.type]) \
+            .replace('{table}', str(societe.table)) \
+            .replace('{base}', str(societe.base))
 
-        if sql != "" and sql_plan != "":
+        comptes = load_comptes('compte.json')
+
+        if sql and sql_plan:
             with connection.cursor() as cursor:
-                plan_df = None
-
                 try:
                     cursor.execute(sql_plan)
                     plan = cursor.fetchall()
@@ -79,6 +101,13 @@ def get_data_sql(connection, societe, value, target):
                             df['DESIGNATION'] = df['COMPTE_SAGE'].map(plan_dict).fillna('')
                         else:
                             df['DESIGNATION'] = ''
+
+                        # Appliquer la fonction get_compte_unif à chaque ligne
+                        df['COMPTE_UNIF'] = df.apply(
+                            lambda row: get_compte_unif(comptes=comptes, societe=row['SOCIETE'],
+                                                        compte_sage=row['COMPTE_SAGE']),
+                            axis=1
+                        )
     except pyodbc.Error as e:
         write_log(f"Erreur execute_sql : {str(e)}")
         print(f"Erreur execute_sql by pyodbc : {str(e)}")
