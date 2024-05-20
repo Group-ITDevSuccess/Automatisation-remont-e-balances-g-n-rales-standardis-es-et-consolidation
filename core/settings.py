@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -88,12 +90,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # <-- UPDATED line
-        'NAME': 'balances-generals',  # <-- UPDATED line
-        'USER': 'root',  # <-- UPDATED line
-        'PASSWORD': 'AllahSeul',  # <-- UPDATED line
-        'HOST': '127.0.0.1',  # <-- UPDATED line
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv("PROJECT_BASE", default=""),
+        'USER': os.getenv("USER_MYSQL", default="root"),
+        'PASSWORD': os.getenv("PASSWORD_MYSQL", default=""),
+        'HOST': os.getenv("HOST_MYSQL", default=""),
+        'PORT': os.getenv("PORT_MYSQL", default=""),
     },
 }
 
@@ -161,8 +163,8 @@ if not DEBUG:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
-SERVER_LDAP = 'ldap://ad-server-1'
-DN_LDAP = "dc=smtp-group,dc=mg"
+SERVER_LDAP = os.getenv("SERVER_LDAP", default="")
+DN_LDAP = os.getenv("DN_LDAP", default="")
 
 AUTH_USER_MODEL = 'guard.CustomUser'
 USE_THOUSAND_SEPARATOR = True

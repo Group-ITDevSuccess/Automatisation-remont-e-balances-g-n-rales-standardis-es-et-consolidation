@@ -22,6 +22,8 @@
         <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'app:index' %}">
             {% csrf_token %}
             {{ search_form.target }}
+            {{ search_form.begin }}
+            {{ search_form.end }}
             <button class="btn btn-outline-success my-2 ml-2 my-sm-0" type="submit">Chercher</button>
             <a href="{% url 'auths:logout' %}" class="btn btn-outline-danger ml-2 my-sm-0" type="submit">
                 <i class="fas fa-sign-out-alt"></i>

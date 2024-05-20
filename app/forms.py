@@ -6,16 +6,46 @@ from django.contrib.auth.forms import UserChangeForm
 from app.models import Societe
 from guard.models import CustomUser
 
-choise = [('', '---')]
-choise.extend((year, str(year)) for year in range(date.today().year, 2016, -1))
+# Choices for years
+year_choices = [('', '---')]
+year_choices.extend((year, str(year)) for year in range(date.today().year, 2016, -1))
+
+# Choices for months
+month_choices = [
+    ('', '---'),
+    ('01', 'January'),
+    ('02', 'February'),
+    ('03', 'March'),
+    ('04', 'April'),
+    ('05', 'May'),
+    ('06', 'June'),
+    ('07', 'July'),
+    ('08', 'August'),
+    ('09', 'September'),
+    ('10', 'October'),
+    ('11', 'November'),
+    ('12', 'December'),
+]
 
 
 class SearchForm(forms.Form):
     target = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'selectpicker'}),
-        choices=choise,
+        choices=year_choices,
         required=True,
         label="Date antérieure",
+    )
+    begin = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'selectpicker ml-2'}),
+        choices=month_choices,
+        required=False,
+        label="Debut",
+    )
+    end = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'selectpicker ml-2'}),
+        choices=month_choices,
+        required=False,
+        label="Fin",
     )
 
 
