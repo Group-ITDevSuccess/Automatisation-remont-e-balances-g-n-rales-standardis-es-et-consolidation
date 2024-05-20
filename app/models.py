@@ -29,7 +29,7 @@ class Connexion(models.Model):
 class Societe(models.Model):
     uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     image = models.ImageField(upload_to=image_upload_path, null=True, blank=True, default='')
-    name = models.CharField(max_length=150, unique=True)
+    name = models.CharField(verbose_name='Name', max_length=150, unique=True)
     value = models.CharField(max_length=150)
     base = models.CharField(max_length=150)
     table = models.CharField(max_length=150, blank=True, null=True, default='')
@@ -54,10 +54,12 @@ class Compte(models.Model):
 
 
 class Balance(models.Model):
-    societe = models.ForeignKey('Societe', on_delete=models.CASCADE, null=True)
+    uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    societe = models.ForeignKey(Societe, on_delete=models.CASCADE, null=True, blank=True)
     compte_sage = models.CharField(max_length=150, null=True, blank=True)
     compte_unif = models.CharField(max_length=150, null=True, blank=True)
-    designation = models.TextField(blank=True)
+    designation = models.TextField(blank=True, null=True)
+    target = models.IntegerField(blank=False)
     debit = models.FloatField(default=0)
     credit = models.FloatField(default=0)
     montant = models.FloatField(default=0)
@@ -66,15 +68,6 @@ class Balance(models.Model):
 
     def __str__(self):
         return self.societe.name
-
-
-class Events(models.Model):
-    uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    date = models.IntegerField(blank=False, unique=True)
-    balance = models.ManyToManyField('Balance', blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.date}"
 
 
 @receiver(pre_delete, sender=Societe)

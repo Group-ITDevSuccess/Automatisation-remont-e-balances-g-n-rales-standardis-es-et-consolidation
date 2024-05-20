@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from .models import Connexion, Societe, Compte, Balance, Events
+from .models import Connexion, Societe, Compte, Balance
 from import_export import resources, fields
 from import_export.widgets import ForeignKeyWidget
 
@@ -22,19 +22,25 @@ class CompteResource(resources.ModelResource):
         import_id_fields = ('uid',)
 
 
+class BalanceResource(resources.ModelResource):
+    societe = fields.Field(column_name='societe', attribute='societe',
+                           widget=ForeignKeyWidget(Societe, 'name'))
+
+    class Meta:
+        model = Balance
+        fields = (
+            'societe', 'compte_sage', 'compte_unif', 'designation', 'target', 'debit', 'credit', 'montant', 'uid')
+        import_id_fields = ('uid',)
+
+
 @admin.register(Balance)
-class BalanceAdmin(admin.ModelAdmin):
+class BalanceAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = BalanceResource
     list_display = (
-    'societe', 'compte_sage', 'compte_unif', 'designation', 'debit', 'credit', 'montant', 'created_at', 'updated_at')
+        'societe', 'compte_sage', 'compte_unif', 'designation', 'target', 'debit', 'credit', 'montant', 'created_at',
+        'updated_at')
     list_filter = ('societe',)
     search_fields = ('compte_sage', 'compte_unif', 'designation')
-
-
-@admin.register(Events)
-class EventsAdmin(admin.ModelAdmin):
-    list_display = ('uid', 'date',)
-    search_fields = ('date',)
-    list_per_page = 20
 
 
 @admin.register(Compte)
