@@ -170,6 +170,18 @@ def get_sql_in_json(chemin_fichier):
         print(f"Une erreur s'est produite : {e}")
 
 
+def extract_from_path(path):
+    segments = path.lstrip('/').split('/')
+
+    if len(segments) >= 3:
+        base = segments[0]
+        query = segments[1]
+        table = segments[2]
+
+        return base, query, table
+    else:
+        return None, None, None
+
 def get_sql(path):
     base, query, value = extract_from_path(path)
 
@@ -200,17 +212,7 @@ def get_month_names(year, local_value=True):
         return [calendar.month_name[i].capitalize() for i in range(1, current_month + 1)]
 
 
-def extract_from_path(path):
-    segments = path.lstrip('/').split('/')
 
-    if len(segments) >= 3:
-        base = segments[0]
-        query = segments[1]
-        table = segments[2]
-
-        return base, query, table
-    else:
-        return None
 
 
 def are_valid_uuids(values):

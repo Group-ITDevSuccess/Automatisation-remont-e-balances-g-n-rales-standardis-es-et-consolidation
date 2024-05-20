@@ -1,4 +1,3 @@
-import pyodbc
 import os
 import ldap3
 import logging

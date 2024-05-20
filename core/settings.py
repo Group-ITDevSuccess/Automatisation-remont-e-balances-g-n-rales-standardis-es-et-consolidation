@@ -14,17 +14,17 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+oe5z5k_l_^*czdb(q19dkn2&r=r#oq+qf%xzu5z41#h+j@%4z'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True)
 
 ALLOWED_HOSTS = []
 
@@ -91,13 +91,15 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv("PROJECT_BASE", default=""),
-        'USER': os.getenv("USER_MYSQL", default="root"),
-        'PASSWORD': os.getenv("PASSWORD_MYSQL", default=""),
-        'HOST': os.getenv("HOST_MYSQL", default=""),
-        'PORT': os.getenv("PORT_MYSQL", default=""),
+        'NAME': os.environ.setdefault("PROJECT_BASE", ''),
+        'USER': os.environ.setdefault("USER_MYSQL",''),
+        'PASSWORD': os.environ.setdefault("PASSWORD_MYSQL", ''),
+        'HOST': os.environ.setdefault("HOST_MYSQL", ''),
+        'PORT': os.environ.setdefault("PORT_MYSQL", ''),
     },
 }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -163,8 +165,8 @@ if not DEBUG:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
-SERVER_LDAP = os.getenv("SERVER_LDAP", default="")
-DN_LDAP = os.getenv("DN_LDAP", default="")
+SERVER_LDAP = os.environ.setdefault("SERVER_LDAP", "")
+DN_LDAP = os.environ.setdefault("DN_LDAP", "")
 
 AUTH_USER_MODEL = 'guard.CustomUser'
 USE_THOUSAND_SEPARATOR = True
