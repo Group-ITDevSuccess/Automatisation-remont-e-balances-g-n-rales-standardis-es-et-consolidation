@@ -1,12 +1,12 @@
 import decimal
 import json
 import locale
+import pyodbc
 import os
 import uuid
 from datetime import datetime, date
 import calendar
 
-import pyodbc
 import pandas as pd
 from django.conf import settings
 

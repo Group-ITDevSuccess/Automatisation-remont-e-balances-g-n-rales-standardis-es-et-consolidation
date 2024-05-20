@@ -7,6 +7,6 @@ urlpatterns = [
     path('administation/', views.administration, name='administration'),
     path('login/', views.LoginLDAP.as_view(), name='login'),
     path('logout/', views.logout_ldap, name='logout'),
-    path('updates/', views.update_field, name='update_field'), # type: ignore
+    path('updates/', views.update_field, name='update_field'), 
     path('delete-user/<str:uid>/', views.delete_user, name='delete_user'),
 ]
