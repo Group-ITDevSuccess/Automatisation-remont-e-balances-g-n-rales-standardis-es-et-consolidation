@@ -60,7 +60,7 @@ def get_data_for_event(request):
     records = []
     page = data['page']
     if data['target'] != '---':
-        balances = Balance.objects.filter(target=int(data['target']))
+        balances = Balance.objects.filter(target=int(data['target'])).order_by('societe__name')
         if data['value'] == 'BLG':
             if balances.exists():
                 balances = balances.annotate(
@@ -130,6 +130,7 @@ def get_data_for_event(request):
                     merged_records[key][
                         'CONSO_EURO'] += balance.montant / 4728.55
                 records = list(merged_records.values())
+                print(records)
 
     return JsonResponse({'last_page': page, 'data': records}, safe=False)
 
