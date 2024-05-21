@@ -136,7 +136,7 @@ def get_data_for_event(request):
                             'PASSIVE': affectation.get('PASSIVE', ''),
                             'AFFECTATION': affectation.get('AFFECTATION', '')
                         }
-
+    
                     merged_records[key][balance.societe.name] = balance.montant
                     merged_records[key]['CONSO'] += balance.montant
 
