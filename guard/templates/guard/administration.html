@@ -1,7 +1,129 @@
 {% extends 'base.html' %}
 {% block title %}
-	Administration
+    Administration
 {% endblock %}
 {% block content %}
+    <main id="contents">
+        <div id="main" class="" style="width: 100vw; height: 90vh;"></div>
+    </main>
+{% endblock %}
+{% block script %}
+    <script>
+        let requestAjax = function (cell, onRendered, success, cancel) {
+            let field = cell.getColumn().getField();
+            let value = cell.getValue();
+            const rowData = cell.getRow().getData();
+            let body = {
+                'uid': rowData.uid
+            }
+            body[field] = value
 
+            fetch("{% url 'auths:update_field' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(data => {
+                            alert(data.error);
+                            throw new Error(data.error); // Throw an error to stop further processing
+                        });
+                    }
+                    return response.json(); // Parse the JSON response for successful requests
+                })
+                .then(data => {
+                    {#console.log("Success : " + cell)#}
+
+                    {#data = JSON.stringify(data)#}
+                    cell.getRow().update(data);
+                    {#table.setData(data);#}
+                })
+                .catch(error => {
+                    console.error("Error :", error);
+                    cancel()
+                });
+        }
+        let table = new Tabulator("#main", {
+            layout: "fitDataFill",
+            height: "80vh",
+            ajaxURL: "{% url 'auths:get_users' %}",
+            ajaxConfig: "POST",
+            ajaxContentType: "json",
+            progressiveLoad: "load",
+            initialSort: [
+                {column: "username", dir: "asc"},
+            ],
+            placeholder: "Aucun Donnée",
+            placeholderHeaderFilter: 'Aucun Donnée Correspondent',
+            headerSort: true,
+            columnDefaults: {
+                tooltip: true,
+                headerHozAlign: "center",
+                resizable: "header",
+            },
+            rowHeader: {formatter: "rownum", headerSort: false, hozAlign: "center", resizable: false, frozen: true},
+            groupBy: "autoriser",
+            groupHeader: function (value, count, data, group) {
+                let custom_value;
+                if (value === true) {
+                    custom_value = 'Autoriser'
+                } else {
+                    custom_value = 'Non Autoriser'
+                }
+                return custom_value + "<span style='color:#d00; margin-left:10px;'>(" + count + " personnes)</span>";
+            },
+            columns: [
+                {title: "IDENTIFIANT", field: "username", frozen: true},
+                {title: "NOM", field: "last_name"},
+                {title: "PRENOM", field: "first_name"},
+                {title: "EMAIL", field: "email"},
+                {
+                    title: "ACCESS", hozAlign: "center", columns: [
+                        {
+                            title: "Autorisé",
+                            field: "autoriser",
+                            hozAlign: "center",
+                            formatter: "tickCross",
+                            editor:true,
+                            cellEdited: requestAjax
+                        },
+                        {
+                            title: "Active",
+                            field: "is_active",
+                            hozAlign: "center",
+                            formatter: "tickCross",
+                            editor:true,
+                            cellEdited: requestAjax
+                        },
+                        {
+                            title: "Staff",
+                            field: "is_staff",
+                            hozAlign: "center",
+                            formatter: "tickCross",
+                            editor:true,
+                            cellEdited: requestAjax
+                        },
+                        {
+                            title: "Super Utilisateur",
+                            field: "is_superuser",
+                            hozAlign: "center",
+                            formatter: "tickCross",
+                            editor:true,
+                            cellEdited: requestAjax
+                        },
+                    ]
+                },
+                {
+                    title: "DERNIER CONNEXION",
+                    field: "date_joined",
+                    hozAlign: "center",
+                    formatter: 'datetime',
+                    frozen: true
+                },
+            ],
+        });
+    </script>
 {% endblock %}

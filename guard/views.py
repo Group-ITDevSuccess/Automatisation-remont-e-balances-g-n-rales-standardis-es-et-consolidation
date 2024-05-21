@@ -1,3 +1,5 @@
+import json
+
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.http import JsonResponse
@@ -128,40 +130,35 @@ def profile(request):
 @csrf_exempt
 @login_required
 def update_field(request):
-    if request.method == 'POST':
-        try:
-            field_id = request.POST.get('field_id')
-            field = request.POST.get('field')
-            checked = request.POST.getlist('value[]')  # Changé de 'value' à 'checked'
-            if field == 'status':
-                fieldset = get_object_or_404(Societe, uid=field_id)
-                field = 'active'
-            elif field == 'application':
-                fieldset = get_object_or_404(Societe, uid=field_id)
-            else:
-                fieldset = get_object_or_404(CustomUser, uid=field_id)
-            val = are_valid_uuids(checked)
-            if not val:
-                if checked[0].lower() == 'true':
-                    checked = True
-                elif checked[0].lower() == 'false':
-                    checked = False
-                setattr(fieldset, field, checked)
-                fieldset.save()
-
-            else:
-                societe = Societe.objects.filter(uid__in=checked)
-
-                fieldset = get_object_or_404(CustomUser, uid=field_id)
-                fieldset.access.clear()
-                fieldset.access.add(*societe)
-
-            response_data = {'status': 'success', 'message': 'Données mises à jour avec succès.'}
+    body = json.loads(request.body)
+    print(body)
+    try:
+        uid = are_valid_uuids(body['uid'])
+        if uid is not None:
+            fieldset = CustomUser.objects.get(uid=uid)
+            for key, value in body.items():
+                if key != 'uid':
+                    setattr(fieldset, key, value)
+            fieldset.save()
+            # Manually creating the data dictionary
+            data = [{
+                'uid': fieldset.uid,
+                'username': fieldset.username,
+                'first_name': fieldset.first_name,
+                'last_name': fieldset.last_name,
+                'email': fieldset.email,
+                'autoriser': fieldset.autoriser,
+                'is_active': fieldset.is_active,
+                'is_staff': fieldset.is_staff,
+                'is_superuser': fieldset.is_superuser,
+                'date_joined': fieldset.date_joined,
+            }]
+            response_data = {'status': 'success', 'data': data}
             return JsonResponse(response_data)
 
-        except Exception as e:
-            write_log(str(e))
-            return JsonResponse({'status': f'error !'})
+    except Exception as e:
+        write_log(str(e))
+    return JsonResponse({'status': 'success', 'message': "Une erreur à survenue !"})
 
 
 @login_required
@@ -172,8 +169,19 @@ def delete_user(request, uid):
     return redirect('app:index')
 
 
-def administration(request):
+@csrf_exempt
+@login_required
+def get_users(request):
+    body = json.loads(request.body)
+    users = CustomUser.objects.all().values(
+        'uid', 'username', 'first_name', 'last_name', 'email', 'autoriser',
+        'is_active', 'is_staff', 'is_superuser', 'date_joined').order_by('-date_joined')
+    data = [{key: value for key, value in user.items()} for user in users]
+    return JsonResponse({'last_page': body['page'], 'data': data})
 
+
+@login_required
+def administration(request):
     return render(request, 'guard/administration.html', {
         'path': request.path
     })

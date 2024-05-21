@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}">
     <link rel="stylesheet" href="{% static 'dist/tabulator/css/tabulator.min.css' %}">
     <link rel="stylesheet" href="{% static 'dist/tabulator/css/tabulator_site_dark.min.css' %}">
-    {% fontawesome_6_static %}
     <link rel="icon" type="image/ico" sizes="16x16" href="{% static 'assets/images/logo-inviso.ico' %}">
+    {% fontawesome_6_static %}
 
     {% block style %}{% endblock %}
 
@@ -45,6 +45,7 @@
 <script src="{% static 'assets/js/moment.min.js' %}"></script>
 <script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
 <script src="{% static 'dist/tabulator/js/tabulator.min.js' %}"></script>
+<script src="{% static 'dist/tabulator/js/luxon.js' %}"></script>
 {% block script %}{% endblock %}
 </body>
 </html>
