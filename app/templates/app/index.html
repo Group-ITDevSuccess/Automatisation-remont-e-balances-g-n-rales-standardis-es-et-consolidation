@@ -320,12 +320,43 @@
                 },
             ],
             ALL: [
-                {title: "C1", field: "C1", width: 75, frozen: true},
-                {title: "C2", field: "C2", width: 75, frozen: true},
-                {title: "C3", field: "C3", width: 75, frozen: true},
-                {title: "Compte", field: "COMPTE", width: 125, hozAlign: "right", frozen: true},
-                {title: "Affectation", field: "AFFECTATION", width: 125, frozen: true},
+                {title: "C1", field: "C1", width: 50, frozen: true},
+                {title: "C2", field: "C2", width: 50, frozen: true},
+                {title: "C3", field: "C3", width: 65, frozen: true},
+                {title: "Compte", field: "COMPTE", width: 100, hozAlign: "right", frozen: true},
+                {title: "Affectation", field: "AFFECTATION", width: 100, frozen: true},
                 {title: "Désignation", field: "DESIGNATION", width: 250, frozen: true},
+                {
+                    title: "AGRIVET ANTSIRABE", field: "AGRIVET ANTSIRABE", hozAlign: "right",
+                    formatter: "money",
+                    sorter: "number",
+                    bottomCalc: "sum",
+                    bottomCalcParams: {precision: 2},
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
+                {
+                    title: "AGRIVET FIANARANTSOA", field: "AGRIVET FIANARANTSOA",
+                    hozAlign: "right",
+                    formatter: "money",
+                    sorter: "number",
+                    bottomCalc: "sum",
+                    bottomCalcParams: {precision: 2},
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
                 {
                     title: "AGRIFARM", field: "AGFRM", hozAlign: "right",
                     formatter: "money",
@@ -896,37 +927,6 @@
                         precision: 2,
                     }
                 },
-                {
-                    title: "VET ABE", field: "AGRIVET ANTSIRABE", hozAlign: "right",
-                    formatter: "money",
-                    sorter: "number",
-                    bottomCalc: "sum",
-                    bottomCalcParams: {precision: 2},
-                    formatterParams: {
-                        decimal: ",",
-                        thousand: " ",
-                        symbol: " ",
-                        symbolAfter: "p",
-                        negativeSign: false,
-                        precision: 2,
-                    }
-                },
-                {
-                    title: "VET FIA", field: "AGRIVET FIANARANTSOA",
-                    hozAlign: "right",
-                    formatter: "money",
-                    sorter: "number",
-                    bottomCalc: "sum",
-                    bottomCalcParams: {precision: 2},
-                    formatterParams: {
-                        decimal: ",",
-                        thousand: " ",
-                        symbol: " ",
-                        symbolAfter: "p",
-                        negativeSign: false,
-                        precision: 2,
-                    }
-                },
                 //
                 {
                     title: "CONSO",
@@ -945,25 +945,7 @@
                         negativeSign: false,
                         precision: 2,
                     }
-                },
-                {
-                    title: "Cours Moyen EUR Exo",
-                    field: "CONSO_EURO",
-                    frozen: true,
-                    hozAlign: "right",
-                    formatter: "money",
-                    sorter: "number",
-                    bottomCalc: "sum",
-                    bottomCalcParams: {precision: 2},
-                    formatterParams: {
-                        decimal: ",",
-                        thousand: " ",
-                        symbol: " ",
-                        symbolAfter: "p",
-                        negativeSign: false,
-                        precision: 2,
-                    }
-                },
+                }
             ],
             BILAN: [],
             CN: [],

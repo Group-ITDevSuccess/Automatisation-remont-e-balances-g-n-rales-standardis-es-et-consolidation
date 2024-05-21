@@ -108,8 +108,7 @@ def get_data_for_event(request):
         elif data['value'] == 'ALL':
             if balances.exists():
                 merged_records = defaultdict(
-                    lambda: {'COMPTE': '', 'DESIGNATION': '', 'C1': '', 'C2': '', 'C3': '', 'CONSO': 0,
-                             'CONSO_EURO': 0})
+                    lambda: {'COMPTE': '', 'DESIGNATION': '', 'C1': '', 'C2': '', 'C3': '', 'CONSO': 0})
 
                 try:
                     affectations = load_affectations_json_file('affectation.json')
@@ -133,7 +132,6 @@ def get_data_for_event(request):
                             'C2': balance.compte_unif[:2],
                             'C3': balance.compte_unif[:3],
                             'CONSO': 0,
-                            'CONSO_EURO': 0,
                             'ACTIVE': affectation.get('ACTIVE', ''),
                             'PASSIVE': affectation.get('PASSIVE', ''),
                             'AFFECTATION': affectation.get('AFFECTATION', '')
@@ -141,7 +139,6 @@ def get_data_for_event(request):
 
                     merged_records[key][balance.societe.name] = balance.montant
                     merged_records[key]['CONSO'] += balance.montant
-                    merged_records[key]['CONSO_EURO'] += balance.montant / 4728.55
 
                 for key in merged_records:
                     total_conso = merged_records[key]['CONSO']
