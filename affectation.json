@@ -1,1 +1,4436 @@
-
+[
+  {
+    "COMPTE UNIF": 10100000,
+    "AFFECTATION": "BIL30",
+    "ACTIVE": "BIL30",
+    "PASSIVE": "BIL30"
+  },
+  {
+    "COMPTE UNIF": 10500000,
+    "AFFECTATION": "BIL31",
+    "ACTIVE": "BIL31",
+    "PASSIVE": "BIL31"
+  },
+  {
+    "COMPTE UNIF": 10610000,
+    "AFFECTATION": "BIL32",
+    "ACTIVE": "BIL32",
+    "PASSIVE": "BIL32"
+  },
+  {
+    "COMPTE UNIF": 10620000,
+    "AFFECTATION": "BIL32",
+    "ACTIVE": "BIL32",
+    "PASSIVE": "BIL32"
+  },
+  {
+    "COMPTE UNIF": 11000000,
+    "AFFECTATION": "BIL33",
+    "ACTIVE": "BIL33",
+    "PASSIVE": "BIL33"
+  },
+  {
+    "COMPTE UNIF": 11900000,
+    "AFFECTATION": "BIL33",
+    "ACTIVE": "BIL33",
+    "PASSIVE": "BIL33"
+  },
+  {
+    "COMPTE UNIF": 12000000,
+    "AFFECTATION": "BIL33",
+    "ACTIVE": "BIL33",
+    "PASSIVE": "BIL33"
+  },
+  {
+    "COMPTE UNIF": 12800000,
+    "AFFECTATION": "BIL33",
+    "ACTIVE": "BIL33",
+    "PASSIVE": "BIL33"
+  },
+  {
+    "COMPTE UNIF": 12900000,
+    "AFFECTATION": "BIL33",
+    "ACTIVE": "BIL33",
+    "PASSIVE": "BIL33"
+  },
+  {
+    "COMPTE UNIF": 13100000,
+    "AFFECTATION": "BIL37",
+    "ACTIVE": "BIL37",
+    "PASSIVE": "BIL37"
+  },
+  {
+    "COMPTE UNIF": 13110000,
+    "AFFECTATION": "BIL37",
+    "ACTIVE": "BIL37",
+    "PASSIVE": "BIL37"
+  },
+  {
+    "COMPTE UNIF": 16100000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16110000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16120000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16130000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16150000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16160000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16200000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16300000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400010,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400020,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400030,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400040,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400050,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400060,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400070,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400080,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400090,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400100,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400110,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400120,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400130,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400140,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16400150,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16410000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16411000,
+    "AFFECTATION": "BIL38",
+    "ACTIVE": "BIL38",
+    "PASSIVE": "BIL38"
+  },
+  {
+    "COMPTE UNIF": 16412000,
+    "AFFECTATION": "BIL38",
+    "ACTIVE": "BIL38",
+    "PASSIVE": "BIL38"
+  },
+  {
+    "COMPTE UNIF": 16413000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16415000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16420000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16430000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16440000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16500000,
+    "AFFECTATION": "BIL35",
+    "ACTIVE": "BIL35",
+    "PASSIVE": "BIL35"
+  },
+  {
+    "COMPTE UNIF": 16600000,
+    "AFFECTATION": "BIL36",
+    "ACTIVE": "BIL36",
+    "PASSIVE": "BIL36"
+  },
+  {
+    "COMPTE UNIF": 16884000,
+    "AFFECTATION": "BIL38",
+    "ACTIVE": "BIL38",
+    "PASSIVE": "BIL38"
+  },
+  {
+    "COMPTE UNIF": 16885000,
+    "AFFECTATION": "BIL38",
+    "ACTIVE": "BIL38",
+    "PASSIVE": "BIL38"
+  },
+  {
+    "COMPTE UNIF": 20300000,
+    "AFFECTATION": "BIL02",
+    "ACTIVE": "BIL02",
+    "PASSIVE": "BIL02"
+  },
+  {
+    "COMPTE UNIF": 20400000,
+    "AFFECTATION": "BIL01",
+    "ACTIVE": "BIL01",
+    "PASSIVE": "BIL01"
+  },
+  {
+    "COMPTE UNIF": 20500000,
+    "AFFECTATION": "BIL02",
+    "ACTIVE": "BIL02",
+    "PASSIVE": "BIL02"
+  },
+  {
+    "COMPTE UNIF": 20800000,
+    "AFFECTATION": "BIL02",
+    "ACTIVE": "BIL02",
+    "PASSIVE": "BIL02"
+  },
+  {
+    "COMPTE UNIF": 21100000,
+    "AFFECTATION": "BIL03",
+    "ACTIVE": "BIL03",
+    "PASSIVE": "BIL03"
+  },
+  {
+    "COMPTE UNIF": 21110000,
+    "AFFECTATION": "BIL03",
+    "ACTIVE": "BIL03",
+    "PASSIVE": "BIL03"
+  },
+  {
+    "COMPTE UNIF": 21200000,
+    "AFFECTATION": "BIL03",
+    "ACTIVE": "BIL03",
+    "PASSIVE": "BIL03"
+  },
+  {
+    "COMPTE UNIF": 21300000,
+    "AFFECTATION": "BIL04",
+    "ACTIVE": "BIL04",
+    "PASSIVE": "BIL04"
+  },
+  {
+    "COMPTE UNIF": 21310000,
+    "AFFECTATION": "BIL04",
+    "ACTIVE": "BIL04",
+    "PASSIVE": "BIL04"
+  },
+  {
+    "COMPTE UNIF": 21350000,
+    "AFFECTATION": "BIL07",
+    "ACTIVE": "BIL07",
+    "PASSIVE": "BIL07"
+  },
+  {
+    "COMPTE UNIF": 21500000,
+    "AFFECTATION": "BIL07",
+    "ACTIVE": "BIL07",
+    "PASSIVE": "BIL07"
+  },
+  {
+    "COMPTE UNIF": 21510000,
+    "AFFECTATION": "BIL05",
+    "ACTIVE": "BIL05",
+    "PASSIVE": "BIL05"
+  },
+  {
+    "COMPTE UNIF": 21520000,
+    "AFFECTATION": "BIL07",
+    "ACTIVE": "BIL07",
+    "PASSIVE": "BIL07"
+  },
+  {
+    "COMPTE UNIF": 21530000,
+    "AFFECTATION": "BIL05",
+    "ACTIVE": "BIL05",
+    "PASSIVE": "BIL05"
+  },
+  {
+    "COMPTE UNIF": 21540000,
+    "AFFECTATION": "BIL05",
+    "ACTIVE": "BIL05",
+    "PASSIVE": "BIL05"
+  },
+  {
+    "COMPTE UNIF": 21550000,
+    "AFFECTATION": "BIL05",
+    "ACTIVE": "BIL05",
+    "PASSIVE": "BIL05"
+  },
+  {
+    "COMPTE UNIF": 21570000,
+    "AFFECTATION": "BIL07",
+    "ACTIVE": "BIL07",
+    "PASSIVE": "BIL07"
+  },
+  {
+    "COMPTE UNIF": 21580000,
+    "AFFECTATION": "BIL04",
+    "ACTIVE": "BIL04",
+    "PASSIVE": "BIL04"
+  },
+  {
+    "COMPTE UNIF": 21590000,
+    "AFFECTATION": "BIL07",
+    "ACTIVE": "BIL07",
+    "PASSIVE": "BIL07"
+  },
+  {
+    "COMPTE UNIF": 21800000,
+    "AFFECTATION": "BIL08",
+    "ACTIVE": "BIL08",
+    "PASSIVE": "BIL08"
+  },
+  {
+    "COMPTE UNIF": 21810000,
+    "AFFECTATION": "BIL10",
+    "ACTIVE": "BIL10",
+    "PASSIVE": "BIL10"
+  },
+  {
+    "COMPTE UNIF": 21811000,
+    "AFFECTATION": "BIL05",
+    "ACTIVE": "BIL05",
+    "PASSIVE": "BIL05"
+  },
+  {
+    "COMPTE UNIF": 21820000,
+    "AFFECTATION": "BIL08",
+    "ACTIVE": "BIL08",
+    "PASSIVE": "BIL08"
+  },
+  {
+    "COMPTE UNIF": 21830000,
+    "AFFECTATION": "BIL06",
+    "ACTIVE": "BIL06",
+    "PASSIVE": "BIL06"
+  },
+  {
+    "COMPTE UNIF": 21831000,
+    "AFFECTATION": "BIL06",
+    "ACTIVE": "BIL06",
+    "PASSIVE": "BIL06"
+  },
+  {
+    "COMPTE UNIF": 21832000,
+    "AFFECTATION": "BIL09",
+    "ACTIVE": "BIL09",
+    "PASSIVE": "BIL09"
+  },
+  {
+    "COMPTE UNIF": 21840000,
+    "AFFECTATION": "BIL09",
+    "ACTIVE": "BIL09",
+    "PASSIVE": "BIL09"
+  },
+  {
+    "COMPTE UNIF": 21850000,
+    "AFFECTATION": "BIL05",
+    "ACTIVE": "BIL05",
+    "PASSIVE": "BIL05"
+  },
+  {
+    "COMPTE UNIF": 21860000,
+    "AFFECTATION": "BIL05",
+    "ACTIVE": "BIL05",
+    "PASSIVE": "BIL05"
+  },
+  {
+    "COMPTE UNIF": 21870000,
+    "AFFECTATION": "BIL08",
+    "ACTIVE": "BIL08",
+    "PASSIVE": "BIL08"
+  },
+  {
+    "COMPTE UNIF": 21880000,
+    "AFFECTATION": "BIL08",
+    "ACTIVE": "BIL08",
+    "PASSIVE": "BIL08"
+  },
+  {
+    "COMPTE UNIF": 23000000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23100000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23110000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23120000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23130000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23131000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23140000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23150000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23160000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23170000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23180000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23190000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23200000,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23213001,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23213010,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 23213012,
+    "AFFECTATION": "BIL11",
+    "ACTIVE": "BIL11",
+    "PASSIVE": "BIL11"
+  },
+  {
+    "COMPTE UNIF": 26100000,
+    "AFFECTATION": "BIL12",
+    "ACTIVE": "BIL12",
+    "PASSIVE": "BIL12"
+  },
+  {
+    "COMPTE UNIF": 27400000,
+    "AFFECTATION": "BIL12",
+    "ACTIVE": "BIL12",
+    "PASSIVE": "BIL12"
+  },
+  {
+    "COMPTE UNIF": 27500000,
+    "AFFECTATION": "BIL12",
+    "ACTIVE": "BIL12",
+    "PASSIVE": "BIL12"
+  },
+  {
+    "COMPTE UNIF": 28030000,
+    "AFFECTATION": "BIL52",
+    "ACTIVE": "BIL52",
+    "PASSIVE": "BIL52"
+  },
+  {
+    "COMPTE UNIF": 28040000,
+    "AFFECTATION": "BIL51",
+    "ACTIVE": "BIL51",
+    "PASSIVE": "BIL51"
+  },
+  {
+    "COMPTE UNIF": 28050000,
+    "AFFECTATION": "BIL52",
+    "ACTIVE": "BIL52",
+    "PASSIVE": "BIL52"
+  },
+  {
+    "COMPTE UNIF": 28080000,
+    "AFFECTATION": "BIL52",
+    "ACTIVE": "BIL52",
+    "PASSIVE": "BIL52"
+  },
+  {
+    "COMPTE UNIF": 28120000,
+    "AFFECTATION": "BIL47",
+    "ACTIVE": "BIL47",
+    "PASSIVE": "BIL47"
+  },
+  {
+    "COMPTE UNIF": 28130000,
+    "AFFECTATION": "BIL44",
+    "ACTIVE": "BIL44",
+    "PASSIVE": "BIL44"
+  },
+  {
+    "COMPTE UNIF": 28131000,
+    "AFFECTATION": "BIL47",
+    "ACTIVE": "BIL47",
+    "PASSIVE": "BIL47"
+  },
+  {
+    "COMPTE UNIF": 28150000,
+    "AFFECTATION": "BIL47",
+    "ACTIVE": "BIL47",
+    "PASSIVE": "BIL47"
+  },
+  {
+    "COMPTE UNIF": 28151000,
+    "AFFECTATION": "BIL45",
+    "ACTIVE": "BIL45",
+    "PASSIVE": "BIL45"
+  },
+  {
+    "COMPTE UNIF": 28152000,
+    "AFFECTATION": "BIL47",
+    "ACTIVE": "BIL47",
+    "PASSIVE": "BIL47"
+  },
+  {
+    "COMPTE UNIF": 28153000,
+    "AFFECTATION": "BIL45",
+    "ACTIVE": "BIL45",
+    "PASSIVE": "BIL45"
+  },
+  {
+    "COMPTE UNIF": 28154000,
+    "AFFECTATION": "BIL45",
+    "ACTIVE": "BIL45",
+    "PASSIVE": "BIL45"
+  },
+  {
+    "COMPTE UNIF": 28155000,
+    "AFFECTATION": "BIL45",
+    "ACTIVE": "BIL45",
+    "PASSIVE": "BIL45"
+  },
+  {
+    "COMPTE UNIF": 28156000,
+    "AFFECTATION": "BIL50",
+    "ACTIVE": "BIL50",
+    "PASSIVE": "BIL50"
+  },
+  {
+    "COMPTE UNIF": 28157000,
+    "AFFECTATION": "BIL47",
+    "ACTIVE": "BIL47",
+    "PASSIVE": "BIL47"
+  },
+  {
+    "COMPTE UNIF": 28158000,
+    "AFFECTATION": "BIL44",
+    "ACTIVE": "BIL44",
+    "PASSIVE": "BIL44"
+  },
+  {
+    "COMPTE UNIF": 28159000,
+    "AFFECTATION": "BIL44",
+    "ACTIVE": "BIL44",
+    "PASSIVE": "BIL44"
+  },
+  {
+    "COMPTE UNIF": 28162000,
+    "AFFECTATION": "BIL47",
+    "ACTIVE": "BIL47",
+    "PASSIVE": "BIL47"
+  },
+  {
+    "COMPTE UNIF": 28180000,
+    "AFFECTATION": "BIL50",
+    "ACTIVE": "BIL50",
+    "PASSIVE": "BIL50"
+  },
+  {
+    "COMPTE UNIF": 28181000,
+    "AFFECTATION": "BIL50",
+    "ACTIVE": "BIL50",
+    "PASSIVE": "BIL50"
+  },
+  {
+    "COMPTE UNIF": 28181100,
+    "AFFECTATION": "BIL45",
+    "ACTIVE": "BIL45",
+    "PASSIVE": "BIL45"
+  },
+  {
+    "COMPTE UNIF": 28182000,
+    "AFFECTATION": "BIL48",
+    "ACTIVE": "BIL48",
+    "PASSIVE": "BIL48"
+  },
+  {
+    "COMPTE UNIF": 28183000,
+    "AFFECTATION": "BIL46",
+    "ACTIVE": "BIL46",
+    "PASSIVE": "BIL46"
+  },
+  {
+    "COMPTE UNIF": 28183100,
+    "AFFECTATION": "BIL46",
+    "ACTIVE": "BIL46",
+    "PASSIVE": "BIL46"
+  },
+  {
+    "COMPTE UNIF": 28184000,
+    "AFFECTATION": "BIL49",
+    "ACTIVE": "BIL49",
+    "PASSIVE": "BIL49"
+  },
+  {
+    "COMPTE UNIF": 28184100,
+    "AFFECTATION": "BIL50",
+    "ACTIVE": "BIL50",
+    "PASSIVE": "BIL50"
+  },
+  {
+    "COMPTE UNIF": 28185000,
+    "AFFECTATION": "BIL45",
+    "ACTIVE": "BIL45",
+    "PASSIVE": "BIL45"
+  },
+  {
+    "COMPTE UNIF": 28186000,
+    "AFFECTATION": "BIL45",
+    "ACTIVE": "BIL45",
+    "PASSIVE": "BIL45"
+  },
+  {
+    "COMPTE UNIF": 28187000,
+    "AFFECTATION": "BIL50",
+    "ACTIVE": "BIL50",
+    "PASSIVE": "BIL50"
+  },
+  {
+    "COMPTE UNIF": 28188000,
+    "AFFECTATION": "BIL50",
+    "ACTIVE": "BIL50",
+    "PASSIVE": "BIL50"
+  },
+  {
+    "COMPTE UNIF": 31000000,
+    "AFFECTATION": "BIL14",
+    "ACTIVE": "BIL14",
+    "PASSIVE": "BIL14"
+  },
+  {
+    "COMPTE UNIF": 31100000,
+    "AFFECTATION": "BIL14",
+    "ACTIVE": "BIL14",
+    "PASSIVE": "BIL14"
+  },
+  {
+    "COMPTE UNIF": 32600000,
+    "AFFECTATION": "BIL14",
+    "ACTIVE": "BIL14",
+    "PASSIVE": "BIL14"
+  },
+  {
+    "COMPTE UNIF": 35000000,
+    "AFFECTATION": "BIL14",
+    "ACTIVE": "BIL14",
+    "PASSIVE": "BIL14"
+  },
+  {
+    "COMPTE UNIF": 35100000,
+    "AFFECTATION": "BIL14",
+    "ACTIVE": "BIL14",
+    "PASSIVE": "BIL14"
+  },
+  {
+    "COMPTE UNIF": 35500000,
+    "AFFECTATION": "BIL15",
+    "ACTIVE": "BIL15",
+    "PASSIVE": "BIL15"
+  },
+  {
+    "COMPTE UNIF": 37000000,
+    "AFFECTATION": "BIL16",
+    "ACTIVE": "BIL16",
+    "PASSIVE": "BIL16"
+  },
+  {
+    "COMPTE UNIF": 37100000,
+    "AFFECTATION": "BIL16",
+    "ACTIVE": "BIL16",
+    "PASSIVE": "BIL16"
+  },
+  {
+    "COMPTE UNIF": 38000000,
+    "AFFECTATION": "BIL17",
+    "ACTIVE": "BIL17",
+    "PASSIVE": "BIL17"
+  },
+  {
+    "COMPTE UNIF": 39500000,
+    "AFFECTATION": "BIL53",
+    "ACTIVE": "BIL53",
+    "PASSIVE": "BIL53"
+  },
+  {
+    "COMPTE UNIF": 40100000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40110000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40120000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40231000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40241000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40300000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40310000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40320000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40330000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40340000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40400000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40800000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40810000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40811000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40820000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL39"
+  },
+  {
+    "COMPTE UNIF": 40900000,
+    "AFFECTATION": "BIL19",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL19"
+  },
+  {
+    "COMPTE UNIF": 40910000,
+    "AFFECTATION": "BIL19",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL19"
+  },
+  {
+    "COMPTE UNIF": 40911000,
+    "AFFECTATION": "BIL19",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL19"
+  },
+  {
+    "COMPTE UNIF": 40920000,
+    "AFFECTATION": "BIL19",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL19"
+  },
+  {
+    "COMPTE UNIF": 40960000,
+    "AFFECTATION": "BIL19",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL19"
+  },
+  {
+    "COMPTE UNIF": 40980000,
+    "AFFECTATION": "BIL19",
+    "ACTIVE": "BIL19",
+    "PASSIVE": "BIL19"
+  },
+  {
+    "COMPTE UNIF": 41100000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41110000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41120000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41300000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41310000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41311000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41321000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41331000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41341000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41351000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41600000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41800000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41810000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL18",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41900000,
+    "AFFECTATION": "BIL40",
+    "ACTIVE": "BIL40",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41910000,
+    "AFFECTATION": "BIL40",
+    "ACTIVE": "BIL40",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 41980000,
+    "AFFECTATION": "BIL40",
+    "ACTIVE": "BIL40",
+    "PASSIVE": "BIL40"
+  },
+  {
+    "COMPTE UNIF": 42100000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL20",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 42110000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL20",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 42120000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL20",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 42500000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL20",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 42510000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL20",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 42520000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL20",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 42530000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL20",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 42540000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL20",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 42700000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL20",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 42800000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL20",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 42820000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL20",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 43100000,
+    "AFFECTATION": "BIL41",
+    "ACTIVE": "BIL41",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 43110000,
+    "AFFECTATION": "BIL41",
+    "ACTIVE": "BIL41",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 43120000,
+    "AFFECTATION": "BIL41",
+    "ACTIVE": "BIL41",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 43200000,
+    "AFFECTATION": "BIL41",
+    "ACTIVE": "BIL41",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 43220000,
+    "AFFECTATION": "BIL41",
+    "ACTIVE": "BIL41",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 43230000,
+    "AFFECTATION": "BIL41",
+    "ACTIVE": "BIL41",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 43300000,
+    "AFFECTATION": "BIL41",
+    "ACTIVE": "BIL41",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 43400000,
+    "AFFECTATION": "BIL41",
+    "ACTIVE": "BIL41",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 43500000,
+    "AFFECTATION": "BIL41",
+    "ACTIVE": "BIL41",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 43800000,
+    "AFFECTATION": "BIL41",
+    "ACTIVE": "BIL41",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 43860000,
+    "AFFECTATION": "BIL41",
+    "ACTIVE": "BIL41",
+    "PASSIVE": "BIL41"
+  },
+  {
+    "COMPTE UNIF": 44000000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44100000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44200000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44300000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44310000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44311000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44320000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44330000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44400000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44410000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44411000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44412000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44420000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44430000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44440000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44540000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44550000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44560000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44561000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44561100,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44562000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44563000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44564000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44565000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44566000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44567000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44570000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44571000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44572000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44574000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44575000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44576000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44577000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44580000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44581000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44583000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44584000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44587000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44600000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 44860000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL21",
+    "PASSIVE": "BIL42"
+  },
+  {
+    "COMPTE UNIF": 45120000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45500000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45500001,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45500002,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45500003,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45500004,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45500008,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45500009,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45510000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45511000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45512000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45513000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45514000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45515000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45520000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45530000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45540000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45550000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 45580000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46200000,
+    "AFFECTATION": "BIL23",
+    "ACTIVE": "BIL23",
+    "PASSIVE": "BIL23"
+  },
+  {
+    "COMPTE UNIF": 46600000,
+    "AFFECTATION": "BIL23",
+    "ACTIVE": "BIL23",
+    "PASSIVE": "BIL23"
+  },
+  {
+    "COMPTE UNIF": 46600001,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46610000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46611000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46612000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46615000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46617000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46620000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46621000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46622000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46623000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46624000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46625000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46626000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46627000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46628000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46629000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46630000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46632000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46634000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46639000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46640000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46642000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46643000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46650000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46660000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46670000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700001,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700002,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700004,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700005,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700010,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700012,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700020,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700040,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700050,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700060,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700070,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700080,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700090,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46700100,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46710000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46710070,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46710071,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46710102,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46710130,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46710160,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46710170,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46711000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46715000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46719000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720030,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720050,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720070,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720071,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720072,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720075,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720076,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720078,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720079,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720080,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720081,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720082,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720083,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720084,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720089,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720090,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720105,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720110,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720120,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720130,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720800,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46720900,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46721000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46724000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46725000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46730000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46735000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46743000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46760000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46800000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 46800001,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  },
+  {
+    "COMPTE UNIF": 47100000,
+    "AFFECTATION": "BIL23",
+    "ACTIVE": "BIL23",
+    "PASSIVE": "BIL23"
+  },
+  {
+    "COMPTE UNIF": 47200000,
+    "AFFECTATION": "BIL23",
+    "ACTIVE": "BIL23",
+    "PASSIVE": "BIL23"
+  },
+  {
+    "COMPTE UNIF": 48600000,
+    "AFFECTATION": "BIL24",
+    "ACTIVE": "BIL24",
+    "PASSIVE": "BIL24"
+  },
+  {
+    "COMPTE UNIF": 48700000,
+    "AFFECTATION": "BIL43",
+    "ACTIVE": "BIL43",
+    "PASSIVE": "BIL43"
+  },
+  {
+    "COMPTE UNIF": 49100000,
+    "AFFECTATION": "BIL54",
+    "ACTIVE": "BIL54",
+    "PASSIVE": "BIL54"
+  },
+  {
+    "COMPTE UNIF": 49600000,
+    "AFFECTATION": "BIL54",
+    "ACTIVE": "BIL54",
+    "PASSIVE": "BIL54"
+  },
+  {
+    "COMPTE UNIF": 49660000,
+    "AFFECTATION": "BIL55",
+    "ACTIVE": "BIL55",
+    "PASSIVE": "BIL55"
+  },
+  {
+    "COMPTE UNIF": 51110000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51112000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51113000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51119999,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51120000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51121000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51122000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51122310,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51122410,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51122420,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51130000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51140000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51154000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51160000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51201000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51202000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51211000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51211010,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51211100,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51212000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51213000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51221000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51222000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51223000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51231000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51231010,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51241000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51241100,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51242000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51243000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51244000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51245000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51250000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51251000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51260000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51261000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51264000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51270000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51271000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51280000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51291000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51292000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51800000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 51910000,
+    "AFFECTATION": "BIL38",
+    "ACTIVE": "BIL38",
+    "PASSIVE": "BIL38"
+  },
+  {
+    "COMPTE UNIF": 51910016,
+    "AFFECTATION": "BIL38",
+    "ACTIVE": "BIL38",
+    "PASSIVE": "BIL38"
+  },
+  {
+    "COMPTE UNIF": 51920000,
+    "AFFECTATION": "BIL38",
+    "ACTIVE": "BIL38",
+    "PASSIVE": "BIL38"
+  },
+  {
+    "COMPTE UNIF": 51940000,
+    "AFFECTATION": "BIL38",
+    "ACTIVE": "BIL38",
+    "PASSIVE": "BIL38"
+  },
+  {
+    "COMPTE UNIF": 51950000,
+    "AFFECTATION": "BIL38",
+    "ACTIVE": "BIL38",
+    "PASSIVE": "BIL38"
+  },
+  {
+    "COMPTE UNIF": 51960000,
+    "AFFECTATION": "BIL38",
+    "ACTIVE": "BIL38",
+    "PASSIVE": "BIL38"
+  },
+  {
+    "COMPTE UNIF": 51970000,
+    "AFFECTATION": "BIL38",
+    "ACTIVE": "BIL38",
+    "PASSIVE": "BIL38"
+  },
+  {
+    "COMPTE UNIF": 53000000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53100000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53110000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53120000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53150000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53200000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53220000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53300000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53400000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53500000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53600000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53700000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53800000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 53900000,
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL29"
+  },
+  {
+    "COMPTE UNIF": 54100000,
+    "AFFECTATION": "BIL27",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL27"
+  },
+  {
+    "COMPTE UNIF": 58000000,
+    "AFFECTATION": "BIL27",
+    "ACTIVE": "BIL27",
+    "PASSIVE": "BIL27"
+  },
+  {
+    "COMPTE UNIF": 60100000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60101000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60101200,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60102000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60103000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60110000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60114000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60120000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60200000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60201000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60203000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60204000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60205000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60205100,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60205200,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60205300,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60206000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60209000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60210000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60220000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60260000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60301000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60302000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60303000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60305000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60307000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60308000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60310000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60370000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60380000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60400000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60500000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60600000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60601000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60602000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60603000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60603100,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60604000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60605000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60606000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60606100,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60606200,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60607000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60608000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60609000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60609100,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60609200,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60610000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60611000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60620000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60621000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60630000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60640000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60641000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60650000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60660000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60670000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60680000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60690000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60700000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60701000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60702000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60702100,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60710000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60712000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60720000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60800000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60801000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60802000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60803000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60804000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60805000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60806000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60807000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60808000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60809000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60809100,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60810000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60811000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60811100,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60812000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60813000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60817000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60818000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60820000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60840000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60850000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60880000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60900000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60910000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60920000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 60940000,
+    "AFFECTATION": "CR04",
+    "ACTIVE": "CR04",
+    "PASSIVE": "CR04"
+  },
+  {
+    "COMPTE UNIF": 61100000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61110000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61300000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61301000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61302000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61302100,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61302200,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61302300,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61302400,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61302500,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61302600,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61303000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61304000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61400000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61500000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61501000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61501400,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61502000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61503000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61504000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61505000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61506000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61513000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61520000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61530000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61540000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61541000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61550000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61560000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61600000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61601000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61602000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61603000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61604000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61610000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61620000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61700000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61800000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61801000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61802000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61810000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61820000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61830000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 61900000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62100000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62101000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62102000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62103000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62104000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62105000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62200000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62201000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62202000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62203000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62204000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62206000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62208000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62209000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62210000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62260000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62300000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62301000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62302000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62303000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62304000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62305000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62308000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62334000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62360000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62400000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62401000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62402000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62403000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62404000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62450000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62460000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62470000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62500000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62501000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62502000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62503000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62504000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62505000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62506000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62507000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62508000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62600000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62601000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62602000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62603000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62604000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62605000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62606000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62607000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62608000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62631000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62650000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62700000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62701000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62701100,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62702000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62703000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62704000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62705000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62706000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62707000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62708000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62709000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62710000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62711000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62712000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62713000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62714000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62800000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 62900000,
+    "AFFECTATION": "CR05",
+    "ACTIVE": "CR05",
+    "PASSIVE": "CR05"
+  },
+  {
+    "COMPTE UNIF": 63320000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63330000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63500000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63501000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63502000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63503000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63504000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63505000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63506000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63507000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63508000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63510000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63514000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63540000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63820000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63840000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 63880000,
+    "AFFECTATION": "CR07",
+    "ACTIVE": "CR07",
+    "PASSIVE": "CR07"
+  },
+  {
+    "COMPTE UNIF": 64101000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64101200,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64101300,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64102000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64103000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64104000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64105000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64106000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64107000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64130000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64160000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64180000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64501000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64502000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64503000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64504000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64505000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64580000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64700000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64800000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64801000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64802000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64803000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64804000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64805000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64807000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64808000,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 64808100,
+    "AFFECTATION": "CR06",
+    "ACTIVE": "CR06",
+    "PASSIVE": "CR06"
+  },
+  {
+    "COMPTE UNIF": 65100000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 65200000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 65400000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 65410000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 65600000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 65601000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 65602000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 65620000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 65700000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 65710000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 65800000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 65810000,
+    "AFFECTATION": "CR09",
+    "ACTIVE": "CR09",
+    "PASSIVE": "CR09"
+  },
+  {
+    "COMPTE UNIF": 66100000,
+    "AFFECTATION": "CR13",
+    "ACTIVE": "CR13",
+    "PASSIVE": "CR13"
+  },
+  {
+    "COMPTE UNIF": 66101000,
+    "AFFECTATION": "CR13",
+    "ACTIVE": "CR13",
+    "PASSIVE": "CR13"
+  },
+  {
+    "COMPTE UNIF": 66102000,
+    "AFFECTATION": "CR13",
+    "ACTIVE": "CR13",
+    "PASSIVE": "CR13"
+  },
+  {
+    "COMPTE UNIF": 66103000,
+    "AFFECTATION": "CR13",
+    "ACTIVE": "CR13",
+    "PASSIVE": "CR13"
+  },
+  {
+    "COMPTE UNIF": 66104000,
+    "AFFECTATION": "CR13",
+    "ACTIVE": "CR13",
+    "PASSIVE": "CR13"
+  },
+  {
+    "COMPTE UNIF": 66105000,
+    "AFFECTATION": "CR13",
+    "ACTIVE": "CR13",
+    "PASSIVE": "CR13"
+  },
+  {
+    "COMPTE UNIF": 66181000,
+    "AFFECTATION": "CR13",
+    "ACTIVE": "CR13",
+    "PASSIVE": "CR13"
+  },
+  {
+    "COMPTE UNIF": 66200000,
+    "AFFECTATION": "CR13",
+    "ACTIVE": "CR13",
+    "PASSIVE": "CR13"
+  },
+  {
+    "COMPTE UNIF": 66600000,
+    "AFFECTATION": "CR13",
+    "ACTIVE": "CR13",
+    "PASSIVE": "CR13"
+  },
+  {
+    "COMPTE UNIF": 66880000,
+    "AFFECTATION": "CR13",
+    "ACTIVE": "CR13",
+    "PASSIVE": "CR13"
+  },
+  {
+    "COMPTE UNIF": 67500000,
+    "AFFECTATION": "CR16",
+    "ACTIVE": "CR16",
+    "PASSIVE": "CR16"
+  },
+  {
+    "COMPTE UNIF": 68111000,
+    "AFFECTATION": "CR10",
+    "ACTIVE": "CR10",
+    "PASSIVE": "CR10"
+  },
+  {
+    "COMPTE UNIF": 68112000,
+    "AFFECTATION": "CR10",
+    "ACTIVE": "CR10",
+    "PASSIVE": "CR10"
+  },
+  {
+    "COMPTE UNIF": 68500000,
+    "AFFECTATION": "CR10",
+    "ACTIVE": "CR10",
+    "PASSIVE": "CR10"
+  },
+  {
+    "COMPTE UNIF": 69500000,
+    "AFFECTATION": "CR14",
+    "ACTIVE": "CR14",
+    "PASSIVE": "CR14"
+  },
+  {
+    "COMPTE UNIF": 69510000,
+    "AFFECTATION": "CR14",
+    "ACTIVE": "CR14",
+    "PASSIVE": "CR14"
+  },
+  {
+    "COMPTE UNIF": 69800000,
+    "AFFECTATION": "CR14",
+    "ACTIVE": "CR14",
+    "PASSIVE": "CR14"
+  },
+  {
+    "COMPTE UNIF": 70100000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70101000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70110000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70120000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70200000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70300000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70600000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70610000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70620000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70640000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70700000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70710000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70720000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70730000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70750000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70800000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70810000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70820000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70830000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70840000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70880000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70900000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 70910000,
+    "AFFECTATION": "CR01",
+    "ACTIVE": "CR01",
+    "PASSIVE": "CR01"
+  },
+  {
+    "COMPTE UNIF": 71355000,
+    "AFFECTATION": "CR02",
+    "ACTIVE": "CR02",
+    "PASSIVE": "CR02"
+  },
+  {
+    "COMPTE UNIF": 71400000,
+    "AFFECTATION": "CR02",
+    "ACTIVE": "CR02",
+    "PASSIVE": "CR02"
+  },
+  {
+    "COMPTE UNIF": 72000000,
+    "AFFECTATION": "CR03",
+    "ACTIVE": "CR03",
+    "PASSIVE": "CR03"
+  },
+  {
+    "COMPTE UNIF": 72100000,
+    "AFFECTATION": "CR03",
+    "ACTIVE": "CR03",
+    "PASSIVE": "CR03"
+  },
+  {
+    "COMPTE UNIF": 72700000,
+    "AFFECTATION": "CR03",
+    "ACTIVE": "CR03",
+    "PASSIVE": "CR03"
+  },
+  {
+    "COMPTE UNIF": 74100000,
+    "AFFECTATION": "CR08",
+    "ACTIVE": "CR08",
+    "PASSIVE": "CR08"
+  },
+  {
+    "COMPTE UNIF": 75200000,
+    "AFFECTATION": "CR08",
+    "ACTIVE": "CR08",
+    "PASSIVE": "CR08"
+  },
+  {
+    "COMPTE UNIF": 75800000,
+    "AFFECTATION": "CR08",
+    "ACTIVE": "CR08",
+    "PASSIVE": "CR08"
+  },
+  {
+    "COMPTE UNIF": 75810000,
+    "AFFECTATION": "CR08",
+    "ACTIVE": "CR08",
+    "PASSIVE": "CR08"
+  },
+  {
+    "COMPTE UNIF": 75820000,
+    "AFFECTATION": "CR08",
+    "ACTIVE": "CR08",
+    "PASSIVE": "CR08"
+  },
+  {
+    "COMPTE UNIF": 75830000,
+    "AFFECTATION": "CR08",
+    "ACTIVE": "CR08",
+    "PASSIVE": "CR08"
+  },
+  {
+    "COMPTE UNIF": 75840000,
+    "AFFECTATION": "CR08",
+    "ACTIVE": "CR08",
+    "PASSIVE": "CR08"
+  },
+  {
+    "COMPTE UNIF": 75850000,
+    "AFFECTATION": "CR08",
+    "ACTIVE": "CR08",
+    "PASSIVE": "CR08"
+  },
+  {
+    "COMPTE UNIF": 76500000,
+    "AFFECTATION": "CR12",
+    "ACTIVE": "CR12",
+    "PASSIVE": "CR12"
+  },
+  {
+    "COMPTE UNIF": 76600000,
+    "AFFECTATION": "CR12",
+    "ACTIVE": "CR12",
+    "PASSIVE": "CR12"
+  },
+  {
+    "COMPTE UNIF": 76880000,
+    "AFFECTATION": "CR12",
+    "ACTIVE": "CR12",
+    "PASSIVE": "CR12"
+  },
+  {
+    "COMPTE UNIF": 77500000,
+    "AFFECTATION": "CR15",
+    "ACTIVE": "CR15",
+    "PASSIVE": "CR15"
+  },
+  {
+    "COMPTE UNIF": 77520000,
+    "AFFECTATION": "CR15",
+    "ACTIVE": "CR15",
+    "PASSIVE": "CR15"
+  },
+  {
+    "COMPTE UNIF": 78120000,
+    "AFFECTATION": "CR11",
+    "ACTIVE": "CR11",
+    "PASSIVE": "CR11"
+  },
+  {
+    "COMPTE UNIF": 78150000,
+    "AFFECTATION": "CR11",
+    "ACTIVE": "CR11",
+    "PASSIVE": "CR11"
+  },
+  {
+    "COMPTE UNIF": 78500000,
+    "AFFECTATION": "CR11",
+    "ACTIVE": "CR11",
+    "PASSIVE": "CR11"
+  },
+  {
+    "COMPTE UNIF": "467200XX",
+    "AFFECTATION": "#",
+    "ACTIVE": "BIL22",
+    "PASSIVE": "BIL28"
+  }
+]

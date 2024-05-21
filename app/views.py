@@ -9,7 +9,7 @@ from collections import defaultdict
 from app.forms import SearchForm
 from app.models import Societe, Balance
 from utils.ldap import write_log
-from utils.script import connexion, get_data_sql
+from utils.script import connexion, get_data_sql, load_json_file, load_affectations_json_file
 
 
 # Create your views here.
@@ -59,8 +59,10 @@ def get_data_for_event(request):
     print(data)
     records = []
     page = data['page']
+
     if data['target'] != '---':
         balances = Balance.objects.filter(target=int(data['target'])).order_by('societe__name')
+
         if data['value'] == 'BLG':
             if balances.exists():
                 balances = balances.annotate(
@@ -83,16 +85,12 @@ def get_data_for_event(request):
                             conn = connexion(societe)
                             if conn is not None:
                                 with conn:
-
                                     gets = get_data_sql(connection=conn, societe=societe, value=data['value'],
                                                         target=data['target'])
                                     records.extend(gets.to_dict(orient='records'))
 
                                     if gets is not None:
                                         pass
-                                    # print("===============================")
-                                    # print(f"DATA : {gets} ")
-                                    # print("===============================")
                             else:
                                 print("Connection not established for:", societe.name)
 
@@ -113,24 +111,50 @@ def get_data_for_event(request):
                     lambda: {'COMPTE': '', 'DESIGNATION': '', 'C1': '', 'C2': '', 'C3': '', 'CONSO': 0,
                              'CONSO_EURO': 0})
 
+                try:
+                    affectations = load_affectations_json_file('affectation.json')
+                except Exception as e:
+                    return JsonResponse({'error': str(e)}, status=500)
+
+                # Vérifiez si le fichier JSON est correctement chargé
+                if not isinstance(affectations, list):
+                    return JsonResponse({'error': 'Le fichier JSON doit être une liste de dictionnaires.'}, status=500)
+
+                affectation_dict = {str(item["COMPTE UNIF"]): item for item in affectations}
+
                 for balance in balances:
-                    key = balance.compte_unif
+                    key = str(balance.compte_unif)  # Convertir en chaîne pour correspondre aux clés du dictionnaire
                     if key not in merged_records:
+                        affectation = affectation_dict.get(key, {})
                         merged_records[key] = {
                             'COMPTE': balance.compte_unif,
                             'DESIGNATION': balance.designation,
                             'C1': balance.compte_unif[:1],
                             'C2': balance.compte_unif[:2],
                             'C3': balance.compte_unif[:3],
-                            'CONSO': 0,  # Initialisation à 0
-                            'CONSO_EURO': 0  # Initialisation à 0
+                            'CONSO': 0,
+                            'CONSO_EURO': 0,
+                            'ACTIVE': affectation.get('ACTIVE', ''),
+                            'PASSIVE': affectation.get('PASSIVE', ''),
+                            'AFFECTATION': affectation.get('AFFECTATION', '')
                         }
+
                     merged_records[key][balance.societe.name] = balance.montant
                     merged_records[key]['CONSO'] += balance.montant
-                    merged_records[key][
-                        'CONSO_EURO'] += balance.montant / 4728.55
+                    merged_records[key]['CONSO_EURO'] += balance.montant / 4728.55
+
+                for key in merged_records:
+                    total_conso = merged_records[key]['CONSO']
+                    affectation = affectation_dict.get(key, {})
+                    current_affectation = merged_records[key]['AFFECTATION']
+
+                    if current_affectation == '#':
+                        if total_conso > 0:
+                            merged_records[key]['AFFECTATION'] = affectation.get('ACTIVE', '')
+                        else:
+                            merged_records[key]['AFFECTATION'] = affectation.get('PASSIVE', '')
+
                 records = list(merged_records.values())
-                print(records)
 
     return JsonResponse({'last_page': page, 'data': records}, safe=False)
 

@@ -13,14 +13,33 @@ from django.conf import settings
 from utils.ldap import write_log
 
 
-def load_comptes(filepath):
+def load_json_file(filepath):
     with open(filepath, 'r') as fichier:
         comptes = pd.read_json(fichier)
     return comptes
 
 
+def load_affectations_json_file(filepath):
+    with open(filepath, 'r') as file:
+        return json.load(file)
+
+
 # Fonction pour obtenir le compte UNIF correspondant
 def get_compte_unif(comptes, societe, compte_sage):
+    # Vérification des types de données et affichage des valeurs pour le débogage
+    # print(f"Recherche pour SOCIETE: {societe}, COMPTE SAGE: {compte_sage}")
+
+    # Assurez-vous que les types de données correspondent
+    compte_sage = int(compte_sage)  # Conversion au type int pour correspondre aux données
+
+    result = comptes.loc[
+        (comptes['SOCIETE'].str.strip() == societe) & (comptes['COMPTE SAGE'] == compte_sage), 'COMPTE UNIF'].values
+
+    # print(f"Résultat trouvé : {result}")
+    return result[0] if len(result) > 0 else ''
+
+
+def get_affectation_compte_unif(comptes, societe, compte_sage):
     # Vérification des types de données et affichage des valeurs pour le débogage
     # print(f"Recherche pour SOCIETE: {societe}, COMPTE SAGE: {compte_sage}")
 
@@ -70,7 +89,7 @@ def get_data_sql(connection, societe, value, target):
             .replace('{table}', str(societe.table)) \
             .replace('{base}', str(societe.base))
 
-        comptes = load_comptes('compte.json')
+        comptes = load_json_file('compte.json')
 
         if sql and sql_plan:
             with connection.cursor() as cursor:
@@ -182,6 +201,7 @@ def extract_from_path(path):
     else:
         return None, None, None
 
+
 def get_sql(path):
     base, query, value = extract_from_path(path)
 
@@ -210,9 +230,6 @@ def get_month_names(year, local_value=True):
     else:
         current_month = datetime.now().month
         return [calendar.month_name[i].capitalize() for i in range(1, current_month + 1)]
-
-
-
 
 
 def are_valid_uuids(values):
