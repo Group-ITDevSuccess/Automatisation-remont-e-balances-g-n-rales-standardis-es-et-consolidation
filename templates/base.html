@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}">
     <link rel="stylesheet" href="{% static 'dist/tabulator/css/tabulator.min.css' %}">
     <link rel="stylesheet" href="{% static 'dist/tabulator/css/tabulator_site_dark.min.css' %}">
-    <link rel="stylesheet" href="{% static 'dist/slickgrids/styles/css/slick-alpine-theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/slickgrids/styles/css/slick-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/slickgrids/styles/css/slick-alpine-theme.css' %}">
     <link rel="icon" type="image/ico" sizes="16x16" href="{% static 'assets/images/logo-inviso.ico' %}">
     {% fontawesome_6_static %}
 
@@ -47,8 +48,14 @@
 <script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
 <script src="{% static 'dist/tabulator/js/tabulator.min.js' %}"></script>
 <script src="{% static 'dist/tabulator/js/luxon.js' %}"></script>
-<script src="{% static 'dist/slickgrids/browser/slick.core.min.js' %}"></script>
-<script src="{% static 'dist/slickgrids/browser/slick.grid.min.js'%}"></script>
+
+<script src="{% static 'dist/slickgrids/browser/Sortable.js' %}"></script>
+<script src="{% static 'dist/slickgrids/browser/sortable-cdn-fallback.js' %}"></script>
+<script src="{% static 'dist/slickgrids/browser/slick.core.js' %}"></script>
+<script src="{% static 'dist/slickgrids/browser/slick.interactions.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/slick.grid.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/slick.dataview.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/plugins/slick.resizer.js'%}"></script>
 {% block script %}{% endblock %}
 </body>
 </html>

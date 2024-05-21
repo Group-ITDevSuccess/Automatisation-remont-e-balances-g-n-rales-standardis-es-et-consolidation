@@ -70,75 +70,109 @@
 
 
         let CreateTable = function (id, columns, groupBy) {
-
-            let table = new Tabulator('#' + id, {
-                height: '80vh',
-                editorEmptyValue: '',
-                downloadConfig: {
-                    columnHeaders: true,
-                    columnGroups: false,
-                    rowHeaders: false,
-                    rowGroups: false,
-                    columnCalcs: true,
+            if (id == 'BLG' || id == 'ALL'){
+                let table = new Tabulator('#' + id, {
+                    height: '80vh',
+                    editorEmptyValue: '',
+                    downloadConfig: {
+                        columnHeaders: true,
+                        columnGroups: false,
+                        rowHeaders: false,
+                        rowGroups: false,
+                        columnCalcs: true,
+                        dataTree: true,
+                    },
+                    ajaxURL: "{% url 'app:get-data-for-table' %}",
+                    ajaxContentType: "json",
+                    ajaxParams: {'value': id, 'target': '{{ target }}'},
+                    ajaxConfig: "POST",
+                    progressiveLoad: "load",
+                    progressiveLoadDelay: 200,
+                    layout: "fitData",
+                    printAsHtml: true,
+                    printStyled: true,
+                    groupStartOpen: false,
+                    printRowRange: "all",
+                    printHeader: "<h1>Example Table Header<h1>",
+                    printFooter: "<h2>Example Table Footer<h2>",
+                    footerElement: `<button type='button' class='btn btn-warning btn-sm mr-2' id='reload-table' onClick=""><i class='fas fa-sync-alt'></i></button>`,
+                    tooltipsHeader: false,
+                    rowHeader: {
+                        title: `<button type='button' class='btn btn-primary btn-sm' id='add-row' onClick=""><i class='fas fa-plus'></i></button>`,
+                        headerSort: false,
+                        resizable: false,
+                        width: 45,
+                        frozen: true,
+                        rowHandle: true,
+                        editor: false,
+                        hozAlign: "center",
+                        formatter: "rownum",
+                    },
+                    movableColumns: true,
+                    success: function (data) {
+                        if (data.status !== 200 && data.status !== 201) {
+                            alert(data.error || "An error occurred while fetching data.");
+                            return;
+                        }
+                        const breakdowns = data.data;
+                        table.setData(breakdowns);
+                    },
+                    headerSortClickElement: 'icon',
+                    selectableRangeClearCells: true,
+                    columnHeaderVertAlign: "bottom",
+                    resizableColumnGuide: true,
                     dataTree: true,
-                },
-                ajaxURL: "{% url 'app:get-data-for-table' %}",
-                ajaxContentType: "json",
-                ajaxParams: {'value': id, 'target': '{{ target }}'},
-                ajaxConfig: "POST",
-                progressiveLoad: "load",
-                progressiveLoadDelay: 200,
-                layout: "fitData",
-                printAsHtml: true,
-                printStyled: true,
-                groupStartOpen: false,
-                printRowRange: "all",
-                printHeader: "<h1>Example Table Header<h1>",
-                printFooter: "<h2>Example Table Footer<h2>",
-                footerElement: `<button type='button' class='btn btn-warning btn-sm mr-2' id='reload-table' onClick=""><i class='fas fa-sync-alt'></i></button>`,
-                tooltipsHeader: false,
-                rowHeader: {
-                    title: `<button type='button' class='btn btn-primary btn-sm' id='add-row' onClick=""><i class='fas fa-plus'></i></button>`,
-                    headerSort: false,
-                    resizable: false,
-                    width: 45,
-                    frozen: true,
-                    rowHandle: true,
-                    editor: false,
-                    hozAlign: "center",
-                    formatter: "rownum",
-                },
-                movableColumns: true,
-                success: function (data) {
-                    if (data.status !== 200 && data.status !== 201) {
-                        alert(data.error || "An error occurred while fetching data.");
-                        return;
-                    }
-                    const breakdowns = data.data;
-                    table.setData(breakdowns);
-                },
-                headerSortClickElement: 'icon',
-                selectableRangeClearCells: true,
-                columnHeaderVertAlign: "bottom",
-                resizableColumnGuide: true,
-                dataTree: true,
-                dataTreeStartExpanded: false,
-                dataTreeFilter: false,
-                dataTreeSort: false,
-                dataTreeSelectPropagate: true,
-                placeholder: "Aucun Donnée",
-                placeholderHeaderFilter: 'Aucun Donnée Correspondent',
-                groupClosedShowCalcs: true,
-                headerSort: true,
-                columnDefaults: {
-                    tooltip: true,
-                    headerHozAlign: "center",
-                    editor: false,
-                    resizable: "header",
-                },
-                groupBy: groupBy,
-                columns: columns
-            })
+                    dataTreeStartExpanded: false,
+                    dataTreeFilter: false,
+                    dataTreeSort: false,
+                    dataTreeSelectPropagate: true,
+                    placeholder: "Aucun Donnée",
+                    placeholderHeaderFilter: 'Aucun Donnée Correspondent',
+                    groupClosedShowCalcs: true,
+                    headerSort: true,
+                    columnDefaults: {
+                        tooltip: true,
+                        headerHozAlign: "center",
+                        editor: false,
+                        resizable: "header",
+                    },
+                    groupBy: groupBy,
+                    columns: columns
+                })
+            }
+            else{
+                
+                let grid;
+                let columns = [
+                    {id: "ACTIF", name: "ACTIF", field: "title"},
+                    {id: "TYPE", name: "TYPE", field: "TYPE"},
+                    {id: "CATEGORY", name: "CATEGORY", field: "CATEGORY"},
+                    {id: "NOTE", name: "NOTE", field: "CATEGORY"},
+                    {id: "CATEGORY", name: "CATEGORY", field: "CATEGORY", columnGroup:"21/12/{{target}}"},
+                    {id: "NOTE", name: "NOTE", field: "CATEGORY", columnGroup:"21/12/{{target}}"},
+        
+                  ];
+
+                let options = {
+                    enableCellNavigation: true,
+                    enableColumnReorder: false,
+                    enableAutoSizeColumns: true,
+                };
+
+                let data = [];
+         
+                grid = new Slick.Grid("#"+id, data, columns, options);
+
+                let resizer = new Slick.Plugins.Resizer({
+                    container: '.container',
+                    rightPadding: 5,
+                    bottomPadding: 10,
+                    minHeight: 150, 
+                    minWidth: 250, 
+                })
+                grid.registerPlugin(resizer);
+            }
+            
         }
         let configTable = function (event) {
             let table;
@@ -147,20 +181,25 @@
             switch (event.target) {
                 case 1:
                     id = 'BLG'
+                    table = '<main id="' + id + '" style="padding: 10px"></main>' 
                     break;
                 case 2:
                     id = 'ALL'
+                    table = '<main id="' + id + '" style="padding: 10px"></main>'
                     break;
                 case 3:
                     id = 'BILAN'
+                    table = '<div id="' + id + '"class="slick-container" style="width:600px;height:500px;"></div>'
                     break;
                 case 4:
                     id = 'CN'
+                    table = '<div id="' + id + '" class="slick-container" style="width:600px;height:500px;"></div>'
                     break;
                 default:
                     id = 'BLG'
+                    table = '<main id="' + id + '" style="padding: 10px"></main>'
             }
-            table = '<main id="' + id + '" style="padding: 10px"></main>'
+            
 
             return table
         }
@@ -209,36 +248,64 @@
                     query(layout.el('main'))
                         .removeClass('w2ui-grid')
                         .css({
-                            'border-left': '1px solid #efefef'
+                            'border-left': '1px solid #efefef',
+                            
                         })
                     CreateTable('BLG', config.BLG, 'SOCIETE')
                 },
                 onClick(event) {
                     let table = configTable(event)
                     layout.html('main', table)
-                    query(layout.el('main'))
-                        .removeClass('w2ui-grid')
-                        .css({
-                            'border-left': '1px solid #efefef'
-                        })
+                    
                     let target;
                     let groupBy = '';
                     switch (event.target) {
                         case 1:
                             target = config.BLG
                             groupBy = 'SOCIETE'
+                            query(layout.el('main'))
+                            .removeClass('w2ui-grid')
+                            .css({
+                                'border-left': '1px solid #efefef',
+                            })
                             break;
                         case 2:
                             target = config.ALL
+                            query(layout.el('main'))
+                            .removeClass('w2ui-grid')
+                            .css({
+                                'border-left': '1px solid #efefef',
+                            })
                             break;
                         case 3:
                             target = config.BILAN
+                            query(layout.el('main'))
+                            .removeClass('w2ui-grid')
+                            .addClass('slick-container')
+                            .css({
+                                'border-left': '1px solid #efefef',
+                                'width': '100vw',
+                                'height': '100vh',
+                            })
                             break;
                         case 4:
                             target = config.CN
+                            query(layout.el('main'))
+                            .removeClass('w2ui-grid')
+                            .addClass('slick-container')
+                            .css({
+                                'border-left': '1px solid #efefef',
+                                'width': '100vw',
+                                'height': '100vh',
+                            })
                             break;
                         default:
                             target = config.BLG
+                            query(layout.el('main'))
+                            .removeClass('w2ui-grid')
+                            .css({
+                                'border-left': '1px solid #efefef',
+                            })
                     }
                     CreateTable(event.object.text, target, groupBy)
                 }
