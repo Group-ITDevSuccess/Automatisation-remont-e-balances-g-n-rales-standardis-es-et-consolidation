@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="{% static 'dist/tabulator/css/tabulator_site_dark.min.css' %}">
     <link rel="stylesheet" href="{% static 'dist/slickgrids/styles/css/slick-icons.css' %}">
     <link rel="stylesheet" href="{% static 'dist/slickgrids/styles/css/slick-alpine-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/slickgrids/styles/css/slick.grid.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/slickgrids/styles/css/slick.gridmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/slickgrids/styles/css/slick.headermenu.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/slickgrids/styles/css/slick.headerbuttons.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/slickgrids/styles/css/slick.pager.css' %}">
     <link rel="icon" type="image/ico" sizes="16x16" href="{% static 'assets/images/logo-inviso.ico' %}">
     {% fontawesome_6_static %}
 
@@ -56,7 +61,16 @@
 <script src="{% static 'dist/slickgrids/browser/slick.grid.js'%}"></script>
 <script src="{% static 'dist/slickgrids/browser/slick.dataview.js'%}"></script>
 <script src="{% static 'dist/slickgrids/browser/slick.remotemodel.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/slick.formatters.js'%}"></script>
 <script src="{% static 'dist/slickgrids/browser/plugins/slick.resizer.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/plugins/slick.cellrangedecorator.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/plugins/slick.cellrangeselector.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/plugins/slick.cellselectionmodel.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/plugins/slick.draggablegrouping.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/plugins/slick.rowselectionmodel.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/slick.groupitemmetadataprovider.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/controls/slick.pager.js'%}"></script>
+<script src="{% static 'dist/slickgrids/browser/controls/slick.columnpicker.js'%}"></script>
 {% block script %}{% endblock %}
 </body>
 </html>
