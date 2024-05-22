@@ -12,6 +12,12 @@
             display: inline-flex;
             align-items: center;
         }
+        .slick-container{
+            --alpine-header-column-height: 20px;
+            --alpine-header-font-weight: 500;
+            --alpine-cell-border-width: 0 1px 1px 0;
+            --alpine-cell-border-color: #d4d4d4;
+        }
     </style>
 {% endblock %}
 {% block content %}
@@ -160,7 +166,7 @@
                         sortable: true,
                         grouping: {}
                     },
-                    {id: 'TYPE', name: "TYPE", field: "TYPE", hozAlign: "right",},
+                    {id: 'TYPE', name: "TYPE", field: "TYPE", hozAlign: "right",sortable: true,},
                     {
                         id: "GROUPE",
                         name: "GROUPE",
@@ -304,7 +310,7 @@
                     if (val != null) {
                         let value = ((Math.round(parseFloat(val) * 100) / 100))
                         value = Number(value).toLocaleString('fr-FR', {maximumFractionDigits: 2})
-                        return estCapitalize(totals.group.value) + value
+                        return estCapitalize(totals.group.value) + '<strong>'+ value + '</strong>'
                     }
                 }
 
@@ -396,6 +402,8 @@
                             sortdir = args.sortAsc ? 1 : -1;
                             sortcol = args.sortCol.field;
                             dataView.sorter(comparer, args.sortAsc);
+                            grid.invalidateAllRows();
+                            grid.render()
                         })
 
                         dataView.onRowCountChanged.subscribe(function (e, args) {
@@ -414,9 +422,9 @@
                         dataView.endUpdate()
 
                         let resizer = new Slick.Plugins.Resizer({
-                            container: '.container',
+                            container: '.container-fluid',
                             rightPadding: 5,
-                            bottomPadding: 10,
+                            bottomPadding: 50,
                             minHeight: 150,
                             minWidth: 900,
                         });

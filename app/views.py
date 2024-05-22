@@ -240,7 +240,7 @@ def get_data_for_event(request):
 
                 records = list(final_records.values())
                 records = sorted(records, key=lambda r: r['AFFECTATION'])
-                records = [record for record in records if record['GROUPE'] != '' and record['TYPE'] != '']
+                records = [record for record in records if record['GROUPE'] != '' and record['TYPE'] != '' and record['TYPE'] != 'PASSIF']
     return JsonResponse({'last_page': page, 'data': records}, safe=False)
 
 
