@@ -7,6 +7,7 @@
 {% block style %}
     <link rel="stylesheet" type="text/css" href="{% static 'dist/w2ui-2.0/w2ui-2.0.min.css' %}">
     <style>
+
         .cell-title {
             font-weight: bold;
             display: inline-flex;
@@ -18,7 +19,51 @@
             --alpine-cell-border-width: 0 1px 1px 0;
             --alpine-cell-border-color: #d4d4d4;
         }
-    </style>
+
+        .cell-effort-driven {
+          justify-content: center;
+        }
+    
+        .slick-group-title[level='0'] {
+          font-weight: bold;
+        }
+    
+        .slick-group-title[level='1'] {
+          text-decoration: underline;
+        }
+    
+        .slick-group-title[level='2'] {
+          font-style: italic;
+        }
+        .slick-preheader-panel {
+          border-bottom: 1px solid #dae1e7;
+        }
+        .cell-selection {
+          display: flex;
+        }
+        .alpine-theme .slick-column-groupable {
+          height: 1em;
+          width: 1em;
+          mask-size: 1em;
+          -webkit-mask-size: 1em;
+        }
+        .alpine-theme .slick-pane-top {
+          top: 61px !important;
+        }
+        .btn-alpine-theme {
+          background-color: gray;
+          color: white;
+          border-width: 1px;
+          border-radius: 2px;
+          height: 22px;
+        }
+        .btn-classic-theme {
+          background-color: #bbd1ee;
+          border-width: 1px;
+          border-radius: 2px;
+          height: 22px;
+        }
+      </style>
 {% endblock %}
 {% block content %}
 
