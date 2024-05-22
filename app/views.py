@@ -56,9 +56,9 @@ def get_societe_balances():
 @login_required
 def get_data_for_event(request):
     data = json.loads(request.body)
-    print(data)
+    print(data, data['value'])
     records = []
-    page = data['page']
+    page = data.get('page', '')
 
     if data['target'] != '---':
         balances = Balance.objects.filter(target=int(data['target'])).order_by('societe__name')
@@ -134,9 +134,9 @@ def get_data_for_event(request):
                             'CONSO': 0,
                             'ACTIVE': affectation.get('ACTIVE', ''),
                             'PASSIVE': affectation.get('PASSIVE', ''),
-                            'AFFECTATION': affectation.get('AFFECTATION', '')   
+                            'AFFECTATION': affectation.get('AFFECTATION', '')
                         }
-    
+
                     merged_records[key][balance.societe.value] = balance.montant
                     merged_records[key]['CONSO'] += balance.montant
 
@@ -150,10 +150,65 @@ def get_data_for_event(request):
                             merged_records[key]['AFFECTATION'] = affectation.get('ACTIVE', '')
                         elif total_conso < 0:
                             merged_records[key]['AFFECTATION'] = affectation.get('PASSIVE', '')
-                        
+                records = list(merged_records.values())
+        elif data['value'] == 'BILAN':
+            if balances.exists():
+                merged_records = defaultdict(
+                    lambda: {'COMPTE': '', 'AFFECTATION': '', 'TYPE': '', 'GROUPE': '',
+                             'CATEGORY': '', 'LIBEL': '', 'CONSO': 0}
+                )
+
+                try:
+                    bilan = load_affectations_json_file('bilan.json')
+                    affectations = load_affectations_json_file('affectation.json')
+                except Exception as e:
+                    return JsonResponse({'error': str(e)}, status=500)
+                # Vérifiez si le fichier JSON est correctement chargé
+                if not isinstance(bilan, list):
+                    return JsonResponse({'error': 'Le fichier JSON doit être une liste de dictionnaires.'}, status=500)
+
+                if not isinstance(affectations, list):
+                    return JsonResponse({'error': 'Le fichier JSON doit être une liste de dictionnaires.'}, status=500)
+
+                bilan_dict = {str(item["AFFECTATION"]): item for item in bilan}
+                affectation_dict = {str(item["COMPTE UNIF"]): item for item in affectations}
+
+                for balance in balances:
+                    key = str(balance.compte_unif)  # Convertir en chaîne pour correspondre aux clés du dictionnaire
+                    if key not in merged_records:
+                        affectation = affectation_dict.get(key, {})
+                        merged_records[key] = {
+                            'COMPTE': balance.compte_unif,
+                            'AFFECTATION': affectation.get('AFFECTATION', ''),
+                            'TYPE': '',
+                            'GROUPE': '',
+                            'CATEGORY': '',
+                            'LIBEL': '',
+                            'CONSO': 0  # Assurez-vous que 'CONSO' est initialisé ici aussi
+                        }
+                    merged_records[key]['CONSO'] += balance.montant
+                for key in merged_records:
+                    total_conso = merged_records[key]['CONSO']
+                    affectation = affectation_dict.get(key, {})
+                    current_affectation = merged_records[key]['AFFECTATION']
+
+                    if current_affectation == '#':
+                        if total_conso > 0:
+                            merged_records[key]['AFFECTATION'] = affectation.get('ACTIVE', '')
+                        elif total_conso < 0:
+                            merged_records[key]['AFFECTATION'] = affectation.get('PASSIVE', '')
+
+                for key in merged_records:
+                    current_affectation = merged_records[key]['AFFECTATION']
+                    if current_affectation:
+                        bilan_info = bilan_dict.get(current_affectation, {})
+                        merged_records[key]['TYPE'] = bilan_info.get('TYPE', '')
+                        merged_records[key]['GROUPE'] = bilan_info.get('GROUPE', '')
+                        merged_records[key]['CATEGORY'] = bilan_info.get('CATEGORY', '')
+                        merged_records[key]['LIBEL'] = bilan_info.get('LIBEL', '')
 
                 records = list(merged_records.values())
-
+                print(records)
     return JsonResponse({'last_page': page, 'data': records}, safe=False)
 
 

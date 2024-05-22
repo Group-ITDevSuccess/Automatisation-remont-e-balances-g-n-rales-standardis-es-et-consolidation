@@ -70,7 +70,7 @@
 
 
         let CreateTable = function (id, columns, groupBy) {
-            if (id == 'BLG' || id == 'ALL'){
+            if (id === 'BLG' || id === 'ALL') {
                 let table = new Tabulator('#' + id, {
                     height: '80vh',
                     editorEmptyValue: '',
@@ -139,40 +139,56 @@
                     groupBy: groupBy,
                     columns: columns
                 })
+            } else {
+                async function fetchData() {
+                    try {
+                        const response = await fetch("{% url 'app:get-data-for-table' %}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({value: id, target: '{{ target }}'},)
+                        });
+                        const responseData = await response.json();
+                        const data = responseData.data; // Access the data array within the response
+                        console.log(data);
+                        let columns = [
+                            {#{id: "COMPTE", name: "COMPTE", field: "COMPTE"},#}
+                            {id: "AFFECTATION", name: "AFFECTATION", field: "AFFECTATION"},
+                            {id: "TYPE", name: "TYPE", field: "TYPE"},
+                            {id: "GROUPE", name: "GROUPE", field: "GROUPE"},
+                            {id: "CATEGORY", name: "CATEGORY", field: "CATEGORY"},
+                            {id: "LIBEL", name: "LIBEL", field: "LIBEL"},
+                            {id: "NOTE", name: "NOTE", field: "NOTE"},
+                            {id: "CONSO", name: "CONSO", field: "CONSO"},
+                        ];
+
+                        let options = {
+                            enableCellNavigation: true,
+                            enableColumnReorder: false,
+                            enableAutoSizeColumns: true,
+                        };
+
+                        let grid = new Slick.Grid("#" + id, data, columns, options);
+
+                        let resizer = new Slick.Plugins.Resizer({
+                            container: '.container',
+                            rightPadding: 5,
+                            bottomPadding: 10,
+                            minHeight: 150,
+                            minWidth: 250,
+                        });
+                        grid.registerPlugin(resizer);
+
+                    } catch (error) {
+                        console.error('Error fetching data:', error);
+                    }
+                }
+
+                fetchData();
+
             }
-            else{
-                
-                let grid;
-                let columns = [
-                    {id: "ACTIF", name: "ACTIF", field: "title"},
-                    {id: "TYPE", name: "TYPE", field: "TYPE"},
-                    {id: "CATEGORY", name: "CATEGORY", field: "CATEGORY"},
-                    {id: "NOTE", name: "NOTE", field: "CATEGORY"},
-                    {id: "CATEGORY", name: "CATEGORY", field: "CATEGORY", columnGroup:"21/12/{{target}}"},
-                    {id: "NOTE", name: "NOTE", field: "CATEGORY", columnGroup:"21/12/{{target}}"},
-        
-                  ];
 
-                let options = {
-                    enableCellNavigation: true,
-                    enableColumnReorder: false,
-                    enableAutoSizeColumns: true,
-                };
-
-                let data = [];
-         
-                grid = new Slick.Grid("#"+id, data, columns, options);
-
-                let resizer = new Slick.Plugins.Resizer({
-                    container: '.container',
-                    rightPadding: 5,
-                    bottomPadding: 10,
-                    minHeight: 150, 
-                    minWidth: 250, 
-                })
-                grid.registerPlugin(resizer);
-            }
-            
         }
         let configTable = function (event) {
             let table;
@@ -181,7 +197,7 @@
             switch (event.target) {
                 case 1:
                     id = 'BLG'
-                    table = '<main id="' + id + '" style="padding: 10px"></main>' 
+                    table = '<main id="' + id + '" style="padding: 10px"></main>'
                     break;
                 case 2:
                     id = 'ALL'
@@ -199,7 +215,7 @@
                     id = 'BLG'
                     table = '<main id="' + id + '" style="padding: 10px"></main>'
             }
-            
+
 
             return table
         }
@@ -249,14 +265,14 @@
                         .removeClass('w2ui-grid')
                         .css({
                             'border-left': '1px solid #efefef',
-                            
+
                         })
                     CreateTable('BLG', config.BLG, 'SOCIETE')
                 },
                 onClick(event) {
                     let table = configTable(event)
                     layout.html('main', table)
-                    
+
                     let target;
                     let groupBy = '';
                     switch (event.target) {
@@ -264,48 +280,48 @@
                             target = config.BLG
                             groupBy = 'SOCIETE'
                             query(layout.el('main'))
-                            .removeClass('w2ui-grid')
-                            .css({
-                                'border-left': '1px solid #efefef',
-                            })
+                                .removeClass('w2ui-grid')
+                                .css({
+                                    'border-left': '1px solid #efefef',
+                                })
                             break;
                         case 2:
                             target = config.ALL
                             query(layout.el('main'))
-                            .removeClass('w2ui-grid')
-                            .css({
-                                'border-left': '1px solid #efefef',
-                            })
+                                .removeClass('w2ui-grid')
+                                .css({
+                                    'border-left': '1px solid #efefef',
+                                })
                             break;
                         case 3:
                             target = config.BILAN
                             query(layout.el('main'))
-                            .removeClass('w2ui-grid')
-                            .addClass('slick-container')
-                            .css({
-                                'border-left': '1px solid #efefef',
-                                'width': '100vw',
-                                'height': '100vh',
-                            })
+                                .removeClass('w2ui-grid')
+                                .addClass('slick-container')
+                                .css({
+                                    'border-left': '1px solid #efefef',
+                                    'width': '100vw',
+                                    'height': '100vh',
+                                })
                             break;
                         case 4:
                             target = config.CN
                             query(layout.el('main'))
-                            .removeClass('w2ui-grid')
-                            .addClass('slick-container')
-                            .css({
-                                'border-left': '1px solid #efefef',
-                                'width': '100vw',
-                                'height': '100vh',
-                            })
+                                .removeClass('w2ui-grid')
+                                .addClass('slick-container')
+                                .css({
+                                    'border-left': '1px solid #efefef',
+                                    'width': '100vw',
+                                    'height': '100vh',
+                                })
                             break;
                         default:
                             target = config.BLG
                             query(layout.el('main'))
-                            .removeClass('w2ui-grid')
-                            .css({
-                                'border-left': '1px solid #efefef',
-                            })
+                                .removeClass('w2ui-grid')
+                                .css({
+                                    'border-left': '1px solid #efefef',
+                                })
                     }
                     CreateTable(event.object.text, target, groupBy)
                 }

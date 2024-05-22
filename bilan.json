@@ -1,0 +1,394 @@
+[
+  {
+    "AFFECTATION": "BIL28",
+    "TYPE": "PASSIF",
+    "GROUPE": "PASSIFS COURANTS",
+    "CATEGORY": "Dettes",
+    "LIBEL": "Créditeurs divers"
+  },
+  {
+    "AFFECTATION": "BIL29",
+    "TYPE": "PASSIF",
+    "GROUPE": "PASSIFS COURANTS",
+    "CATEGORY": "Dettes",
+    "LIBEL": "Découverts bancaires"
+  },
+  {
+    "AFFECTATION": "BIL39",
+    "TYPE": "PASSIF",
+    "GROUPE": "PASSIFS COURANTS",
+    "CATEGORY": "Dettes",
+    "LIBEL": "Fournisseurs & Comptes rattachés"
+  },
+  {
+    "AFFECTATION": "BIL40",
+    "TYPE": "PASSIF",
+    "GROUPE": "PASSIFS COURANTS",
+    "CATEGORY": "Dettes",
+    "LIBEL": "Autres créditeurs"
+  },
+  {
+    "AFFECTATION": "BIL41",
+    "TYPE": "PASSIF",
+    "GROUPE": "PASSIFS COURANTS",
+    "CATEGORY": "Dettes",
+    "LIBEL": "Personnel & Organismes Sociaux"
+  },
+  {
+    "AFFECTATION": "BIL42",
+    "TYPE": "PASSIF",
+    "GROUPE": "PASSIFS COURANTS",
+    "CATEGORY": "Dettes",
+    "LIBEL": "Etats"
+  },
+  {
+    "AFFECTATION": "BIL43",
+    "TYPE": "PASSIF",
+    "GROUPE": "PASSIFS COURANTS",
+    "CATEGORY": "Dettes",
+    "LIBEL": "Produits à Facturer"
+  },
+  {
+    "AFFECTATION": "BIL38",
+    "TYPE": "PASSIF",
+    "GROUPE": "PASSIFS COURANTS",
+    "CATEGORY": "Dettes financières",
+    "LIBEL": "Dettes à court terme y. c. ASM (Moins d'un an)"
+  },
+  {
+    "AFFECTATION": "BIL18",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Créances et Emplois assimilés",
+    "LIBEL": "Clients et comptes rattachés"
+  },
+  {
+    "AFFECTATION": "BIL19",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Créances et Emplois assimilés",
+    "LIBEL": "Autres débiteurs"
+  },
+  {
+    "AFFECTATION": "BIL20",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Créances et Emplois assimilés",
+    "LIBEL": "Personnel & Organismes Sociaux"
+  },
+  {
+    "AFFECTATION": "BIL21",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Créances et Emplois assimilés",
+    "LIBEL": "Etat"
+  },
+  {
+    "AFFECTATION": "BIL22",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Créances et Emplois assimilés",
+    "LIBEL": "Sociétés du Groupe & Associés"
+  },
+  {
+    "AFFECTATION": "BIL23",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Créances et Emplois assimilés",
+    "LIBEL": "Débiteurs divers"
+  },
+  {
+    "AFFECTATION": "BIL24",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Créances et Emplois assimilés",
+    "LIBEL": "Charges constatées d'avance"
+  },
+  {
+    "AFFECTATION": "BIL54",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Créances et Emplois assimilés",
+    "LIBEL": "Clients et comptes rattachés"
+  },
+  {
+    "AFFECTATION": "BIL55",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Créances et Emplois assimilés",
+    "LIBEL": "Autres débiteurs"
+  },
+  {
+    "AFFECTATION": "BIL25",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Disponibles",
+    "LIBEL": "Caisse"
+  },
+  {
+    "AFFECTATION": "BIL26",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Disponibles",
+    "LIBEL": "Banque"
+  },
+  {
+    "AFFECTATION": "BIL27",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Disponibles",
+    "LIBEL": "Comptes à encaisser"
+  },
+  {
+    "AFFECTATION": "BIL03",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Terrain"
+  },
+  {
+    "AFFECTATION": "BIL04",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Constructions"
+  },
+  {
+    "AFFECTATION": "BIL05",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Matériel et outillage"
+  },
+  {
+    "AFFECTATION": "BIL06",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Matériel de transport"
+  },
+  {
+    "AFFECTATION": "BIL07",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Agencements Aménagements Installations"
+  },
+  {
+    "AFFECTATION": "BIL08",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Matériel et Mobilier de bureau"
+  },
+  {
+    "AFFECTATION": "BIL09",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Matériel informatique"
+  },
+  {
+    "AFFECTATION": "BIL10",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Autres immobilisations corporelles"
+  },
+  {
+    "AFFECTATION": "BIL44",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Constructions"
+  },
+  {
+    "AFFECTATION": "BIL45",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Matériel et outillage"
+  },
+  {
+    "AFFECTATION": "BIL46",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Matériel de transport"
+  },
+  {
+    "AFFECTATION": "BIL47",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Agencements Aménagements Installations"
+  },
+  {
+    "AFFECTATION": "BIL48",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Matériel et Mobilier de bureau"
+  },
+  {
+    "AFFECTATION": "BIL49",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Matériel informatique"
+  },
+  {
+    "AFFECTATION": "BIL50",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations corporelles",
+    "LIBEL": "Autres immobilisations corporelles"
+  },
+  {
+    "AFFECTATION": "BIL11",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations en cours",
+    "LIBEL": ""
+  },
+  {
+    "AFFECTATION": "BIL12",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations financières",
+    "LIBEL": ""
+  },
+  {
+    "AFFECTATION": "BIL01",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations incorporelles",
+    "LIBEL": "Logiciels informatiques et assimilés"
+  },
+  {
+    "AFFECTATION": "BIL02",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations incorporelles",
+    "LIBEL": "Autres immo incorporelles"
+  },
+  {
+    "AFFECTATION": "BIL51",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations incorporelles",
+    "LIBEL": "Logiciels informatiques et assimilés"
+  },
+  {
+    "AFFECTATION": "BIL52",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Immobilisations incorporelles",
+    "LIBEL": "Autres immo incorporelles"
+  },
+  {
+    "AFFECTATION": "BIL13",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS NON COURANTS",
+    "CATEGORY": "Impôt différé Actif",
+    "LIBEL": ""
+  },
+  {
+    "AFFECTATION": "BIL14",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Stocks et en cours",
+    "LIBEL": "Matières Premières, Cheptel, Mat. Cons"
+  },
+  {
+    "AFFECTATION": "BIL15",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Stocks et en cours",
+    "LIBEL": "Produits Finis"
+  },
+  {
+    "AFFECTATION": "BIL16",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Stocks et en cours",
+    "LIBEL": "Marchandises"
+  },
+  {
+    "AFFECTATION": "BIL17",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Stocks et en cours",
+    "LIBEL": "Stocks en voie d'acheminement"
+  },
+  {
+    "AFFECTATION": "BIL53",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Stocks et en cours",
+    "LIBEL": "Matières Premières, Cheptel, Mat. Cons"
+  },
+  {
+    "AFFECTATION": "BIL56",
+    "TYPE": "ACTIF",
+    "GROUPE": "ACTIFS COURANTS",
+    "CATEGORY": "Stocks et en cours",
+    "LIBEL": "Produits Finis"
+  },
+  {
+    "AFFECTATION": "BIL30",
+    "TYPE": "PASSIF",
+    "GROUPE": "CAPITAUX PROPRES",
+    "CATEGORY": "",
+    "LIBEL": "Capital"
+  },
+  {
+    "AFFECTATION": "BIL31",
+    "TYPE": "PASSIF",
+    "GROUPE": "CAPITAUX PROPRES",
+    "CATEGORY": "",
+    "LIBEL": "Ecart d'évaluation"
+  },
+  {
+    "AFFECTATION": "BIL32",
+    "TYPE": "PASSIF",
+    "GROUPE": "CAPITAUX PROPRES",
+    "CATEGORY": "",
+    "LIBEL": "Primes et réserves consolidées"
+  },
+  {
+    "AFFECTATION": "BIL33",
+    "TYPE": "PASSIF",
+    "GROUPE": "CAPITAUX PROPRES",
+    "CATEGORY": "",
+    "LIBEL": "Autres capitaux propres - Report à nouveau"
+  },
+  {
+    "AFFECTATION": "BIL34",
+    "TYPE": "",
+    "GROUPE": "",
+    "CATEGORY": "",
+    "LIBEL": ""
+  },
+  {
+    "AFFECTATION": "BIL35",
+    "TYPE": "PASSIF",
+    "GROUPE": "PASSIFS NON COURANTS",
+    "CATEGORY": "",
+    "LIBEL": "Depots et cautionnements reçus"
+  },
+  {
+    "AFFECTATION": "BIL36",
+    "TYPE": "PASSIF",
+    "GROUPE": "PASSIFS NON COURANTS",
+    "CATEGORY": "",
+    "LIBEL": "Emprunts et dettes financières (Plus d'un an)"
+  },
+  {
+    "AFFECTATION": "BIL37",
+    "TYPE": "PASSIF",
+    "GROUPE": "PASSIFS NON COURANTS",
+    "CATEGORY": "",
+    "LIBEL": "Subventions reçues"
+  }
+]
