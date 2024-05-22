@@ -1,0 +1,57 @@
+AFFECTATION;TYPE;GROUPE;CATEGORY;DESIGNATION
+BIL01;ACTIF;ACTIFS NON COURANTS;Immobilisations incorporelles;Logiciels informatiques et assimilés
+BIL02;ACTIF;ACTIFS NON COURANTS;Immobilisations incorporelles;Autres immo incorporelles
+BIL03;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Terrain
+BIL04;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Constructions
+BIL05;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Matériel et outillage
+BIL06;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Matériel de transport
+BIL07;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Agencements Aménagements Installations
+BIL08;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Matériel et Mobilier de bureau 
+BIL09;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Matériel informatique
+BIL10;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Autres immobilisations corporelles
+BIL11;ACTIF;ACTIFS NON COURANTS;Immobilisations en cours;
+BIL12;ACTIF;ACTIFS NON COURANTS;Immobilisations financières;
+BIL13;ACTIF;ACTIFS NON COURANTS;Impôt différé Actif;
+BIL14;ACTIF;ACTIFS COURANTS;Stocks et en cours;Matières Premières, Cheptel, Mat. Cons
+BIL15;ACTIF;ACTIFS COURANTS;Stocks et en cours;Produits Finis
+BIL16;ACTIF;ACTIFS COURANTS;Stocks et en cours;Marchandises 
+BIL17;ACTIF;ACTIFS COURANTS;Stocks et en cours;Stocks en voie d'acheminement
+BIL18;ACTIF;ACTIFS COURANTS;Créances et Emplois assimilés;Clients et comptes rattachés
+BIL19;ACTIF;ACTIFS COURANTS;Créances et Emplois assimilés;Autres débiteurs
+BIL20;ACTIF;ACTIFS COURANTS;Créances et Emplois assimilés;Personnel & Organismes Sociaux
+BIL21;ACTIF;ACTIFS COURANTS;Créances et Emplois assimilés;Etat
+BIL22;ACTIF;ACTIFS COURANTS;Créances et Emplois assimilés;Sociétés du Groupe & Associés
+BIL23;ACTIF;ACTIFS COURANTS;Créances et Emplois assimilés;Débiteurs divers
+BIL24;ACTIF;ACTIFS COURANTS;Créances et Emplois assimilés;Charges constatées d'avance
+BIL25;ACTIF;ACTIFS COURANTS;Disponibles;Caisse
+BIL26;ACTIF;ACTIFS COURANTS;Disponibles;Banque
+BIL27;ACTIF;ACTIFS COURANTS;Disponibles;Comptes à encaisser
+BIL28;PASSIF;PASSIFS COURANTS;  Dettes;Créditeurs divers
+BIL29;PASSIF;PASSIFS COURANTS;  Dettes;Découverts bancaires
+BIL30;PASSIF;CAPITAUX PROPRES;; Capital 
+BIL31;PASSIF;CAPITAUX PROPRES;; Ecart d'évaluation 
+BIL32;PASSIF;CAPITAUX PROPRES;; Primes et réserves consolidées 
+BIL33;PASSIF;CAPITAUX PROPRES;; Autres capitaux propres - Report à nouveau 
+BIL34;;;;
+BIL35;PASSIF;PASSIFS NON COURANTS;; Depots et cautionnements reçus 
+BIL36;PASSIF;PASSIFS NON COURANTS;; Emprunts et dettes financières (Plus d'un an) 
+BIL37;PASSIF;PASSIFS NON COURANTS;; Subventions reçues 
+BIL38;PASSIF;PASSIFS COURANTS;  Dettes financières; Dettes à court terme y. c. ASM (Moins d'un an) 
+BIL39;PASSIF;PASSIFS COURANTS;  Dettes;Fournisseurs & Comptes rattachés
+BIL40;PASSIF;PASSIFS COURANTS;  Dettes;Autres créditeurs
+BIL41;PASSIF;PASSIFS COURANTS;  Dettes;Personnel & Organismes Sociaux
+BIL42;PASSIF;PASSIFS COURANTS;  Dettes;Etats
+BIL43;PASSIF;PASSIFS COURANTS;  Dettes;Produits à Facturer
+BIL44;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Constructions
+BIL45;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Matériel et outillage
+BIL46;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Matériel de transport
+BIL47;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Agencements Aménagements Installations
+BIL48;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Matériel et Mobilier de bureau 
+BIL49;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Matériel informatique
+BIL50;ACTIF;ACTIFS NON COURANTS;Immobilisations corporelles;Autres immobilisations corporelles
+BIL51;ACTIF;ACTIFS NON COURANTS;Immobilisations incorporelles;Logiciels informatiques et assimilés
+BIL52;ACTIF;ACTIFS NON COURANTS;Immobilisations incorporelles;Autres immo incorporelles
+BIL53;ACTIF;ACTIFS COURANTS;Stocks et en cours;Matières Premières, Cheptel, Mat. Cons
+BIL54;ACTIF;ACTIFS COURANTS;Créances et Emplois assimilés;Clients et comptes rattachés
+BIL55;ACTIF;ACTIFS COURANTS;Créances et Emplois assimilés;Autres débiteurs
+BIL56;ACTIF;ACTIFS COURANTS;Stocks et en cours;Produits Finis

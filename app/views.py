@@ -134,10 +134,10 @@ def get_data_for_event(request):
                             'CONSO': 0,
                             'ACTIVE': affectation.get('ACTIVE', ''),
                             'PASSIVE': affectation.get('PASSIVE', ''),
-                            'AFFECTATION': affectation.get('AFFECTATION', '')
+                            'AFFECTATION': affectation.get('AFFECTATION', '')   
                         }
     
-                    merged_records[key][balance.societe.name] = balance.montant
+                    merged_records[key][balance.societe.value] = balance.montant
                     merged_records[key]['CONSO'] += balance.montant
 
                 for key in merged_records:
@@ -148,8 +148,9 @@ def get_data_for_event(request):
                     if current_affectation == '#':
                         if total_conso > 0:
                             merged_records[key]['AFFECTATION'] = affectation.get('ACTIVE', '')
-                        else:
+                        elif total_conso < 0:
                             merged_records[key]['AFFECTATION'] = affectation.get('PASSIVE', '')
+                        
 
                 records = list(merged_records.values())
 
