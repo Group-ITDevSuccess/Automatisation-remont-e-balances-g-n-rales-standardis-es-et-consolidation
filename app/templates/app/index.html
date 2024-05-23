@@ -155,10 +155,14 @@
                     table = '<main id="' + id + '" style="padding: 10px"></main>'
                     break;
                 case 3:
-                    id = 'BILAN'
+                    id = 'ACTIF'
                     table = '<main id="' + id + '"></main>'
                     break;
                 case 4:
+                    id = 'PASSIF'
+                    table = '<main id="' + id + '"></main>'
+                    break;
+                case 5:
                     id = 'CN'
                     table = '<div id="' + id + '" class="slick-container" style=""></div><div id="pager' + id + '"></div>'
                     break;
@@ -180,7 +184,7 @@
                 padding: 5,
                 panels: [
                     {type: 'top', size: 35, overflow: 'hidden'},
-                    {type: 'left', size: 100, resizable: true, minSize: 30},
+                    {type: 'left', size: 100, resizable: true, minSize: 55},
                     {type: 'main', size: 550, overflow: 'hidden'}
                 ]
             },
@@ -197,8 +201,13 @@
                         nodes: [
                             {id: '1', text: 'BLG', icon: 'fas fa-list-alt', selected: true},
                             {id: '2', text: 'ALL', icon: 'fas fa-list-alt'},
-                            {id: '3', text: 'BILAN', icon: 'fas fa-list-alt'},
-                            {id: '4', text: 'CN', icon: 'fas fa-list-alt'},
+                            {
+                                id: 'BILAN', text: 'BILAN', icon: 'fas fa-list-alt', expanded: true, nodes: [
+                                    {id: '3', text: 'ACTIF', icon: 'fas fa-table',},
+                                    {id: '4', text: 'PASSIF', icon: 'fas fa-table',}
+                                ]
+                            },
+                            {id: '5', text: 'CN', icon: 'fas fa-list-alt'},
                         ],
                         onCollapse(event) {
                             event.preventDefault()
@@ -207,7 +216,7 @@
                     }
                 ],
                 onFlat(event) {
-                    layout.sizeTo('left', (event.detail.goFlat ? 30 : 100), true)
+                    layout.sizeTo('left', (event.detail.goFlat ? 55 : 100), true)
                 },
                 onRender(event) {
                     let table = configTable(event)
@@ -247,7 +256,7 @@
                                 })
                             break;
                         case 3:
-                            target = config.BILAN
+                            target = config.BILAN.ACTIF
                             groupBy = ['GROUPE', 'CATEGORY']
                             open = true
                             query(layout.el('main'))
@@ -258,8 +267,18 @@
                                 })
                             break;
                         case 4:
+                            target = config.BILAN.PASSIF
+                            groupBy = ['GROUPE', 'CATEGORY']
+                            open = true
+                            query(layout.el('main'))
+                                .removeClass('w2ui-grid')
+                                .addClass('slick-container')
+                                .css({
+                                    'border-left': '1px solid #efefef',
+                                })
+                            break;
+                        case 5:
                             target = config.CN
-
                             query(layout.el('main'))
                                 .removeClass('w2ui-grid')
                                 .addClass('slick-container')
@@ -981,15 +1000,67 @@
                     }
                 }
             ],
-            BILAN: [
-                {title: "AFFECTATION", field: "AFFECTATION", frozen: true},
-                {title: "GROUPE", field: "GROUPE", visible: false},
-                {title: "CATEGORY", field: "CATEGORY", visible: false},
-                {title: "ACTIF", field: "LIBEL", width: 250},
-                {title: "NOTE", field: "NOTE", width: 100},
-                {title: "31/12/{{target}}", columns: [
+            BILAN: {
+                ACTIF: [
+                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true},
+                    {title: "GROUPE", field: "GROUPE", visible: false},
+                    {title: "CATEGORY", field: "CATEGORY", visible: false},
+                    {title: "ACTIF", field: "LIBEL"},
+                    {title: "NOTE", field: "NOTE", width: 100},
                     {
-                        title: "BRUT", field: "BRUT", sorter: "number",
+                        title: "31/12/{{target}}", columns: [
+                            {
+                                title: "BRUT", field: "BRUT", sorter: "number",
+                                bottomCalc: "sum",
+                                bottomCalcParams: {precision: 2},
+                                width: 150,
+                                hozAlign: "right",
+                                formatter: "money",
+                                formatterParams: {
+                                    decimal: ",",
+                                    thousand: " ",
+                                    symbol: " ",
+                                    symbolAfter: "p",
+                                    negativeSign: false,
+                                    precision: 2,
+                                }
+                            },
+                            {
+                                title: "AMORTISSEMENT", field: "AMORTISSEMENT", sorter: "number",
+                                bottomCalc: "sum",
+                                bottomCalcParams: {precision: 2},
+                                width: 150,
+                                hozAlign: "right",
+                                formatter: "money",
+                                formatterParams: {
+                                    decimal: ",",
+                                    thousand: " ",
+                                    symbol: " ",
+                                    symbolAfter: "p",
+                                    negativeSign: false,
+                                    precision: 2,
+                                }
+                            },
+                            {
+                                title: "NET", field: "NET", sorter: "number",
+                                bottomCalc: "sum",
+                                bottomCalcParams: {precision: 2},
+                                width: 150,
+                                hozAlign: "right",
+                                formatter: "money",
+                                formatterParams: {
+                                    decimal: ",",
+                                    thousand: " ",
+                                    symbol: " ",
+                                    symbolAfter: "p",
+                                    negativeSign: false,
+                                    precision: 2,
+                                }
+                            },
+                        ],
+                    },
+                    {
+                        title: "31/12/{{ target_1 }}", field: "", sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1005,7 +1076,7 @@
                         }
                     },
                     {
-                        title: "AMORTISSEMENT", field: "AMORTISSEMENT", sorter: "number",
+                        title: "31/12/{{ target_2 }}", field: "", sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1021,7 +1092,7 @@
                         }
                     },
                     {
-                        title: "NET", field: "NET", sorter: "number",
+                        title: "31/12/{{ target_3 }}", field: "", sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1036,58 +1107,81 @@
                             precision: 2,
                         }
                     },
+
                 ],
+                PASSIF: [
+                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true},
+                    {title: "GROUPE", field: "GROUPE", visible: false},
+                    {title: "CATEGORY", field: "CATEGORY", visible: false},
+                    {title: "ACTIF", field: "LIBEL"},
+                    {title: "NOTE", field: "NOTE", width: 100},
+                    {
+                        title: "31/12/{{target}}", field: "CONSO", sorter: "number",
+                        bottomCalc: "sum",
+                        bottomCalcParams: {precision: 2},
+                        width: 150,
+                        hozAlign: "right",
+                        formatter: "money",
+                        formatterParams: {
+                            decimal: ",",
+                            thousand: " ",
+                            symbol: " ",
+                            symbolAfter: "p",
+                            negativeSign: true,
+                            precision: 2,
+                        }
+                    },
+                    {
+                        title: "31/12/{{ target_1 }}", field: "", sorter: "number",
+                        bottomCalc: "sum",
+                        bottomCalcParams: {precision: 2},
+                        width: 150,
+                        hozAlign: "right",
+                        formatter: "money",
+                        formatterParams: {
+                            decimal: ",",
+                            thousand: " ",
+                            symbol: " ",
+                            symbolAfter: "p",
+                            negativeSign: false,
+                            precision: 2,
+                        }
+                    },
+                    {
+                        title: "31/12/{{ target_2 }}", field: "", sorter: "number",
+                        bottomCalc: "sum",
+                        bottomCalcParams: {precision: 2},
+                        width: 150,
+                        hozAlign: "right",
+                        formatter: "money",
+                        formatterParams: {
+                            decimal: ",",
+                            thousand: " ",
+                            symbol: " ",
+                            symbolAfter: "p",
+                            negativeSign: false,
+                            precision: 2,
+                        }
+                    },
+                    {
+                        title: "31/12/{{ target_3 }}", field: "", sorter: "number",
+                        bottomCalc: "sum",
+                        bottomCalcParams: {precision: 2},
+                        width: 150,
+                        hozAlign: "right",
+                        formatter: "money",
+                        formatterParams: {
+                            decimal: ",",
+                            thousand: " ",
+                            symbol: " ",
+                            symbolAfter: "p",
+                            negativeSign: false,
+                            precision: 2,
+                        }
+                    },
+
+                ]
             },
-            {
-                title: "31/12/{{ target_1 }}", field: "", sorter: "number",
-                bottomCalc: "sum",
-                bottomCalcParams: {precision: 2},
-                width: 150,
-                hozAlign: "right",
-                formatter: "money",
-                formatterParams: {
-                    decimal: ",",
-                    thousand: " ",
-                    symbol: " ",
-                    symbolAfter: "p",
-                    negativeSign: false,
-                    precision: 2,
-                }
-            },
-            {
-                title: "31/12/{{ target_2 }}", field: "", sorter: "number",
-                bottomCalc: "sum",
-                bottomCalcParams: {precision: 2},
-                width: 150,
-                hozAlign: "right",
-                formatter: "money",
-                formatterParams: {
-                    decimal: ",",
-                    thousand: " ",
-                    symbol: " ",
-                    symbolAfter: "p",
-                    negativeSign: false,
-                    precision: 2,
-                }
-            },
-            {
-                title: "31/12/{{ target_3 }}", field: "", sorter: "number",
-                bottomCalc: "sum",
-                bottomCalcParams: {precision: 2},
-                width: 150,
-                hozAlign: "right",
-                formatter: "money",
-                formatterParams: {
-                    decimal: ",",
-                    thousand: " ",
-                    symbol: " ",
-                    symbolAfter: "p",
-                    negativeSign: false,
-                    precision: 2,
-                }
-            },
-                
-            ],
             CN: [],
 
         }

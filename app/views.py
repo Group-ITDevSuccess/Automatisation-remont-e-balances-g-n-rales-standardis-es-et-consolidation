@@ -1,5 +1,5 @@
 import json
-import uuid
+from collections import defaultdict
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import F, Sum
@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-from collections import defaultdict
+
 from app.forms import SearchForm
 from app.models import Societe, Balance
 from utils.ldap import write_log
@@ -28,7 +28,7 @@ def index(request):
         form = SearchForm()
     return render(request, 'app/index.html', {
         'path': request.path,
-        'target': target    ,
+        'target': target,
         'target_1': str(int(target) - 1) if target != '---' else '',
         'target_2': str(int(target) - 2) if target != '---' else '',
         'target_3': str(int(target) - 3) if target != '---' else '',
@@ -137,8 +137,8 @@ def get_data_for_event(request):
                             'C2': balance.compte_unif[:2],
                             'C3': balance.compte_unif[:3],
                             'CONSO': 0,
-                            'ACTIVE': affectation.get('ACTIVE', ''),
-                            'PASSIVE': affectation.get('PASSIVE', ''),
+                            'ACTIF': affectation.get('ACTIF', ''),
+                            'PASSIF': affectation.get('PASSIF', ''),
                             'AFFECTATION': affectation.get('AFFECTATION', '')
                         }
 
@@ -152,20 +152,17 @@ def get_data_for_event(request):
 
                     if current_affectation == '#':
                         if total_conso > 0:
-                            merged_records[key]['AFFECTATION'] = affectation.get('ACTIVE', '')
-                        elif total_conso < 0:
-                            merged_records[key]['AFFECTATION'] = affectation.get('PASSIVE', '')
+                            merged_records[key]['AFFECTATION'] = affectation.get('ACTIF', '')
+                        elif total_conso <= 0:
+                            merged_records[key]['AFFECTATION'] = affectation.get('PASSIF', '')
                 records = list(merged_records.values())
-        elif data['value'] == 'BILAN':
+        elif data['value'] in ['ACTIF', 'PASSIF']:
             if balances.exists():
-                merged_records = defaultdict(
-                    lambda: {'id': '', 'AFFECTATION': '', 'TYPE': '', 'GROUPE': '', 'CATEGORY': '', 'LIBEL': '',
-                             'CONSO': 0, 'NET': 0, 'BRUT': 0, 'AMORTISSEMENT': 0}
-                )
-
                 try:
                     bilan = load_affectations_json_file('bilan.json')
                     affectations = load_affectations_json_file('affectation.json')
+                    affectation_table = load_json_file('config.json')
+
                 except Exception as e:
                     return JsonResponse({'error': str(e)}, status=500)
 
@@ -175,19 +172,20 @@ def get_data_for_event(request):
                 if not isinstance(affectations, list):
                     return JsonResponse({'error': 'Le fichier JSON doit être une liste de dictionnaires.'}, status=500)
 
+                merged_records = defaultdict(
+                    lambda: {'AFFECTATION': '', 'TYPE': '', 'GROUPE': '', 'CATEGORY': '', 'LIBEL': '',
+                             'CONSO': 0, 'NET': 0, 'BRUT': 0, 'AMORTISSEMENT': 0}
+                )
+
                 bilan_dict = {str(item["AFFECTATION"]): item for item in bilan}
                 affectation_dict = {str(item["COMPTE UNIF"]): item for item in affectations}
 
-                affectation_table = load_json_file('config.json')
-                # Premier passage pour fusionner les enregistrements
-                #print(balances)
                 for balance in balances:
                     key = str(balance.compte_unif)
                     affectation_key = affectation_dict.get(key, {}).get('AFFECTATION', '')
 
                     if affectation_key not in merged_records:
                         merged_records[affectation_key] = {
-                            'id': str(uuid.uuid4()),
                             'AFFECTATION': affectation_key,
                             'TYPE': '',
                             'GROUPE': '',
@@ -199,10 +197,8 @@ def get_data_for_event(request):
                             'AMORTISSEMENT': 0
                         }
 
-                    # Ajout des valeurs CONSO au merged_records
                     merged_records[affectation_key]['CONSO'] += balance.montant
 
-                # Mise à jour des champs TYPE, GROUPE, CATEGORY et LIBEL
                 for key in merged_records:
                     current_affectation = merged_records[key]['AFFECTATION']
                     if current_affectation:
@@ -213,28 +209,28 @@ def get_data_for_event(request):
                         merged_records[key]['LIBEL'] = bilan_info.get('LIBEL', '')
 
                 final_records = defaultdict(
-                    lambda: {'id': '', 'AFFECTATION': '', 'TYPE': '', 'GROUPE': '', 'CATEGORY': '', 'LIBEL': '',
+                    lambda: {'AFFECTATION': '', 'TYPE': '', 'GROUPE': '', 'CATEGORY': '', 'LIBEL': '',
                              'CONSO': 0, 'NET': 0, 'BRUT': 0, 'AMORTISSEMENT': 0}
                 )
-                print(merged_records)
                 for record in merged_records.values():
                     key = (record['LIBEL'], record['CATEGORY'], record['GROUPE'], record['TYPE'])
-                    if final_records[key]['id'] == '':
-                        final_records[key]['id'] = record['id']
-                        final_records[key]['TYPE'] = record['TYPE']
-                        final_records[key]['GROUPE'] = record['GROUPE']
-                        final_records[key]['CATEGORY'] = record['CATEGORY']
-                        final_records[key]['LIBEL'] = record['LIBEL']
+                    final_records[key]['TYPE'] = record['TYPE']
+                    final_records[key]['GROUPE'] = record['GROUPE']
+                    final_records[key]['CATEGORY'] = record['CATEGORY']
+                    final_records[key]['LIBEL'] = record['LIBEL']
+                    if data['value'] == 'ACTIF':
+                        final_records[key]['CONSO'] += record['CONSO']
+                        if record['AFFECTATION'] in affectation_table['ASSIGNATION']['BRUT']:
+                            final_records[key]['BRUT'] += record['CONSO']
+                        elif record['AFFECTATION'] in affectation_table['ASSIGNATION']['AMORTISSEMENT']:
+                            final_records[key]['AMORTISSEMENT'] += (-1 * record['CONSO'])
 
-                    final_records[key]['CONSO'] += record['CONSO']
-                    if record['AFFECTATION'] in affectation_table['ASSIGNATION']['BRUT']:
-                        final_records[key]['BRUT'] += record['CONSO']
-                    elif record['AFFECTATION'] in affectation_table['ASSIGNATION']['AMORTISSEMENT']:
-                        final_records[key]['AMORTISSEMENT'] += (-1 * record['CONSO'])
-
-                    if final_records[key]['AFFECTATION']:
-                        final_records[key]['AFFECTATION'] += ', ' + record['AFFECTATION']
+                        if final_records[key]['AFFECTATION']:
+                            final_records[key]['AFFECTATION'] += ', ' + record['AFFECTATION']
+                        else:
+                            final_records[key]['AFFECTATION'] = record['AFFECTATION']
                     else:
+                        final_records[key]['CONSO'] += (-1 * record['CONSO'])
                         final_records[key]['AFFECTATION'] = record['AFFECTATION']
 
                 for record in final_records.values():
@@ -242,7 +238,14 @@ def get_data_for_event(request):
 
                 records = list(final_records.values())
                 records = sorted(records, key=lambda r: r['AFFECTATION'], reverse=False)
-                records = [record for record in records if record['GROUPE'] != '' and record['TYPE'] != '' and record['TYPE'] != 'PASSIF']
+
+                if data['value'] == 'ACTIF':
+                    exception = 'PASSIF'
+                else:
+                    exception = 'ACTIF'
+                records = [record for record in records if
+                           record['GROUPE'] != '' and record['TYPE'] != '' and record['TYPE'] != exception]
+
     return JsonResponse({'last_page': page, 'data': records}, safe=False)
 
 

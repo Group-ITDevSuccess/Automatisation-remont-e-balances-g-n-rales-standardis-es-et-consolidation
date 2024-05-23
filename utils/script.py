@@ -1,13 +1,13 @@
+import calendar
 import decimal
 import json
 import locale
-import pyodbc
 import os
 import uuid
-from datetime import datetime, date
-import calendar
+from datetime import datetime
 
 import pandas as pd
+import pyodbc
 from django.conf import settings
 
 from utils.ldap import write_log
@@ -20,7 +20,7 @@ def load_json_file(filepath):
 
 
 def load_affectations_json_file(filepath):
-    with open(filepath, 'r') as file:
+    with open(filepath, 'r', encoding='UTF-8') as file:
         return json.load(file)
 
 
