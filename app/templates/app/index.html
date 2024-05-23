@@ -6,64 +6,7 @@
 
 {% block style %}
     <link rel="stylesheet" type="text/css" href="{% static 'dist/w2ui-2.0/w2ui-2.0.min.css' %}">
-    <style>
 
-        .cell-title {
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-        }
-        .slick-container{
-            --alpine-header-column-height: 20px;
-            --alpine-header-font-weight: 500;
-            --alpine-cell-border-width: 0 1px 1px 0;
-            --alpine-cell-border-color: #d4d4d4;
-        }
-
-        .cell-effort-driven {
-          justify-content: center;
-        }
-    
-        .slick-group-title[level='0'] {
-          font-weight: bold;
-        }
-    
-        .slick-group-title[level='1'] {
-          text-decoration: underline;
-        }
-    
-        .slick-group-title[level='2'] {
-          font-style: italic;
-        }
-        .slick-preheader-panel {
-          border-bottom: 1px solid #dae1e7;
-        }
-        .cell-selection {
-          display: flex;
-        }
-        .alpine-theme .slick-column-groupable {
-          height: 1em;
-          width: 1em;
-          mask-size: 1em;
-          -webkit-mask-size: 1em;
-        }
-        .alpine-theme .slick-pane-top {
-          top: 61px !important;
-        }
-        .btn-alpine-theme {
-          background-color: gray;
-          color: white;
-          border-width: 1px;
-          border-radius: 2px;
-          height: 22px;
-        }
-        .btn-classic-theme {
-          background-color: #bbd1ee;
-          border-width: 1px;
-          border-radius: 2px;
-          height: 22px;
-        }
-      </style>
 {% endblock %}
 {% block content %}
 
@@ -128,365 +71,76 @@
 
 
         let CreateTable = function (id, columns, groupBy) {
-            if (id === 'BLG' || id === 'ALL') {
-                let table = new Tabulator('#' + id, {
-                    height: '80vh',
-                    editorEmptyValue: '',
-                    downloadConfig: {
-                        columnHeaders: true,
-                        columnGroups: false,
-                        rowHeaders: false,
-                        rowGroups: false,
-                        columnCalcs: true,
-                        dataTree: true,
-                    },
-                    ajaxURL: "{% url 'app:get-data-for-table' %}",
-                    ajaxContentType: "json",
-                    ajaxParams: {'value': id, 'target': '{{ target }}'},
-                    ajaxConfig: "POST",
-                    progressiveLoad: "load",
-                    progressiveLoadDelay: 200,
-                    layout: "fitData",
-                    printAsHtml: true,
-                    printStyled: true,
-                    groupStartOpen: false,
-                    printRowRange: "all",
-                    printHeader: "<h1>Example Table Header<h1>",
-                    printFooter: "<h2>Example Table Footer<h2>",
-                    footerElement: `<button type='button' class='btn btn-warning btn-sm mr-2' id='reload-table' onClick=""><i class='fas fa-sync-alt'></i></button>`,
-                    tooltipsHeader: false,
-                    rowHeader: {
-                        title: `<button type='button' class='btn btn-primary btn-sm' id='add-row' onClick=""><i class='fas fa-plus'></i></button>`,
-                        headerSort: false,
-                        resizable: false,
-                        width: 45,
-                        frozen: true,
-                        rowHandle: true,
-                        editor: false,
-                        hozAlign: "center",
-                        formatter: "rownum",
-                    },
-                    movableColumns: true,
-                    success: function (data) {
-                        if (data.status !== 200 && data.status !== 201) {
-                            alert(data.error || "An error occurred while fetching data.");
-                            return;
-                        }
-                        const breakdowns = data.data;
-                        table.setData(breakdowns);
-                    },
-                    headerSortClickElement: 'icon',
-                    selectableRangeClearCells: true,
-                    columnHeaderVertAlign: "bottom",
-                    resizableColumnGuide: true,
+            let table = new Tabulator('#' + id, {
+                height: '80vh',
+                editorEmptyValue: '',
+                downloadConfig: {
+                    columnHeaders: true,
+                    columnGroups: false,
+                    rowHeaders: false,
+                    rowGroups: false,
+                    columnCalcs: true,
                     dataTree: true,
-                    dataTreeStartExpanded: false,
-                    dataTreeFilter: false,
-                    dataTreeSort: false,
-                    dataTreeSelectPropagate: true,
-                    placeholder: "Aucun Donnée",
-                    placeholderHeaderFilter: 'Aucun Donnée Correspondent',
-                    groupClosedShowCalcs: true,
-                    headerSort: true,
-                    columnDefaults: {
-                        tooltip: true,
-                        headerHozAlign: "center",
-                        editor: false,
-                        resizable: "header",
-                    },
-                    groupBy: groupBy,
-                    columns: columns
-                })
-            } else {
-                let dataView;
-                let draggableGrouping;
-                let grid;
-                let data;
-                let columns = [
-                    {#{id: "COMPTE", name: "COMPTE", field: "COMPTE"},#}
-                    {
-                        id: "AFFECTATION",
-                        name: "AFFECTATION",
-                        field: "AFFECTATION",
-                        sortable: true,
-                        grouping: {}
-                    },
-                    {id: 'TYPE', name: "TYPE", field: "TYPE", hozAlign: "right",sortable: true,},
-                    {
-                        id: "GROUPE",
-                        name: "GROUPE",
-                        sortable: true,
-                        cssClass: 'cell-title',
-                        field: "GROUPE",
-                        grouping: {
-                            getter: 'GROUPE',
-                            formatter: function (g) {
-                                return "<span class='cell-title'>" + g.value + "</span>" + "<span style='color:green'>(" + g.count + " items)</span>";
-                            },
-                            aggregators: [
-                                new Slick.Data.Aggregators.Sum('NET')
-                            ],
-                            aggregateCollapsed: false,
-                            collapse: false,
-                        },
-                    },
-                    {
-                        id: "CATEGORY", name: "CATEGORY", sortable: true, field: "CATEGORY", grouping: {
-                            getter: 'CATEGORY',
-                            formatter: function (g) {
-                                return "<span class='cell-title'>" + g.value + "</span>" + "<span style='color:green'>(" + g.count + " items)</span>";
-                            },
-                            aggregators: [
-                                new Slick.Data.Aggregators.Sum('NET')
-                            ],
-                            aggregateCollapsed: false,
-                            collapse: false
-                        }
-                    },
-                    {
-                        id: "LIBEL", name: "LIBEL", sortable: true, field: "LIBEL", grouping: {
-                            getter: 'LIBEL',
-                            formatter: function (g) {
-                                return "<span class='cell-title'>" + g.value + "</span>" + "<span style='color:green'>(" + g.count + " items)</span>";
-                            },
-                            aggregators: [
-                                new Slick.Data.Aggregators.Sum('NET')
-                            ],
-                            aggregateCollapsed: false,
-                            collapse: false
-                        }
-                    },
-                    {
-                        id: "BRUT",
-                        name: "BRUT",
-                        sortable: true,
-                        field: "BRUT",
-                        cssClass: 'slick-cell-right-align',
-                        groupTotalsFormatter: sumTotalsFormatter,
-                        formatter: function (row, cell, value, columnDef, dataContext) {
-                            return Number(value).toLocaleString('fr-FR', {maximumFractionDigits: 2})
-                        },
-                        grouping: {
-                            getter: 'BRUT',
-                            formatter: function (g) {
-                                return g.value + "<span style='color:green'>(" + g.count + " items)</span>";
-                            },
-                            aggregators: [
-                                new Slick.Data.Aggregators.Sum('NET')
-                            ],
-                            collapse: false
-                        }
-                    },
-                    {
-                        id: "AMORTISSEMENT",
-                        name: "AMORTISSEMENT",
-                        sortable: true,
-                        field: "AMORTISSEMENT",
-                        groupTotalsFormatter: sumTotalsFormatter,
-                        formatter: function (row, cell, value, columnDef, dataContext) {
-                            return Number(value).toLocaleString('fr-FR', {maximumFractionDigits: 2})
-                        },
-                        grouping: {
-                            getter: 'AMORTISSEMENT',
-                            formatter: function (g) {
-                                return g.value + "<span style='color:green'>(" + g.count + " items)</span>";
-                            },
-                            aggregators: [
-                                new Slick.Data.Aggregators.Sum('NET')
-                            ],
-                            collapse: false
-                        }
-                    },
-                    {
-                        id: "NET",
-                        name: "NET",
-                        sortable: true,
-                        field: "NET",
-                        groupTotalsFormatter: sumTotalsFormatter,
-                        formatter: function (row, cell, value, columnDef, dataContext) {
-                            return Number(value).toLocaleString('fr-FR', {maximumFractionDigits: 2})
-                        },
-                        grouping: {
-                            getter: 'NET',
-                            formatter: function (g) {
-                                return g.value + "<span style='color:green'>(" + g.count + " items)</span>";
-                            },
-                            aggregators: [
-                                new Slick.Data.Aggregators.Sum('NET')
-                            ],
-                            collapse: false
-                        }
-                    },
-                    {
-                        id: "CONSO",
-                        name: "CONSO",
-                        sortable: true,
-                        field: "CONSO",
-                        groupTotalsFormatter: sumTotalsFormatter,
-                        formatter: function (row, cell, value, columnDef, dataContext) {
-                            return Number(value).toLocaleString('fr-FR', {maximumFractionDigits: 2})
-                        },
-                        grouping: {
-                            getter: 'CONSO',
-                            formatter: function (g) {
-                                return g.value + "<span style='color:green'>(" + g.count + " items)</span>";
-                            },
-                            aggregators: [
-                                new Slick.Data.Aggregators.Sum('NET')
-                            ],
-                            collapse: false
-                        }
-                    },
-                ];
-                let columnpicker;
-                let pager;
-                let sortcol = "AFFECTATION";
-                let sortdir = 1;
-
-                function estCapitalize(phrase) {
-                    if (phrase === phrase.toUpperCase() && phrase.slice(' ') !== '') {
-                        return '<strong class="text-success">TOTAUX : </strong> '
+                },
+                ajaxURL: "{% url 'app:get-data-for-table' %}",
+                ajaxContentType: "json",
+                ajaxParams: {'value': id, 'target': '{{ target }}'},
+                ajaxConfig: "POST",
+                progressiveLoad: "load",
+                progressiveLoadDelay: 200,
+                layout: "fitData",
+                printAsHtml: true,
+                printStyled: true,
+                groupStartOpen: false,
+                printRowRange: "all",
+                printHeader: "<h1>Example Table Header<h1>",
+                printFooter: "<h2>Example Table Footer<h2>",
+                footerElement: `<button type='button' class='btn btn-warning btn-sm mr-2' id='reload-table' onClick=""><i class='fas fa-sync-alt'></i></button>`,
+                tooltipsHeader: false,
+                rowHeader: {
+                    title: `<button type='button' class='btn btn-primary btn-sm' id='add-row' onClick=""><i class='fas fa-plus'></i></button>`,
+                    headerSort: false,
+                    resizable: false,
+                    width: 45,
+                    frozen: true,
+                    rowHandle: true,
+                    editor: false,
+                    hozAlign: "center",
+                    formatter: "rownum",
+                },
+                movableColumns: true,
+                success: function (data) {
+                    if (data.status !== 200 && data.status !== 201) {
+                        alert(data.error || "An error occurred while fetching data.");
+                        return;
                     }
-                    return '<i class="text-primary">Somme: </i>';
-                }
-
-                function sumTotalsFormatter(totals, columnDef) {
-                    let val = totals.sum && totals.sum[columnDef.field];
-                    if (val != null) {
-                        let value = ((Math.round(parseFloat(val) * 100) / 100))
-                        value = Number(value).toLocaleString('fr-FR', {maximumFractionDigits: 2})
-                        return estCapitalize(totals.group.value) + '<strong>'+ value + '</strong>'
-                    }
-                }
-
-
-                function comparer(a, b) {
-                    let x = a[sortcol], y = b[sortcol];
-                    return (x === y ? 0 : (y > y ? 1 : -1))
-                }
-
-
-                async function fetchData() {
-                    try {
-                        const response = await fetch("{% url 'app:get-data-for-table' %}", {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({value: id, target: '{{ target }}'},)
-                        });
-                        const responseData = await response.json();
-                        data = responseData.data;
-
-                        draggableGrouping = new Slick.DraggableGrouping({
-                            deleteIconCssClass: 'sgi sgi-close',
-                            groupIconCssClass: 'sgi sgi-drag',
-                            dropPlaceHolderText: 'Déplacer ici les colonnes'
-                        })
-
-                        document.addEventListener('DOMContentLoaded', function () {
-                            console.log('TEST')
-                        })
-
-                        let options = {
-                            columnPicker: {
-                                columnTitle: 'Columns',
-                                hideForceFitButton: false,
-                                hideSyncResizeButton: false,
-                                forceFitTitle: "Force fit columns",
-                                syncResizeTitle: "Synchronous resize"
-                            },
-                            enableCellNavigation: true,
-                            editable: true,
-                            enableAutoSizeColumns: true,
-                            enableColumnReorder: draggableGrouping.getSetupColumnReorder.bind(draggableGrouping),
-                            createPreHeaderPanel: true,
-                            preHeaderPanelHeight: 28,
-                            forceFitColumns: false,
-                            formatterOptions: {
-                                dateSeparator: '/',
-                                decimalSeparator: ',',
-                                minDecimal: 2,
-                                maxDecimal: 4,
-                                numberSuffix: 'MGA',
-                                thousandSeparator: ' '
-                            }
-                        };
-
-                        let groupItemMetadataProvider = new Slick.Data.GroupItemMetadataProvider();
-                        dataView = new Slick.Data.DataView({
-                            groupItemMetadataProvider: groupItemMetadataProvider,
-                            inlineFilters: true,
-                            useCSPSafeFilter: true
-                        })
-
-
-                        grid = new Slick.Grid("#" + id, dataView, columns, options);
-
-                        grid.registerPlugin(groupItemMetadataProvider);
-                        grid.registerPlugin(draggableGrouping);
-                        grid.setSelectionModel(new Slick.CellSelectionModel());
-                        grid.setPreHeaderPanelVisibility(false)
-
-                        pager = new Slick.Controls.Pager(dataView, grid, document.querySelector("#pager" + id))
-                        columnpicker = new Slick.Controls.ColumnPicker(columns, grid, options)
-
-                        function groupBilan() {
-                            grid.setSortColumn([]);
-                            if (draggableGrouping.setDroppedGroups) {
-                                draggableGrouping.setDroppedGroups(['GROUPE', 'CATEGORY'])
-                                grid.invalidate();
-                                columnpicker.setColumnVisibiliy('GROUPE', false)
-                                columnpicker.setColumnVisibiliy('CATEGORY', false)
-                            }
-                            grid.invalidate();
-
-                        }
-
-                        grid.onSort.subscribe(function (e, args) {
-                            sortdir = args.sortAsc ? 1 : -1;
-                            sortcol = args.sortCol.field;
-                            dataView.sorter(comparer, args.sortAsc);
-                            grid.invalidateAllRows();
-                            grid.render()
-                        })
-
-                        dataView.onRowCountChanged.subscribe(function (e, args) {
-                            grid.updateRowCount();
-                            grid.render();
-                        })
-
-                        dataView.onRowsChanged.subscribe(function (e, args) {
-                            grid.invalidateRows(args.rows)
-                            grid.render();
-                        })
-
-                        dataView.beginUpdate()
-                        dataView.setItems(data)
-                        groupBilan()
-                        dataView.endUpdate()
-
-                        let resizer = new Slick.Plugins.Resizer({
-                            container: '.container-fluid',
-                            rightPadding: 5,
-                            bottomPadding: 50,
-                            minHeight: 150,
-                            minWidth: 900,
-                        });
-                        grid.registerPlugin(resizer);
-
-
-                    } catch (error) {
-                        console.error('Error fetching data:', error);
-                    }
-                }
-
-                fetchData();
-
-
-            }
-
+                    const breakdowns = data.data;
+                    table.setData(breakdowns);
+                },
+                headerSortClickElement: 'icon',
+                selectableRangeClearCells: true,
+                columnHeaderVertAlign: "bottom",
+                resizableColumnGuide: true,
+                dataTree: true,
+                dataTreeStartExpanded: false,
+                dataTreeFilter: false,
+                dataTreeSort: false,
+                dataTreeSelectPropagate: true,
+                placeholder: "Aucun Donnée",
+                placeholderHeaderFilter: 'Aucun Donnée Correspondent',
+                groupClosedShowCalcs: true,
+                headerSort: true,
+                columnDefaults: {
+                    tooltip: true,
+                    headerHozAlign: "center",
+                    editor: false,
+                    resizable: "header",
+                },
+                groupBy: groupBy,
+                columns: columns
+            })
         }
+
         let configTable = function (event) {
             let table;
             let id;
@@ -564,7 +218,7 @@
                             'border-left': '1px solid #efefef',
 
                         })
-                    CreateTable('BLG', config.BLG, 'SOCIETE')
+                    CreateTable('BLG', config.BLG, ['SOCIETE'])
                 },
                 onClick(event) {
                     let table = configTable(event)
@@ -575,7 +229,7 @@
                     switch (event.target) {
                         case 1:
                             target = config.BLG
-                            groupBy = 'SOCIETE'
+                            groupBy = ['SOCIETE']
                             query(layout.el('main'))
                                 .removeClass('w2ui-grid')
                                 .css({
@@ -1307,7 +961,6 @@
                         precision: 2,
                     }
                 },
-                //
                 {
                     title: "CONSO",
                     field: "CONSO",
@@ -1327,7 +980,14 @@
                     }
                 }
             ],
-            BILAN: [],
+            BILAN: [
+                {title: "AFFECTATION", field: "AFFECTATION"},
+                {title: "GROUPE", field: "GROUPE"},
+                {title: "C3", field: "C3", width: 65, frozen: true},
+                {title: "Compte", field: "COMPTE", width: 100, hozAlign: "right", frozen: true},
+                {title: "Affectation", field: "AFFECTATION", width: 100, frozen: true},
+                {title: "Désignation", field: "DESIGNATION", width: 250, frozen: true},
+            ],
             CN: [],
 
         }
