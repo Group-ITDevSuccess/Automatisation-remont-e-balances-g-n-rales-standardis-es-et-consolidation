@@ -70,9 +70,9 @@
         } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.min.js' %}";
 
 
-        let CreateTable = function (id, columns, groupBy) {
+        let CreateTable = function (id, columns, groupBy, showGroup, open) {
             let table = new Tabulator('#' + id, {
-                height: '80vh',
+                height: '88vh',
                 editorEmptyValue: '',
                 downloadConfig: {
                     columnHeaders: true,
@@ -91,7 +91,7 @@
                 layout: "fitData",
                 printAsHtml: true,
                 printStyled: true,
-                groupStartOpen: false,
+                groupStartOpen: open,
                 printRowRange: "all",
                 printHeader: "<h1>Example Table Header<h1>",
                 printFooter: "<h2>Example Table Footer<h2>",
@@ -128,7 +128,7 @@
                 dataTreeSelectPropagate: true,
                 placeholder: "Aucun Donnée",
                 placeholderHeaderFilter: 'Aucun Donnée Correspondent',
-                groupClosedShowCalcs: true,
+                groupClosedShowCalcs: showGroup,
                 headerSort: true,
                 columnDefaults: {
                     tooltip: true,
@@ -156,7 +156,7 @@
                     break;
                 case 3:
                     id = 'BILAN'
-                    table = '<div id="' + id + '"class="slick-container" style=""></div><div id="pager' + id + '"></div>'
+                    table = '<main id="' + id + '"></main>'
                     break;
                 case 4:
                     id = 'CN'
@@ -218,7 +218,7 @@
                             'border-left': '1px solid #efefef',
 
                         })
-                    CreateTable('BLG', config.BLG, ['SOCIETE'])
+                    CreateTable('BLG', config.BLG, ['SOCIETE'], true, false)
                 },
                 onClick(event) {
                     let table = configTable(event)
@@ -226,6 +226,8 @@
 
                     let target;
                     let groupBy = '';
+                    let showGroup = true;
+                    let open = false;
                     switch (event.target) {
                         case 1:
                             target = config.BLG
@@ -246,24 +248,23 @@
                             break;
                         case 3:
                             target = config.BILAN
+                            groupBy = ['GROUPE', 'CATEGORY']
+                            open = true
                             query(layout.el('main'))
                                 .removeClass('w2ui-grid')
                                 .addClass('slick-container')
                                 .css({
                                     'border-left': '1px solid #efefef',
-                                    'width': '100vw',
-                                    'height': '100vh',
                                 })
                             break;
                         case 4:
                             target = config.CN
+
                             query(layout.el('main'))
                                 .removeClass('w2ui-grid')
                                 .addClass('slick-container')
                                 .css({
                                     'border-left': '1px solid #efefef',
-                                    'width': '100vw',
-                                    'height': '100vh',
                                 })
                             break;
                         default:
@@ -274,7 +275,7 @@
                                     'border-left': '1px solid #efefef',
                                 })
                     }
-                    CreateTable(event.object.text, target, groupBy)
+                    CreateTable(event.object.text, target, groupBy, showGroup, open)
                 }
             },
             topbar: {
@@ -293,7 +294,7 @@
                 }
             },
             BLG: [
-                {title: "SOCIETE", field: "SOCIETE", width: 125, frozen: true},
+                {title: "SOCIETE", field: "SOCIETE", width: 125, visible: false},
                 {title: "COMPTE SAGE", hozAlign: "right", field: "COMPTE_SAGE", width: 125, frozen: true},
                 {title: "COMPTE UNIF", hozAlign: "right", field: "COMPTE_UNIF", width: 125,},
                 {title: "DESIGNATION COMPTE", field: "DESIGNATION", width: 300,},
@@ -981,12 +982,58 @@
                 }
             ],
             BILAN: [
-                {title: "AFFECTATION", field: "AFFECTATION"},
-                {title: "GROUPE", field: "GROUPE"},
-                {title: "C3", field: "C3", width: 65, frozen: true},
-                {title: "Compte", field: "COMPTE", width: 100, hozAlign: "right", frozen: true},
-                {title: "Affectation", field: "AFFECTATION", width: 100, frozen: true},
-                {title: "Désignation", field: "DESIGNATION", width: 250, frozen: true},
+                {title: "AFFECTATION", field: "AFFECTATION", frozen: true},
+                {title: "GROUPE", field: "GROUPE", visible: false},
+                {title: "CATEGORY", field: "CATEGORY", visible: false},
+                {title: "LIBELLE", field: "LIBEL", width: 250},
+                {
+                    title: "BRUT", field: "BRUT", sorter: "number",
+                    bottomCalc: "sum",
+                    bottomCalcParams: {precision: 2},
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
+                {
+                    title: "AMORTISSEMENT", field: "AMORTISSEMENT", sorter: "number",
+                    bottomCalc: "sum",
+                    bottomCalcParams: {precision: 2},
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
+                {
+                    title: "NET", field: "NET", sorter: "number",
+                    bottomCalc: "sum",
+                    bottomCalcParams: {precision: 2},
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
             ],
             CN: [],
 
