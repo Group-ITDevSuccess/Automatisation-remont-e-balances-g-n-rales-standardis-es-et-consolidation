@@ -28,7 +28,10 @@ def index(request):
         form = SearchForm()
     return render(request, 'app/index.html', {
         'path': request.path,
-        'target': target,
+        'target': target    ,
+        'target_1': int(target) - 1 if target != '---' else '',
+        'target_2': int(target) - 2 if target != '---' else '',
+        'target_3': int(target) - 3 if target != '---' else '',
         'saved': saved,
         'search_form': form
     })
@@ -175,6 +178,7 @@ def get_data_for_event(request):
                 bilan_dict = {str(item["AFFECTATION"]): item for item in bilan}
                 affectation_dict = {str(item["COMPTE UNIF"]): item for item in affectations}
 
+                affectation_table = load_json_file('config.json')
                 # Premier passage pour fusionner les enregistrements
                 for balance in balances:
                     key = str(balance.compte_unif)
@@ -221,13 +225,9 @@ def get_data_for_event(request):
                         final_records[key]['LIBEL'] = record['LIBEL']
 
                     final_records[key]['CONSO'] += record['CONSO']
-                    if record['AFFECTATION'] in ['BIL44', 'BIL45', 'BIL46', 'BIL47', 'BIL48', 'BIL49', 'BIL50',
-                                                 'BIL51', 'BIL52', 'BIL53', 'BIL54', 'BIL55', 'BIL56']:
+                    if record['AFFECTATION'] in affectation_table['ASSIGNATION']['BRUT']:
                         final_records[key]['BRUT'] += record['CONSO']
-                    elif record['AFFECTATION'] in ['BIL01', 'BIL02', 'BIL03', 'BIL04', 'BIL05', 'BIL06',
-                                                   'BIL07', 'BIL08', 'BIL09', 'BIL10', 'BIL11', 'BIL12', 'BIL13',
-                                                   'BIL14', 'BIL15', 'BIL16', 'BIL17', 'BIL18', 'BIL19', 'BIL20',
-                                                   'BIL21', 'BIL22', 'BIL23', 'BIL24', 'BIL25', 'BIL26', 'BIL27']:
+                    elif record['AFFECTATION'] in affectation_table['ASSIGNATION']['AMORTISSEMENT']:
                         final_records[key]['AMORTISSEMENT'] += record['CONSO']
 
                     if final_records[key]['AFFECTATION']:
@@ -239,7 +239,7 @@ def get_data_for_event(request):
                     record['NET'] = record['BRUT'] - record['AMORTISSEMENT']
 
                 records = list(final_records.values())
-                records = sorted(records, key=lambda r: r['AFFECTATION'])
+                records = sorted(records, key=lambda r: r['AFFECTATION'], reverse=False)
                 records = [record for record in records if record['GROUPE'] != '' and record['TYPE'] != '' and record['TYPE'] != 'PASSIF']
     return JsonResponse({'last_page': page, 'data': records}, safe=False)
 

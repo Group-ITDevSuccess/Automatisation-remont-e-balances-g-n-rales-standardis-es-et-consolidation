@@ -1,4 +1,50 @@
 {
+  "ASSIGNATION": {
+    "BRUT": [
+      "BIL44",
+      "BIL45",
+      "BIL46",
+      "BIL47",
+      "BIL48",
+      "BIL49",
+      "BIL50",
+      "BIL51",
+      "BIL52",
+      "BIL53",
+      "BIL54",
+      "BIL55",
+      "BIL56"
+    ],
+    "AMORTISSEMENT": [
+      "BIL01",
+      "BIL02",
+      "BIL03",
+      "BIL04",
+      "BIL05",
+      "BIL06",
+      "BIL07",
+      "BIL08",
+      "BIL09",
+      "BIL10",
+      "BIL11",
+      "BIL12",
+      "BIL13",
+      "BIL14",
+      "BIL15",
+      "BIL16",
+      "BIL17",
+      "BIL18",
+      "BIL19",
+      "BIL20",
+      "BIL21",
+      "BIL22",
+      "BIL23",
+      "BIL24",
+      "BIL25",
+      "BIL26",
+      "BIL27"
+    ]
+  },
   "COLUMNS": {
     "BLG": [
       "COMPTE_SAGE",
@@ -53,9 +99,9 @@
     "SAGE100": "SELECT CG_NUM, CG_INTITULE FROM F_COMPTEG"
   },
   "SQL": {
-      "BLG": {
-        "X3": "SELECT GACCENTRYD.ACC_0,'' AS DESIGNATION, SUM(AMTLED_0*SNS_0) FROM {table}.GACCENTRYD \nWHERE GACCENTRYD.CPY_0='{value}' AND YEAR(GACCENTRYD.ACCDAT_0)='{target}' AND GACCENTRYD.LED_0='MGA'\nGROUP BY GACCENTRYD.ACC_0",
-        "SAGE100": "SELECT F_ECRITUREC.CG_Num, '' AS DESIGNATION, sum(CASE WHEN EC_Sens=1 THEN -EC_Montant ELSE EC_Montant END  ) FROM F_ECRITUREC \n\n\nWHERE YEAR(JM_DATE)='{target}'\nGROUP BY F_ECRITUREC.CG_Num\n"
-      }
+    "BLG": {
+      "X3": "SELECT GACCENTRYD.ACC_0,'' AS DESIGNATION, SUM(AMTLED_0*SNS_0) FROM {table}.GACCENTRYD \nWHERE GACCENTRYD.CPY_0='{value}' AND YEAR(GACCENTRYD.ACCDAT_0)='{target}' AND GACCENTRYD.LED_0='MGA'\nGROUP BY GACCENTRYD.ACC_0",
+      "SAGE100": "SELECT F_ECRITUREC.CG_Num, '' AS DESIGNATION, sum(CASE WHEN EC_Sens=1 THEN -EC_Montant ELSE EC_Montant END  ) FROM F_ECRITUREC \n\n\nWHERE YEAR(JM_DATE)='{target}'\nGROUP BY F_ECRITUREC.CG_Num\n"
+    }
   }
 }

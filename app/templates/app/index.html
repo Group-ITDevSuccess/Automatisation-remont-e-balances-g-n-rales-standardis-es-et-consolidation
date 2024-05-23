@@ -211,7 +211,7 @@
                         sortable: true,
                         grouping: {}
                     },
-                    {id: 'TYPE', name: "TYPE", field: "TYPE", hozAlign: "right",sortable: true,},
+                    {% comment %} {id: 'TYPE', name: "TYPE", field: "TYPE", hozAlign: "right",sortable: true,}, {% endcomment %}
                     {
                         id: "GROUPE",
                         name: "GROUPE",
@@ -318,21 +318,81 @@
                         }
                     },
                     {
-                        id: "CONSO",
-                        name: "CONSO",
+                        id: "31/12/{{target}}",
+                        name: "31/12/{{target}}",
                         sortable: true,
-                        field: "CONSO",
+                        field: "31/12/{{target}}",
                         groupTotalsFormatter: sumTotalsFormatter,
                         formatter: function (row, cell, value, columnDef, dataContext) {
                             return Number(value).toLocaleString('fr-FR', {maximumFractionDigits: 2})
                         },
                         grouping: {
-                            getter: 'CONSO',
+                            getter: '31/12/{{target}}',
                             formatter: function (g) {
                                 return g.value + "<span style='color:green'>(" + g.count + " items)</span>";
                             },
                             aggregators: [
-                                new Slick.Data.Aggregators.Sum('NET')
+                                new Slick.Data.Aggregators.Sum('31/12/{{target}}')
+                            ],
+                            collapse: false
+                        }
+                    },
+                    {
+                        id: "31/12/{{target_1}}",
+                        name: "31/12/{{target_1}}",
+                        sortable: true,
+                        field: "31/12/{{target_1}}",
+                        groupTotalsFormatter: sumTotalsFormatter,
+                        formatter: function (row, cell, value, columnDef, dataContext) {
+                            return Number(value).toLocaleString('fr-FR', {maximumFractionDigits: 2})
+                        },
+                        grouping: {
+                            getter: '31/12/{{target_1}}',
+                            formatter: function (g) {
+                                return g.value + "<span style='color:green'>(" + g.count + " items)</span>";
+                            },
+                            aggregators: [
+                                new Slick.Data.Aggregators.Sum('31/12/{{target_1}}')
+                            ],
+                            collapse: false
+                        }
+                    },
+                    {
+                        id: "31/12/{{target_2}}",
+                        name: "31/12/{{target_2}}",
+                        sortable: true,
+                        field: "31/12/{{target_2}}",
+                        groupTotalsFormatter: sumTotalsFormatter,
+                        formatter: function (row, cell, value, columnDef, dataContext) {
+                            return Number(value).toLocaleString('fr-FR', {maximumFractionDigits: 2})
+                        },
+                        grouping: {
+                            getter: '31/12/{{target_2}}',
+                            formatter: function (g) {
+                                return g.value + "<span style='color:green'>(" + g.count + " items)</span>";
+                            },
+                            aggregators: [
+                                new Slick.Data.Aggregators.Sum('31/12/{{target_2}}')
+                            ],
+                            collapse: false
+                        }
+                    },
+                    {
+                        id: "31/12/{{target_3}}",
+                        name: "31/12/{{target_3}}",
+                        sortable: true,
+                        field: "31/12/{{target_3}}",
+                        groupTotalsFormatter: sumTotalsFormatter,
+                        formatter: function (row, cell, value, columnDef, dataContext) {
+                            return Number(value).toLocaleString('fr-FR', {maximumFractionDigits: 2})
+                        },
+                        grouping: {
+                            getter: '31/12/{{target_3}}',
+                            formatter: function (g) {
+                                return g.value + "<span style='color:green'>(" + g.count + " items)</span>";
+                            },
+                            aggregators: [
+                                new Slick.Data.Aggregators.Sum('31/12/{{target_3}}')
                             ],
                             collapse: false
                         }
@@ -564,7 +624,7 @@
                             'border-left': '1px solid #efefef',
 
                         })
-                    CreateTable('BLG', config.BLG, 'SOCIETE')
+                    CreateTable('BLG', config.BLG, ['SOCIETE'])
                 },
                 onClick(event) {
                     let table = configTable(event)
@@ -575,7 +635,7 @@
                     switch (event.target) {
                         case 1:
                             target = config.BLG
-                            groupBy = 'SOCIETE'
+                            groupBy = ['SOCIETE',]
                             query(layout.el('main'))
                                 .removeClass('w2ui-grid')
                                 .css({
