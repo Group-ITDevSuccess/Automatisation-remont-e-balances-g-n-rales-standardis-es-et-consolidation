@@ -1,6 +1,6 @@
 {
   "ASSIGNATION": {
-    "BRUT": [
+    "AMORTISSEMENT": [
       "BIL44",
       "BIL45",
       "BIL46",
@@ -15,7 +15,7 @@
       "BIL55",
       "BIL56"
     ],
-    "AMORTISSEMENT": [
+    "BRUT": [
       "BIL01",
       "BIL02",
       "BIL03",

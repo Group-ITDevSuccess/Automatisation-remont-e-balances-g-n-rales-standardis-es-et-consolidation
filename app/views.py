@@ -29,9 +29,9 @@ def index(request):
     return render(request, 'app/index.html', {
         'path': request.path,
         'target': target    ,
-        'target_1': int(target) - 1 if target != '---' else '',
-        'target_2': int(target) - 2 if target != '---' else '',
-        'target_3': int(target) - 3 if target != '---' else '',
+        'target_1': str(int(target) - 1) if target != '---' else '',
+        'target_2': str(int(target) - 2) if target != '---' else '',
+        'target_3': str(int(target) - 3) if target != '---' else '',
         'saved': saved,
         'search_form': form
     })
@@ -180,6 +180,7 @@ def get_data_for_event(request):
 
                 affectation_table = load_json_file('config.json')
                 # Premier passage pour fusionner les enregistrements
+                #print(balances)
                 for balance in balances:
                     key = str(balance.compte_unif)
                     affectation_key = affectation_dict.get(key, {}).get('AFFECTATION', '')
@@ -215,6 +216,7 @@ def get_data_for_event(request):
                     lambda: {'id': '', 'AFFECTATION': '', 'TYPE': '', 'GROUPE': '', 'CATEGORY': '', 'LIBEL': '',
                              'CONSO': 0, 'NET': 0, 'BRUT': 0, 'AMORTISSEMENT': 0}
                 )
+                print(merged_records)
                 for record in merged_records.values():
                     key = (record['LIBEL'], record['CATEGORY'], record['GROUPE'], record['TYPE'])
                     if final_records[key]['id'] == '':
@@ -228,7 +230,7 @@ def get_data_for_event(request):
                     if record['AFFECTATION'] in affectation_table['ASSIGNATION']['BRUT']:
                         final_records[key]['BRUT'] += record['CONSO']
                     elif record['AFFECTATION'] in affectation_table['ASSIGNATION']['AMORTISSEMENT']:
-                        final_records[key]['AMORTISSEMENT'] += record['CONSO']
+                        final_records[key]['AMORTISSEMENT'] += (-1 * record['CONSO'])
 
                     if final_records[key]['AFFECTATION']:
                         final_records[key]['AFFECTATION'] += ', ' + record['AFFECTATION']

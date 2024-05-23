@@ -72,7 +72,7 @@
 
         let CreateTable = function (id, columns, groupBy, showGroup, open) {
             let table = new Tabulator('#' + id, {
-                height: '88vh',
+                height: '85vh',
                 editorEmptyValue: '',
                 downloadConfig: {
                     columnHeaders: true,
@@ -985,55 +985,108 @@
                 {title: "AFFECTATION", field: "AFFECTATION", frozen: true},
                 {title: "GROUPE", field: "GROUPE", visible: false},
                 {title: "CATEGORY", field: "CATEGORY", visible: false},
-                {title: "LIBELLE", field: "LIBEL", width: 250},
-                {
-                    title: "BRUT", field: "BRUT", sorter: "number",
-                    bottomCalc: "sum",
-                    bottomCalcParams: {precision: 2},
-                    width: 150,
-                    hozAlign: "right",
-                    formatter: "money",
-                    formatterParams: {
-                        decimal: ",",
-                        thousand: " ",
-                        symbol: " ",
-                        symbolAfter: "p",
-                        negativeSign: false,
-                        precision: 2,
-                    }
-                },
-                {
-                    title: "AMORTISSEMENT", field: "AMORTISSEMENT", sorter: "number",
-                    bottomCalc: "sum",
-                    bottomCalcParams: {precision: 2},
-                    width: 150,
-                    hozAlign: "right",
-                    formatter: "money",
-                    formatterParams: {
-                        decimal: ",",
-                        thousand: " ",
-                        symbol: " ",
-                        symbolAfter: "p",
-                        negativeSign: false,
-                        precision: 2,
-                    }
-                },
-                {
-                    title: "NET", field: "NET", sorter: "number",
-                    bottomCalc: "sum",
-                    bottomCalcParams: {precision: 2},
-                    width: 150,
-                    hozAlign: "right",
-                    formatter: "money",
-                    formatterParams: {
-                        decimal: ",",
-                        thousand: " ",
-                        symbol: " ",
-                        symbolAfter: "p",
-                        negativeSign: false,
-                        precision: 2,
-                    }
-                },
+                {title: "ACTIF", field: "LIBEL", width: 250},
+                {title: "NOTE", field: "NOTE", width: 100},
+                {title: "31/12/{{target}}", columns: [
+                    {
+                        title: "BRUT", field: "BRUT", sorter: "number",
+                        bottomCalc: "sum",
+                        bottomCalcParams: {precision: 2},
+                        width: 150,
+                        hozAlign: "right",
+                        formatter: "money",
+                        formatterParams: {
+                            decimal: ",",
+                            thousand: " ",
+                            symbol: " ",
+                            symbolAfter: "p",
+                            negativeSign: false,
+                            precision: 2,
+                        }
+                    },
+                    {
+                        title: "AMORTISSEMENT", field: "AMORTISSEMENT", sorter: "number",
+                        bottomCalc: "sum",
+                        bottomCalcParams: {precision: 2},
+                        width: 150,
+                        hozAlign: "right",
+                        formatter: "money",
+                        formatterParams: {
+                            decimal: ",",
+                            thousand: " ",
+                            symbol: " ",
+                            symbolAfter: "p",
+                            negativeSign: false,
+                            precision: 2,
+                        }
+                    },
+                    {
+                        title: "NET", field: "NET", sorter: "number",
+                        bottomCalc: "sum",
+                        bottomCalcParams: {precision: 2},
+                        width: 150,
+                        hozAlign: "right",
+                        formatter: "money",
+                        formatterParams: {
+                            decimal: ",",
+                            thousand: " ",
+                            symbol: " ",
+                            symbolAfter: "p",
+                            negativeSign: false,
+                            precision: 2,
+                        }
+                    },
+                ],
+            },
+            {
+                title: "31/12/{{ target_1 }}", field: "", sorter: "number",
+                bottomCalc: "sum",
+                bottomCalcParams: {precision: 2},
+                width: 150,
+                hozAlign: "right",
+                formatter: "money",
+                formatterParams: {
+                    decimal: ",",
+                    thousand: " ",
+                    symbol: " ",
+                    symbolAfter: "p",
+                    negativeSign: false,
+                    precision: 2,
+                }
+            },
+            {
+                title: "31/12/{{ target_2 }}", field: "", sorter: "number",
+                bottomCalc: "sum",
+                bottomCalcParams: {precision: 2},
+                width: 150,
+                hozAlign: "right",
+                formatter: "money",
+                formatterParams: {
+                    decimal: ",",
+                    thousand: " ",
+                    symbol: " ",
+                    symbolAfter: "p",
+                    negativeSign: false,
+                    precision: 2,
+                }
+            },
+            {
+                title: "31/12/{{ target_3 }}", field: "", sorter: "number",
+                bottomCalc: "sum",
+                bottomCalcParams: {precision: 2},
+                width: 150,
+                hozAlign: "right",
+                formatter: "money",
+                formatterParams: {
+                    decimal: ",",
+                    thousand: " ",
+                    symbol: " ",
+                    symbolAfter: "p",
+                    negativeSign: false,
+                    precision: 2,
+                }
+            },
+                
             ],
             CN: [],
 
