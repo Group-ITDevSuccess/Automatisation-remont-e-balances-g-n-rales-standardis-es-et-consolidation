@@ -71,109 +71,85 @@
 
 
         let CreateTable = function (id, columns, groupBy, showGroup, open) {
-            let table;
-            if (id === 'BLG' || id === 'ALL' || id == 'ACTIF' || id == 'PASSIF'){
-                table = new Tabulator('#' + id, {
-                    height: '85vh',
-                    editorEmptyValue: '',
-                    downloadConfig: {
-                        columnHeaders: true,
-                        columnGroups: false,
-                        rowHeaders: false,
-                        rowGroups: false,
-                        columnCalcs: true,
-                        dataTree: true,
-                    },
-                    ajaxURL: "{% url 'app:get-data-for-table' %}",
-                    ajaxContentType: "json",
-                    ajaxParams: {'value': id, 'target': '{{ target }}'},
-                    ajaxConfig: "POST",
-                    progressiveLoad: "load",
-                    progressiveLoadDelay: 200,
-                    layout: "fitData",
-                    printAsHtml: true,
-                    printStyled: true,
-                    groupStartOpen: open,
-                    printRowRange: "all",
-                    printHeader: "<h1>Example Table Header<h1>",
-                    printFooter: "<h2>Example Table Footer<h2>",
-                    footerElement: `<button type='button' class='btn btn-warning btn-sm mr-2' id='reload-table' onClick=""><i class='fas fa-sync-alt'></i></button>`,
-                    tooltipsHeader: false,
-                    rowHeader: {
-                        title: `<button type='button' class='btn btn-primary btn-sm' id='add-row' onClick=""><i class='fas fa-plus'></i></button>`,
-                        headerSort: false,
-                        resizable: false,
-                        width: 45,
-                        frozen: true,
-                        rowHandle: true,
-                        editor: false,
-                        hozAlign: "center",
-                        formatter: "rownum",
-                    },
-                    movableColumns: true,
-                    success: function (data) {
-                        if (data.status !== 200 && data.status !== 201) {
-                            alert(data.error || "An error occurred while fetching data.");
-                            return;
-                        }
-                        const breakdowns = data.data;
-                        table.setData(breakdowns);
-                    },
-                    headerSortClickElement: 'icon',
-                    selectableRangeClearCells: true,
-                    columnHeaderVertAlign: "bottom",
-                    resizableColumnGuide: true,
+            let table = new Tabulator('#' + id, {
+                height: '85vh',
+                editorEmptyValue: '',
+                downloadConfig: {
+                    columnHeaders: true,
+                    columnGroups: false,
+                    rowHeaders: false,
+                    rowGroups: false,
+                    columnCalcs: true,
                     dataTree: true,
-                    dataTreeStartExpanded: false,
-                    dataTreeFilter: false,
-                    dataTreeSort: false,
-                    dataTreeSelectPropagate: true,
-                    placeholder: "Aucun Donnée",
-                    placeholderHeaderFilter: 'Aucun Donnée Correspondent',
-                    groupClosedShowCalcs: showGroup,
-                    headerSort: true,
-                    columnDefaults: {
-                        tooltip: true,
-                        headerHozAlign: "center",
-                        editor: false,
-                        resizable: "header",
-                    },
-                    groupBy: groupBy,
-                    columns: columns,
-                    groupToggleElement: 'header'
-                })
-            }else{
-                let container = document.querySelector('#'+id);
-
-                let hot = new Handsontable(container, {
-                    colHeaders: ['LIBELLE', 'NOTE', 'EXERCICE {{target}}', 'EXERCICE {{target_1}}', 'EXERCICE {{target_2}}', 'EXERCICE {{target_3}}'],
-                    rowHeaders: true,
-                    height: 'auto',
-                    autoWrapRow: true,
-                    autoWrapCol: true,
-                    licenseKey: 'non-commercial-and-evaluation'
-                });
-
-                const options = {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({value: id, target: '{{target}}'}),
-                  };
-
-                fetch("{% url 'app:get-data-for-table' %}", options)
-                .then(response => response.json())
-                .then(data => {
-                  console.log('Fetched data:', data);
-                })
-                .catch(error => {
-                  console.error('Error fetching data:', error);
-                });
-              
-
-            }
-            
+                },
+                ajaxURL: "{% url 'app:get-data-for-table' %}",
+                ajaxContentType: "json",
+                ajaxParams: {'value': id, 'target': '{{ target }}'},
+                ajaxConfig: "POST",
+                progressiveLoad: "load",
+                progressiveLoadDelay: 200,
+                layout: "fitData",
+                printAsHtml: true,
+                printStyled: true,
+                groupStartOpen: open,
+                printRowRange: "all",
+                printHeader: "<h1>Example Table Header<h1>",
+                printFooter: "<h2>Example Table Footer<h2>",
+                footer: [ // Ajouter une ligne de total
+                    { title: "Total", 
+                    // Calculer la somme totale de chaque agrégat
+                    columns: [
+                        { field: "value", 
+                        summaries: [function(column){ return column.sum().toLocaleString(); }] 
+                        },
+                    ]
+                    }
+                ],
+                footerElement: "<button type='button' class='btn btn-warning btn-sm mr-2' id='reload-table' onClick=''><i class='fas fa-sync-alt'></i></button>",
+                tooltipsHeader: false,
+                rowHeader: {
+                    title: "<button type='button' class='btn btn-primary btn-sm' id='add-row' onClick=''><i class='fas fa-plus'></i></button>",
+                    headerSort: false,
+                    resizable: false,
+                    width: 45,
+                    frozen: true,
+                    rowHandle: true,
+                    editor: false,
+                    hozAlign: "center",
+                    formatter: "rownum",
+                },
+                movableColumns: true,
+                success: function (data) {
+                    if (data.status !== 200 && data.status !== 201) {
+                        alert(data.error || "An error occurred while fetching data.");
+                        return;
+                    }
+                    const breakdowns = data.data;
+                    table.setData(breakdowns);
+                },
+                headerSortClickElement: 'icon',
+                selectableRangeClearCells: true,
+                columnHeaderVertAlign: "bottom",
+                resizableColumnGuide: true,
+                dataTree: true,
+                dataTreeStartExpanded: false,
+                dataTreeFilter: false,
+                dataTreeSort: false,
+                dataTreeSelectPropagate: true,
+                placeholder: "Aucun Donnée",
+                placeholderHeaderFilter: 'Aucun Donnée Correspondent',
+                groupClosedShowCalcs: showGroup,
+                headerSort: true,
+                columnDefaults: {
+                    tooltip: true,
+                    headerHozAlign: "center",
+                    editor: false,
+                    resizable: "header",
+                },
+                groupBy: groupBy,
+                columns: columns,
+                groupToggleElement: 'header'
+            })
         }
 
         let configTable = function (event) {
