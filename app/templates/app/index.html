@@ -73,7 +73,7 @@
         } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.min.js' %}";
 
 
-        let CreateTable = function (id, columns, groupBy, showGroup, open) {
+        let CreateTable = function (id, columns, groupBy, showGroup, open, sorter='', formatter=null) {
             let table = new Tabulator('#' + id, {
                 height: '85vh',
                 editorEmptyValue: '',
@@ -92,6 +92,8 @@
                 progressiveLoad: "load",
                 progressiveLoadDelay: 200,
                 layout: "fitData",
+                rowFormatter: formatter,
+                initialSort: sorter,
                 printAsHtml: true,
                 printStyled: true,
                 groupStartOpen: open,
@@ -241,7 +243,7 @@
                             'border-left': '1px solid #efefef',
 
                         })
-                    CreateTable('BLG', config.BLG, ['SOCIETE'], true, false)
+                    CreateTable('BLG', config.BLG, ['SOCIETE'], true, false, '')
                 },
                 onClick(event) {
                     let table = configTable(event)
@@ -251,6 +253,8 @@
                     let groupBy = '';
                     let showGroup = true;
                     let open = false;
+                    let order = ''
+                    let formatter = null
                     switch (event.target) {
                         case 1:
                             target = config.BLG
@@ -293,6 +297,19 @@
                             break;
                         case 5:
                             target = config.CN
+                            open = true
+                            order = ['ORDER']
+                            formatter = function(row){
+                                //row - row component
+                                
+                                var data = row.getData();
+                                
+                                if (data.AFFECTATION == "-") {
+                                    row.getElement().style.backgroundColor = "#1e3b20";
+                                    row.getElement().style.fontWeight = "bold";
+                                    row.getElement().style.color = "red";
+                                }
+                            }
                             query(layout.el('main'))
                                 .removeClass('w2ui-grid')
                                 .addClass('slick-container')
@@ -308,7 +325,7 @@
                                     'border-left': '1px solid #efefef',
                                 })
                     }
-                    CreateTable(event.object.text, target, groupBy, showGroup, open)
+                    CreateTable(event.object.text, target, groupBy, showGroup, open, order, formatter)
                 }
             },
             topbar: {
@@ -1196,7 +1213,80 @@
 
                 ]
             },
-            CN: [],
+            CN: [
+                {title: "", field: "AFFECTATION", frozen: true, headerSort:false},
+                {title: "GROUPE", field: "GROUPE", visible: false},
+                {title: "LIBEL", field: "LIBEL", formatter:function(cell, formatterParams){
+                    let data = cell.getData() ;
+                    let value = cell.getValue();
+                     if(data.AFFECTATION == '-'){
+                         return "<span style='color:#3FB449; font-weight:bold;'>" + value + "</span>";
+                     }else{
+                         return value;
+                     }
+                 }},
+                {title: "ORDER", field: "ORDER", visible: false},
+                {
+                    title: "31/12/{{ target_2 }}", field: "CONSO", sorter: "number",
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
+                        
+                {
+                    title: "31/12/{{ target_1 }}", field: "", sorter: "number",
+                    bottomCalc: "sum",
+                    bottomCalcParams: {precision: 2},
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
+                {
+                    title: "31/12/{{ target_2 }}", field: "", sorter: "number",
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
+                {
+                    title: "31/12/{{ target_3 }}", field: "", sorter: "number",
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
+
+            ],
 
         }
 

@@ -1,0 +1,30 @@
+AFFECTATION;ORDER;DESIGNATION
+CR01;1;Chiffre d'affaires
+CR02;2;Production stockée
+CR03;3;Production immobilisée
+CR04;5;Achats consommés
+CR05;6;Services extérieurs et autres consommations
+CR06;9;Charges de personnel
+CR07;10;Impôts, taxes et versements assimilés
+CR08;12;Autres Produits Opérationnels
+CR09;13;Autres Charges Opérationnelles
+CR10;14;Dotations aux amortissements, aux provisions et pertes de valeur
+CR11;15;Reprise sur provisions et pertes de valeurs
+CR12;17;Produits financiers
+CR13;18;Charges financières
+CR14;21;Impôts exigibles sur résultats
+CR15;26;Eléments Extraordinaires (Produits) - à préciser
+CR16;27;Eléments Extraordinaires (Charges) - à préciser
+CR1;22;Impôts différés (variations)
+;4;I - PRODUCTION DE L'EXERCICE
+;7;II - CONSOMMATION DE L'EXERCICE
+;8;III - VALEUR AJOUTEE D'EXPLOITATION (I-II)
+;11;IV - EXCEDENT BRUT D'EXPLOITATION
+;16;V - RESULTAT OPERATIONNEL
+;19;VI - RESULTAT FINANCIER
+;20;VII - RESULTAT AVANT IMPOTS (V+VI)
+;23;TOTAL DES PRODUITS DES ACTIVITES ORDINAIRES
+;24;TOTAL DES CHARGES DES ACTIVITES ORDINAIRES
+;25;VIII - RESULTAT NET DES ACTIVITES ORDINAIRES
+;28;IX - RESULTAT EXTRAORDINAIRE
+;29;X - RESULTAT NET DE L'EXERCICE
