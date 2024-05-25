@@ -344,9 +344,9 @@
                 }
             },
             BLG: [
-                {title: "SOCIETE", field: "SOCIETE", width: 125, visible: false},
-                {title: "COMPTE SAGE", hozAlign: "right", field: "COMPTE_SAGE", width: 125, frozen: true},
-                {title: "COMPTE UNIF", hozAlign: "right", field: "COMPTE_UNIF", width: 125,},
+                {title: "SOCIETE", field: "SOCIETE", width: 125, visible: false, headerFilter:"input"},
+                {title: "COMPTE SAGE", hozAlign: "right", field: "COMPTE_SAGE", width: 125, frozen: true, headerFilter:"input"},
+                {title: "COMPTE UNIF", hozAlign: "right", field: "COMPTE_UNIF", width: 125, headerFilter:"input"},
                 {title: "DESIGNATION COMPTE", field: "DESIGNATION", width: 300,},
                 {
                     title: "SOLDE DEBIT",
@@ -385,7 +385,7 @@
                     }
                 },
                 {
-                    title: "SOLDE 311222",
+                    title: "SOLDE 31-12-{{target}}",
                     field: "SOLDE",
                     width: 150,
                     frozen: true,
@@ -405,11 +405,11 @@
                 },
             ],
             ALL: [
-                {title: "C1", field: "C1", width: 50, frozen: true},
-                {title: "C2", field: "C2", width: 50, frozen: true},
-                {title: "C3", field: "C3", width: 65, frozen: true},
-                {title: "Compte", field: "COMPTE", width: 100, hozAlign: "right", frozen: true},
-                {title: "Affectation", field: "AFFECTATION", width: 100, frozen: true},
+                {title: "C1", field: "C1", width: 75, frozen: true, headerFilter:"input"},
+                {title: "C2", field: "C2", width: 75, frozen: true, headerFilter:"input"},
+                {title: "C3", field: "C3", width: 75, frozen: true, headerFilter:"input"},
+                {title: "Compte", field: "COMPTE", width: 100, hozAlign: "right", frozen: true, headerFilter:"input"},
+                {title: "Affectation", field: "AFFECTATION", width: 100, frozen: true, headerFilter:"input"},
                 {title: "Désignation", field: "DESIGNATION", width: 250, frozen: true},
                 {
                     title: "AGRIVET ANTSIRABE", field: "AGRIVET ANTSIRABE", hozAlign: "right",
@@ -1033,7 +1033,7 @@
             ],
             BILAN: {
                 ACTIF: [
-                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true},
+                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true, headerFilter:"input"},
                     {title: "GROUPE", field: "GROUPE", visible: false},
                     {title: "CATEGORY", field: "CATEGORY", visible: false},
                     {title: "ACTIF", field: "LIBEL"},
@@ -1141,7 +1141,7 @@
 
                 ],
                 PASSIF: [
-                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true},
+                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true, headerFilter:"input"},
                     {title: "GROUPE", field: "GROUPE", visible: false},
                     {title: "CATEGORY", field: "CATEGORY", visible: false},
                     {title: "ACTIF", field: "LIBEL"},
@@ -1214,8 +1214,7 @@
                 ]
             },
             CN: [
-                {title: "", field: "AFFECTATION", frozen: true, headerSort:false},
-                {title: "GROUPE", field: "GROUPE", visible: false},
+                {title: "", field: "AFFECTATION", width: 75, frozen: true, headerSort:false, headerFilter:"input"},
                 {title: "LIBEL", field: "LIBEL", formatter:function(cell, formatterParams){
                     let data = cell.getData() ;
                     let value = cell.getValue();
