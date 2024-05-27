@@ -3,7 +3,6 @@ from datetime import date
 from django import forms
 from django.contrib.auth.forms import UserChangeForm
 
-from app.models import Societe
 from guard.models import CustomUser
 
 # Choices for years

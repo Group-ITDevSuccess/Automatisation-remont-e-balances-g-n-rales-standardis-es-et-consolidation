@@ -1,13 +1,11 @@
 import os
 import uuid
 
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from django.utils import timezone
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey
-from decimal import Decimal
 
 
 def image_upload_path(instance, filename):

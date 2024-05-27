@@ -72,6 +72,7 @@
             w2form
         } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.min.js' %}";
 
+
         let CreateTable = function (id, columns, groupBy, showGroup, open, sorter='', formatter=null) {
             let table = new Tabulator('#' + id, {
                 height: '85vh',
@@ -100,87 +101,63 @@
                 printHeader: "<h1>Example Table Header<h1>",
                 printFooter: "<h2>Example Table Footer<h2>",
                 footer: [ // Ajouter une ligne de total
-                    { title: "Total", 
+                    { title: "Total",
+                        // Calculer la somme totale de chaque agrégat
                     columns: [
                         {
-                            field: 'category',
-                            tree: true,
-                            title: 'category',
-                            width: 'auto',
-                            sort: true
+                            field: "value",
+                            summaries: [function (column) {
+                                return column.sum().toLocaleString();
+                            }] 
                         },
-                        {
-                            field: 'sales',
-                            title: 'sales',
-                            width: 'auto',
-                            sort: true
-                            // tree: true,
-                        },
-                        {
-                            field: 'profit',
-                            title: 'profit',
-                            width: 'auto',
-                            sort: true
-                        }
-                    ],
-                    showPin: true, //显示VTable内置冻结列图标
-                    widthMode: 'standard',
-                    allowFrozenColCount: 2,
-                    records: data,
-
-                    hierarchyIndent: 20,
-                    hierarchyExpandLevel: 2,
-                    hierarchyTextStartAlignment: true,
-                    sortState: {
-                        field: 'sales',
-                        order: 'asc'
-                    },
-                    theme: VTable.themes.BRIGHT,
-                    defaultRowHeight: 32
-                };
-
-                const instance = new VTable.ListTable(option);
-
-                const {TREE_HIERARCHY_STATE_CHANGE} = VTable.ListTable.EVENT_TYPE;
-                instance.on(TREE_HIERARCHY_STATE_CHANGE, args => {
-                    // TODO 调用接口插入设置子节点的数据
-                    if (args.hierarchyState === VTable.TYPES.HierarchyState.expand && !Array.isArray(args.originData.children)) {
-                        const record = args.originData;
-                        setTimeout(() => {
-                            const children = [
-                                {
-                                    category: record['category'] + ' - category 1',
-                                    sales: 2,
-                                    quantity: 5,
-                                    profit: 4
-                                },
-                                {
-                                    category: record['category'] + ' - category 2',
-                                    sales: 3,
-                                    quantity: 8,
-                                    profit: 5
-                                },
-                                {
-                                    category: record['category'] + ' - category 3(lazy load)',
-                                    sales: 4,
-                                    quantity: 20,
-                                    profit: 90.704,
-                                    children: true
-                                },
-                                {
-                                    category: record['category'] + ' - category 4',
-                                    sales: 5,
-                                    quantity: 6,
-                                    profit: 7
-                                }
-                            ];
-                            instance.setRecordChildren(children, args.col, args.row);
-                        }, 200);
+                    ]
                     }
-                });
-                window['tableInstance'] = tableInstance;
-            }
-
+                ],
+                footerElement: "<button type='button' class='btn btn-warning btn-sm mr-2' id='reload-table' onClick=''><i class='fas fa-sync-alt'></i></button>",
+                tooltipsHeader: false,
+                rowHeader: {
+                    title: "<button type='button' class='btn btn-primary btn-sm' id='add-row' onClick=''><i class='fas fa-plus'></i></button>",
+                    headerSort: false,
+                    resizable: false,
+                    width: 45,
+                    frozen: true,
+                    rowHandle: true,
+                    editor: false,
+                    hozAlign: "center",
+                    formatter: "rownum",
+                },
+                movableColumns: true,
+                success: function (data) {
+                    if (data.status !== 200 && data.status !== 201) {
+                        alert(data.error || "An error occurred while fetching data.");
+                        return;
+                    }
+                    const breakdowns = data.data;
+                    table.setData(breakdowns);
+                },
+                headerSortClickElement: 'icon',
+                selectableRangeClearCells: true,
+                columnHeaderVertAlign: "bottom",
+                resizableColumnGuide: true,
+                dataTree: true,
+                dataTreeStartExpanded: false,
+                dataTreeFilter: false,
+                dataTreeSort: false,
+                dataTreeSelectPropagate: true,
+                placeholder: "Aucun Donnée",
+                placeholderHeaderFilter: 'Aucun Donnée Correspondent',
+                groupClosedShowCalcs: showGroup,
+                headerSort: true,
+                columnDefaults: {
+                    tooltip: true,
+                    headerHozAlign: "center",
+                    editor: false,
+                    resizable: "header",
+                },
+                groupBy: groupBy,
+                columns: columns,
+                groupToggleElement: 'header'
+            })
         }
 
         let configTable = function (event) {

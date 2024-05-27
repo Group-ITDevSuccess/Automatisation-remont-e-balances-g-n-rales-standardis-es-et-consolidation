@@ -1,11 +1,11 @@
-import os
-import ldap3
 import logging
-
-from django.conf import settings
-from ldap3.core.exceptions import LDAPException
-from ldap3 import Server, Connection
+import os
 from datetime import datetime
+
+import ldap3
+from django.conf import settings
+from ldap3 import Server, Connection
+from ldap3.core.exceptions import LDAPException
 
 today = datetime.today().strftime('%d-%m-%Y')
 

@@ -245,7 +245,6 @@ def get_data_for_event(request):
                     exception = 'ACTIF'
                 records = [record for record in records if
                            record['GROUPE'] != '' and record['TYPE'] != '' and record['TYPE'] != exception]
-
         else:
             if balances.exists():
                 try:
@@ -481,7 +480,7 @@ def add_data_for_event(request):
                                     compte_sage=row['COMPTE_SAGE'],
                                     defaults={
                                         'compte_unif': row['COMPTE_UNIF'],
-                                        'designation': row['DESI    GNATION'],
+                                        'designation': row['DESIGNATION'],
                                         'debit': debit,
                                         'credit': credit,
                                         'target': data['target'],

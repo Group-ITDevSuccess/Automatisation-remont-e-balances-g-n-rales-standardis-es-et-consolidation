@@ -1,8 +1,9 @@
 from django.contrib import admin
-from import_export.admin import ImportExportModelAdmin
-from .models import Connexion, Societe, Compte, Balance
 from import_export import resources, fields
+from import_export.admin import ImportExportModelAdmin
 from import_export.widgets import ForeignKeyWidget
+
+from .models import Connexion, Societe, Compte, Balance
 
 
 class SocieteResource(resources.ModelResource):
