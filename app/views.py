@@ -333,7 +333,7 @@ def get_data_for_event(request):
             for year in years:
                 # Order 4
                 cr_values_4 = ['CR01', 'CR02', 'CR03']
-                conso_sum_4 = sum(merged_records[cr].get(year, 0) for cr in cr_values_4 if cr in merged_records)
+                conso_sum_4 = sum(merged_records[cr].get(str(year), 0) for cr in cr_values_4 if cr in merged_records)
                 merged_records["I - PRODUCTION DE L'EXERCICE"] = {
                     'AFFECTATION': '-',
                     'ORDER': 4,
@@ -343,7 +343,7 @@ def get_data_for_event(request):
 
                 # Order 7
                 cr_values_7 = ['CR04', 'CR05']
-                conso_sum_7 = sum(merged_records[cr].get(year, 0) for cr in cr_values_7 if cr in merged_records)
+                conso_sum_7 = sum(merged_records[cr].get(str(year), 0) for cr in cr_values_7 if cr in merged_records)
                 merged_records["II - CONSOMMATION DE L'EXERCICE"] = {
                     'AFFECTATION': '-',
                     'ORDER': 7,
@@ -362,7 +362,7 @@ def get_data_for_event(request):
 
                 # Order 11
                 cr_values_11 = ['CR06', 'CR07']
-                conso_sum_11 = sum(merged_records[cr].get(year, 0) for cr in cr_values_11 if cr in merged_records)
+                conso_sum_11 = sum(merged_records[cr].get(str(year), 0) for cr in cr_values_11 if cr in merged_records)
                 conso_sum_11 = conso_sum_8 - conso_sum_11
                 merged_records["IV - EXCEDENT BRUT D'EXPLOITATION"] = {
                     'AFFECTATION': '-',
@@ -373,7 +373,7 @@ def get_data_for_event(request):
 
                 # Order 16
                 cr_values_16 = ['CR08', 'CR09', 'CR10', 'CR11']
-                conso_sum_16 = sum(merged_records[cr].get(year, 0) if cr in ['CR08', 'CR11'] else -merged_records[cr].get(year, 0) for cr in cr_values_16 if cr in merged_records)
+                conso_sum_16 = sum(merged_records[cr].get(str(year), 0) if cr in ['CR08', 'CR11'] else -merged_records[cr].get(str(year), 0) for cr in cr_values_16 if cr in merged_records)
                 conso_sum_16 = conso_sum_11 + conso_sum_16
                 merged_records["V - RESULTAT OPERATIONNEL"] = {
                     'AFFECTATION': '-',
@@ -384,7 +384,7 @@ def get_data_for_event(request):
 
                 # Order 19
                 cr_values_19 = ['CR12', 'CR13']
-                conso_sum_19 = sum(merged_records[cr].get(year, 0) if cr in ['CR12'] else -merged_records[cr].get(year, 0) for cr in cr_values_19 if cr in merged_records)
+                conso_sum_19 = sum(merged_records[cr].get(str(year), 0) if cr in ['CR12'] else -merged_records[cr].get(str(year), 0) for cr in cr_values_19 if cr in merged_records)
                 merged_records["VI - RESULTAT FINANCIER"] = {
                     'AFFECTATION': '-',
                     'ORDER': 19,
@@ -403,7 +403,7 @@ def get_data_for_event(request):
 
                 # Order 23
                 cr_values_23 = ['CR08', 'CR11', 'CR12']
-                conso_sum_23 = sum(merged_records[cr].get(year, 0) for cr in cr_values_23 if cr in merged_records)
+                conso_sum_23 = sum(merged_records[cr].get(str(year), 0) for cr in cr_values_23 if cr in merged_records)
                 conso_sum_23 = conso_sum_4 + conso_sum_23
                 merged_records["TOTAL DES PRODUITS DES ACTIVITES ORDINAIRES"] = {
                     'AFFECTATION': '-',
@@ -414,7 +414,7 @@ def get_data_for_event(request):
 
                 # Order 24
                 cr_values_24 = ['CR04', 'CR05', 'CR06', 'CR07', 'CR09', 'CR10', 'CR13', 'CR14']
-                conso_sum_24 = sum(merged_records[cr].get(year, 0) for cr in cr_values_24 if cr in merged_records)
+                conso_sum_24 = sum(merged_records[cr].get(str(year), 0) for cr in cr_values_24 if cr in merged_records)
                 merged_records["TOTAL DES CHARGES DES ACTIVITES ORDINAIRES"] = {
                     'AFFECTATION': '-',
                     'ORDER': 24,
@@ -433,7 +433,7 @@ def get_data_for_event(request):
 
                 # Order 28
                 cr_values_28 = ['CR15', 'CR16']
-                conso_sum_28 = sum(merged_records[cr].get(year, 0) if cr in ['CR15'] else -merged_records[cr].get(year, 0) for cr in cr_values_28 if cr in merged_records)
+                conso_sum_28 = sum(merged_records[cr].get(str(year), 0) if cr in ['CR15'] else -merged_records[cr].get(str(year), 0) for cr in cr_values_28 if cr in merged_records)
                 merged_records["IX - RESULTAT EXTRAORDINAIRE"] = {
                     'AFFECTATION': '-',
                     'ORDER': 28,
