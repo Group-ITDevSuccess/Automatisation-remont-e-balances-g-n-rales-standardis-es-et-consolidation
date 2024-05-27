@@ -322,7 +322,7 @@ def get_data_for_event(request):
                 if affectation_key in ['CR01', 'CR02', 'CR03', 'CR08', 'CR11', 'CR12', 'CR1', 'CR15']:
                     montant = -1 * montant
 
-                target = str(record['YEAR'])
+                target = str(record['YEAR']).strip()
 
                 years.add(target)
                 if target in merged_records[affectation_key]:
@@ -338,7 +338,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 4,
                     'LIBEL': "I - PRODUCTION DE L'EXERCICE",
-                    f'{year}': conso_sum_4
+                    f'{str(year)}': conso_sum_4
                 }
 
                 # Order 7
@@ -348,7 +348,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 7,
                     'LIBEL': "II - CONSOMMATION DE L'EXERCICE",
-                    f'{year}': conso_sum_7
+                    f'{str(year)}': conso_sum_7
                 }
 
                 # Order 8
@@ -357,7 +357,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 8,
                     'LIBEL': "III - VALEUR AJOUTEE D'EXPLOITATION (I-II)",
-                    f'{year}': conso_sum_8
+                    f'{str(year)}': conso_sum_8
                 }
 
                 # Order 11
@@ -368,7 +368,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 11,
                     'LIBEL': "IV - EXCEDENT BRUT D'EXPLOITATION",
-                    f'{year}': conso_sum_11
+                    f'{str(year)}': conso_sum_11
                 }
 
                 # Order 16
@@ -379,7 +379,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 16,
                     'LIBEL': "V - RESULTAT OPERATIONNEL",
-                    f'{year}': conso_sum_16
+                    f'{str(year)}': conso_sum_16
                 }
 
                 # Order 19
@@ -389,7 +389,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 19,
                     'LIBEL': "VI - RESULTAT FINANCIER",
-                    f'{year}': conso_sum_19
+                    f'{str(year)}': conso_sum_19
                 }
 
                 # Order 20
@@ -398,7 +398,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 20,
                     'LIBEL': "VII - RESULTAT AVANT IMPOTS (V+VI)",
-                    f'{year}': conso_sum_20
+                    f'{str(year)}': conso_sum_20
                 }
 
                 # Order 23
@@ -409,7 +409,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 23,
                     'LIBEL': "TOTAL DES PRODUITS DES ACTIVITES ORDINAIRES",
-                    f'{year}': conso_sum_23
+                    f'{str(year)}': conso_sum_23
                 }
 
                 # Order 24
@@ -419,7 +419,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 24,
                     'LIBEL': "TOTAL DES CHARGES DES ACTIVITES ORDINAIRES",
-                    f'{year}': conso_sum_24
+                    f'{str(year)}': conso_sum_24
                 }
 
                 # Order 25
@@ -428,7 +428,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 25,
                     'LIBEL': "VIII - RESULTAT NET DES ACTIVITES ORDINAIRES",
-                    f'{year}': conso_sum_25
+                    f'{str(year)}': conso_sum_25
                 }
 
                 # Order 28
@@ -438,7 +438,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 28,
                     'LIBEL': "IX - RESULTAT EXTRAORDINAIRE",
-                    f'{year}': conso_sum_28
+                    f'{str(year)}': conso_sum_28
                 }
 
 
@@ -448,7 +448,7 @@ def get_data_for_event(request):
                     'AFFECTATION': '-',
                     'ORDER': 29,
                     'LIBEL': "X - RESULTAT NET DE L'EXERCICE",
-                    f'{year}': conso_sum_29
+                    f'{str(year)}': conso_sum_29
                 }
 
                 records = list(merged_records.values())
