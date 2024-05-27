@@ -245,8 +245,215 @@ def get_data_for_event(request):
                     exception = 'ACTIF'
                 records = [record for record in records if
                            record['GROUPE'] != '' and record['TYPE'] != '' and record['TYPE'] != exception]
-            else:
-                pass
+
+        else:
+            if balances.exists():
+                try:
+                    cn = load_affectations_json_file('cn.json')
+                    affectations = load_affectations_json_file('affectation.json')
+                except Exception as e:
+                    return JsonResponse({'error': str(e)}, status=500)
+
+                if not isinstance(cn, list):
+                    return JsonResponse({'error': 'Le fichier JSON doit être une liste de dictionnaires.'}, status=500)
+
+                if not isinstance(affectations, list):
+                    return JsonResponse({'error': 'Le fichier JSON doit être une liste de dictionnaires.'}, status=500)
+
+                merged_records = defaultdict(
+                    lambda: {'AFFECTATION': '', 'ORDER': 0, 'LIBEL': '', 'CONSO': 0}
+                )
+
+                cn_dict = {str(item["AFFECTATION"]): item for item in cn}
+                affectation_dict = {str(item["COMPTE UNIF"]): item for item in affectations}
+
+                for balance in balances:
+                    key = str(balance.compte_unif)
+                    affectation_key = affectation_dict.get(key, {}).get('AFFECTATION', '')
+
+                    if affectation_key not in merged_records and str(affectation_key)[:3] != 'BIL' and affectation_key not in ['#', '', ' ', None]:
+                        merged_records[affectation_key] = {
+                            'AFFECTATION': affectation_key,
+                            'ORDER': cn_dict.get(affectation_key, {}).get('ORDER', 0),
+                            'LIBEL': cn_dict.get(affectation_key, {}).get('DESIGNATION', ''),
+                            'CONSO': 0,
+                        }
+                    montant = balance.montant
+                    if affectation_key in ['CR01', 'CR02', 'CR03', 'CR08', 'CR11', 'CR12', 'CR1', 'CR15']:
+                        montant = -1 *  montant
+
+                    merged_records[affectation_key]['CONSO'] += montant
+
+
+                # Order 4
+                cr_values = ['CR01', 'CR02', 'CR03']
+                conso_sum_4 = 0
+                for cr in cr_values:
+                    if cr in merged_records:
+                            conso_sum_4 += merged_records[cr]['CONSO']
+
+                merged_records["I - PRODUCTION DE L'EXERCICE"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 4,
+                    'LIBEL': "I - PRODUCTION DE L'EXERCICE",
+                    'CONSO': conso_sum_4
+                }
+
+                # Order 7
+                cr_values = ['CR04', 'CR05']
+                conso_sum_7 = 0
+                for cr in cr_values:
+                    if cr in merged_records:
+                            conso_sum_7 += merged_records[cr]['CONSO']
+
+                merged_records["II - CONSOMMATION DE L'EXERCICE"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 7,
+                    'LIBEL': "II - CONSOMMATION DE L'EXERCICE",
+                    'CONSO': conso_sum_7
+                }
+                
+
+                # Order 8
+                conso_sum_8 = conso_sum_4 - conso_sum_7
+                merged_records["III - VALEUR AJOUTEE D'EXPLOITATION (I-II)"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 8,
+                    'LIBEL': "III - VALEUR AJOUTEE D'EXPLOITATION (I-II)",
+                    'CONSO': conso_sum_8
+                }
+
+                 # Order 11
+                cr_values = ['CR06', 'CR07']
+                conso_sum_11 = 0
+                for cr in cr_values:
+                    if cr in merged_records:
+                            conso_sum_11 += merged_records[cr]['CONSO']
+                
+                conso_sum_11 = conso_sum_8 - conso_sum_11
+
+                merged_records["IV - EXCEDENT BRUT D'EXPLOITATION"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 11,
+                    'LIBEL': "IV - EXCEDENT BRUT D'EXPLOITATION",
+                    'CONSO': conso_sum_11
+                }
+
+                # Order 16
+                cr_values = ['CR08', 'CR09', 'CR10', 'CR11']
+                conso_sum_16 = 0
+                for cr in cr_values:
+                    if cr in merged_records:
+                            if cr in ['CR08', 'CR11']:
+                                conso_sum_16 += merged_records[cr]['CONSO']
+                            else:
+                                conso_sum_16 -= merged_records[cr]['CONSO']
+                
+                conso_sum_16= conso_sum_11 + conso_sum_16
+
+                merged_records["V - RESULTAT OPERATIONNEL"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 16,
+                    'LIBEL': "V - RESULTAT OPERATIONNEL",
+                    'CONSO': conso_sum_16
+                }
+
+                # Order 19
+                cr_values = ['CR12', 'CR13']
+                conso_sum_19 = 0
+                for cr in cr_values:
+                    if cr in merged_records:
+                            if cr in ['CR12']:
+                                conso_sum_19 += merged_records[cr]['CONSO']
+                            else:
+                                conso_sum_19 -= merged_records[cr]['CONSO']
+            
+
+                merged_records["VI - RESULTAT FINANCIER"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 19,
+                    'LIBEL': "VI - RESULTAT FINANCIER",
+                    'CONSO': conso_sum_19
+                }
+
+                # Order 20
+                conso_sum_20 = conso_sum_16 + conso_sum_19
+                merged_records["VII - RESULTAT AVANT IMPOTS (V+VI)"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 20,
+                    'LIBEL': "VII - RESULTAT AVANT IMPOTS (V+VI)",
+                    'CONSO': conso_sum_20
+                }
+
+    
+                # Order 23
+                cr_values = ['CR08', 'CR11', 'CR12']
+                conso_sum_23 = 0
+                for cr in cr_values:
+                    if cr in merged_records:
+                            conso_sum_23 += merged_records[cr]['CONSO']
+                conso_sum_23 = conso_sum_4 + conso_sum_23
+                merged_records["TOTAL DES PRODUITS DES ACTIVITES ORDINAIRES"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 23,
+                    'LIBEL': "TOTAL DES PRODUITS DES ACTIVITES ORDINAIRES",
+                    'CONSO': conso_sum_23
+                }
+
+                # Order 24
+                cr_values = ['CR04', 'CR05', 'CR06', 'CR07', 'CR09', 'CR10', 'CR13', 'CR14']
+                conso_sum_24 = 0
+                for cr in cr_values:
+                    if cr in merged_records:
+                            conso_sum_24 += merged_records[cr]['CONSO']
+                merged_records["TOTAL DES CHARGES DES ACTIVITES ORDINAIRES"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 24,
+                    'LIBEL': "TOTAL DES CHARGES DES ACTIVITES ORDINAIRES",
+                    'CONSO': conso_sum_24
+                }
+
+                # Order 25
+                conso_sum_25 = conso_sum_23 - conso_sum_24
+                merged_records["VIII - RESULTAT NET DES ACTIVITES ORDINAIRES"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 25,
+                    'LIBEL': "VIII - RESULTAT NET DES ACTIVITES ORDINAIRES",
+                    'CONSO': conso_sum_25
+                }
+
+                # Order 28
+                cr_values = ['CR15', 'CR16']
+                conso_sum_28 = 0
+                for cr in cr_values:
+                    if cr in merged_records:
+                            if cr in ['CR15']:
+                                conso_sum_28 += merged_records[cr]['CONSO']
+                            else:
+                                conso_sum_28 -= merged_records[cr]['CONSO']
+                merged_records["IX - RESULTAT EXTRAORDINAIRE"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 28,
+                    'LIBEL': "IX - RESULTAT EXTRAORDINAIRE",
+                    'CONSO': conso_sum_28
+                }
+
+
+                # Order 29
+                conso_sum_29 = conso_sum_25 - conso_sum_28
+                merged_records["X - RESULTAT NET DE L'EXERCICE"] = {
+                    'AFFECTATION': '-',
+                    'ORDER': 29,
+                    'LIBEL': "X - RESULTAT NET DE L'EXERCICE",
+                    'CONSO': conso_sum_29
+                }
+
+
+
+                records = list(merged_records.values())
+                records = sorted(records, key=lambda r: r['ORDER'], reverse=False)
+
+                records = [record for record in records if record['AFFECTATION'] != '']
 
     return JsonResponse({'last_page': page, 'data': records}, safe=False)
 

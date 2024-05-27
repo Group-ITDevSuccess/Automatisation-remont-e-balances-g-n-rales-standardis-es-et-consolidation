@@ -72,234 +72,35 @@
             w2form
         } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.min.js' %}";
 
-
-        let CreateTable = function (id, columns, groupBy, showGroup, open) {
-            let tabulator = ['BLG', 'ALL', 'ACTIF', 'PASSIF']
-            if (tabulator.includes(id)) {
-                let table = new Tabulator('#' + id, {
-                    height: '85vh',
-                    editorEmptyValue: '',
-                    downloadConfig: {
-                        columnHeaders: true,
-                        columnGroups: false,
-                        rowHeaders: false,
-                        rowGroups: false,
-                        columnCalcs: true,
-                        dataTree: true,
-                    },
-                    ajaxURL: "{% url 'app:get-data-for-table' %}",
-                    ajaxContentType: "json",
-                    ajaxParams: {'value': id, 'target': '{{ target }}'},
-                    ajaxConfig: "POST",
-                    progressiveLoad: "load",
-                    progressiveLoadDelay: 200,
-                    layout: "fitData",
-                    printAsHtml: true,
-                    printStyled: true,
-                    groupStartOpen: open,
-                    printRowRange: "all",
-                    printHeader: "<h1>Example Table Header<h1>",
-                    printFooter: "<h2>Example Table Footer<h2>",
-                    footer: [ // Ajouter une ligne de total
-                        {
-                            title: "Total",
-                            // Calculer la somme totale de chaque agrégat
-                            columns: [
-                                {
-                                    field: "value",
-                                    summaries: [function (column) {
-                                        return column.sum().toLocaleString();
-                                    }]
-                                },
-                            ]
-                        }
-                    ],
-                    footerElement: "<button type='button' class='btn btn-warning btn-sm mr-2' id='reload-table' onClick=''><i class='fas fa-sync-alt'></i></button>",
-                    tooltipsHeader: false,
-                    rowHeader: {
-                        title: "<button type='button' class='btn btn-primary btn-sm' id='add-row' onClick=''><i class='fas fa-plus'></i></button>",
-                        headerSort: false,
-                        resizable: false,
-                        width: 45,
-                        frozen: true,
-                        rowHandle: true,
-                        editor: false,
-                        hozAlign: "center",
-                        formatter: "rownum",
-                    },
-                    movableColumns: true,
-                    success: function (data) {
-                        if (data.status !== 200 && data.status !== 201) {
-                            alert(data.error || "An error occurred while fetching data.");
-                            return;
-                        }
-                        const breakdowns = data.data;
-                        table.setData(breakdowns);
-                    },
-                    headerSortClickElement: 'icon',
-                    selectableRangeClearCells: true,
-                    columnHeaderVertAlign: "bottom",
-                    resizableColumnGuide: true,
+        let CreateTable = function (id, columns, groupBy, showGroup, open, sorter='', formatter=null) {
+            let table = new Tabulator('#' + id, {
+                height: '85vh',
+                editorEmptyValue: '',
+                downloadConfig: {
+                    columnHeaders: true,
+                    columnGroups: false,
+                    rowHeaders: false,
+                    rowGroups: false,
+                    columnCalcs: true,
                     dataTree: true,
-                    dataTreeStartExpanded: false,
-                    dataTreeFilter: false,
-                    dataTreeSort: false,
-                    dataTreeSelectPropagate: true,
-                    placeholder: "Aucun Donnée",
-                    placeholderHeaderFilter: 'Aucun Donnée Correspondent',
-                    groupClosedShowCalcs: showGroup,
-                    headerSort: true,
-                    columnDefaults: {
-                        tooltip: true,
-                        headerHozAlign: "center",
-                        editor: false,
-                        resizable: "header",
-                    },
-                    groupBy: groupBy,
-                    columns: columns,
-                    groupToggleElement: 'header'
-                })
-            } else {
-                let tableInstance;
-                const data = [
-                    {
-                        category: 'Office Supplies',
-                        sales: '129.696',
-                        quantity: '2',
-                        profit: '-60.704',
-                        children: [
-                            {
-                                category: 'envelope', // 对应原子category
-                                sales: '125.44',
-                                quantity: '2',
-                                profit: '42.56',
-                                children: [
-                                    {
-                                        category: 'yellow envelope',
-                                        sales: '125.44',
-                                        quantity: '2',
-                                        profit: '42.56'
-                                    },
-                                    {
-                                        category: 'white envelope',
-                                        sales: '1375.92',
-                                        quantity: '3',
-                                        profit: '550.2'
-                                    }
-                                ]
-                            },
-                            {
-                                category: 'utensil', // 对应原子category
-                                sales: '1375.92',
-                                quantity: '3',
-                                profit: '550.2',
-                                children: [
-                                    {
-                                        category: 'stapler',
-                                        sales: '125.44',
-                                        quantity: '2',
-                                        profit: '42.56'
-                                    },
-                                    {
-                                        category: 'calculator',
-                                        sales: '1375.92',
-                                        quantity: '3',
-                                        profit: '550.2'
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        category: 'technology',
-                        sales: '229.696',
-                        quantity: '20',
-                        profit: '90.704',
-                        children: [
-                            {
-                                category: 'equipment', // 对应原子category
-                                sales: '225.44',
-                                quantity: '5',
-                                profit: '462.56'
-                            },
-                            {
-                                category: 'Accessories', // 对应原子category
-                                sales: '375.92',
-                                quantity: '8',
-                                profit: '550.2'
-                            },
-                            {
-                                category: 'copier', // 对应原子category
-                                sales: '425.44',
-                                quantity: '7',
-                                profit: '342.56'
-                            },
-                            {
-                                category: 'telephone', // 对应原子category
-                                sales: '175.92',
-                                quantity: '6',
-                                profit: '750.2'
-                            }
-                        ]
-                    },
-                    {
-                        category: 'furniture',
-                        sales: '129.696',
-                        quantity: '2',
-                        profit: '-60.704',
-                        children: [
-                            {
-                                category: 'desk', // 对应原子category
-                                sales: '125.44',
-                                quantity: '2',
-                                profit: '42.56',
-                                children: [
-                                    {
-                                        category: 'yellow desk',
-                                        sales: '125.44',
-                                        quantity: '2',
-                                        profit: '42.56'
-                                    },
-                                    {
-                                        category: 'white desk',
-                                        sales: '1375.92',
-                                        quantity: '3',
-                                        profit: '550.2'
-                                    }
-                                ]
-                            },
-                            {
-                                category: 'chair', // 对应原子category
-                                sales: '1375.92',
-                                quantity: '3',
-                                profit: '550.2',
-                                children: [
-                                    {
-                                        category: 'boss chairs',
-                                        sales: '125.44',
-                                        quantity: '2',
-                                        profit: '42.56'
-                                    },
-                                    {
-                                        category: 'sofa chair',
-                                        sales: '1375.92',
-                                        quantity: '3',
-                                        profit: '550.2'
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        category: 'Home appliances(lazy load)',
-                        sales: '229.696',
-                        quantity: '20',
-                        profit: '90.704',
-                        children: true
-                    }
-                ];
-                const option = {
-                    container: document.getElementById(id),
+                },
+                ajaxURL: "{% url 'app:get-data-for-table' %}",
+                ajaxContentType: "json",
+                ajaxParams: {'value': id, 'target': '{{ target }}'},
+                ajaxConfig: "POST",
+                progressiveLoad: "load",
+                progressiveLoadDelay: 200,
+                layout: "fitData",
+                rowFormatter: formatter,
+                initialSort: sorter,
+                printAsHtml: true,
+                printStyled: true,
+                groupStartOpen: open,
+                printRowRange: "all",
+                printHeader: "<h1>Example Table Header<h1>",
+                printFooter: "<h2>Example Table Footer<h2>",
+                footer: [ // Ajouter une ligne de total
+                    { title: "Total", 
                     columns: [
                         {
                             field: 'category',
@@ -468,7 +269,7 @@
                             'border-left': '1px solid #efefef',
 
                         })
-                    CreateTable('BLG', config.BLG, ['SOCIETE'], true, false)
+                    CreateTable('BLG', config.BLG, ['SOCIETE'], true, false, '')
                 },
                 onClick(event) {
                     let table = configTable(event)
@@ -478,6 +279,8 @@
                     let groupBy = '';
                     let showGroup = true;
                     let open = false;
+                    let order = ''
+                    let formatter = null
                     switch (event.target) {
                         case 1:
                             target = config.BLG
@@ -520,6 +323,19 @@
                             break;
                         case 5:
                             target = config.CN
+                            open = true
+                            order = ['ORDER']
+                            formatter = function(row){
+                                //row - row component
+                                
+                                var data = row.getData();
+                                
+                                if (data.AFFECTATION == "-") {
+                                    row.getElement().style.backgroundColor = "#1e3b20";
+                                    row.getElement().style.fontWeight = "bold";
+                                    row.getElement().style.color = "red";
+                                }
+                            }
                             query(layout.el('main'))
                                 .removeClass('w2ui-grid')
                                 .addClass('slick-container')
@@ -535,7 +351,7 @@
                                     'border-left': '1px solid #efefef',
                                 })
                     }
-                    CreateTable(event.object.text, target, groupBy, showGroup, open)
+                    CreateTable(event.object.text, target, groupBy, showGroup, open, order, formatter)
                 }
             },
             topbar: {
@@ -554,9 +370,9 @@
                 }
             },
             BLG: [
-                {title: "SOCIETE", field: "SOCIETE", width: 125, visible: false},
-                {title: "COMPTE SAGE", hozAlign: "right", field: "COMPTE_SAGE", width: 125, frozen: true},
-                {title: "COMPTE UNIF", hozAlign: "right", field: "COMPTE_UNIF", width: 125,},
+                {title: "SOCIETE", field: "SOCIETE", width: 125, visible: false, headerFilter:"input"},
+                {title: "COMPTE SAGE", hozAlign: "right", field: "COMPTE_SAGE", width: 125, frozen: true, headerFilter:"input"},
+                {title: "COMPTE UNIF", hozAlign: "right", field: "COMPTE_UNIF", width: 125, headerFilter:"input"},
                 {title: "DESIGNATION COMPTE", field: "DESIGNATION", width: 300,},
                 {
                     title: "SOLDE DEBIT",
@@ -595,7 +411,7 @@
                     }
                 },
                 {
-                    title: "SOLDE 311222",
+                    title: "SOLDE 31-12-{{target}}",
                     field: "SOLDE",
                     width: 150,
                     frozen: true,
@@ -615,11 +431,11 @@
                 },
             ],
             ALL: [
-                {title: "C1", field: "C1", width: 50, frozen: true},
-                {title: "C2", field: "C2", width: 50, frozen: true},
-                {title: "C3", field: "C3", width: 65, frozen: true},
-                {title: "Compte", field: "COMPTE", width: 100, hozAlign: "right", frozen: true},
-                {title: "Affectation", field: "AFFECTATION", width: 100, frozen: true},
+                {title: "C1", field: "C1", width: 75, frozen: true, headerFilter:"input"},
+                {title: "C2", field: "C2", width: 75, frozen: true, headerFilter:"input"},
+                {title: "C3", field: "C3", width: 75, frozen: true, headerFilter:"input"},
+                {title: "Compte", field: "COMPTE", width: 100, hozAlign: "right", frozen: true, headerFilter:"input"},
+                {title: "Affectation", field: "AFFECTATION", width: 100, frozen: true, headerFilter:"input"},
                 {title: "Désignation", field: "DESIGNATION", width: 250, frozen: true},
                 {
                     title: "AGRIVET ANTSIRABE", field: "AGRIVET ANTSIRABE", hozAlign: "right",
@@ -1243,7 +1059,7 @@
             ],
             BILAN: {
                 ACTIF: [
-                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true},
+                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true, headerFilter:"input"},
                     {title: "GROUPE", field: "GROUPE", visible: false},
                     {title: "CATEGORY", field: "CATEGORY", visible: false},
                     {title: "ACTIF", field: "LIBEL"},
@@ -1351,7 +1167,7 @@
 
                 ],
                 PASSIF: [
-                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true},
+                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true, headerFilter:"input"},
                     {title: "GROUPE", field: "GROUPE", visible: false},
                     {title: "CATEGORY", field: "CATEGORY", visible: false},
                     {title: "ACTIF", field: "LIBEL"},
@@ -1423,7 +1239,79 @@
 
                 ]
             },
-            CN: [],
+            CN: [
+                {title: "", field: "AFFECTATION", width: 75, frozen: true, headerSort:false, headerFilter:"input"},
+                {title: "LIBEL", field: "LIBEL", formatter:function(cell, formatterParams){
+                    let data = cell.getData() ;
+                    let value = cell.getValue();
+                     if(data.AFFECTATION == '-'){
+                         return "<span style='color:#3FB449; font-weight:bold;'>" + value + "</span>";
+                     }else{
+                         return value;
+                     }
+                 }},
+                {title: "ORDER", field: "ORDER", visible: false},
+                {
+                    title: "31/12/{{ target }}", field: "CONSO", sorter: "number",
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
+                        
+                {
+                    title: "31/12/{{ target_1 }}", field: "", sorter: "number",
+                    bottomCalc: "sum",
+                    bottomCalcParams: {precision: 2},
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
+                {
+                    title: "31/12/{{ target_2 }}", field: "", sorter: "number",
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
+                {
+                    title: "31/12/{{ target_3 }}", field: "", sorter: "number",
+                    width: 150,
+                    hozAlign: "right",
+                    formatter: "money",
+                    formatterParams: {
+                        decimal: ",",
+                        thousand: " ",
+                        symbol: " ",
+                        symbolAfter: "p",
+                        negativeSign: false,
+                        precision: 2,
+                    }
+                },
+
+            ],
 
         }
 

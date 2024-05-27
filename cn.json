@@ -1,0 +1,147 @@
+[
+  {
+    "AFFECTATION": "CR01",
+    "ORDER": 1,
+    "DESIGNATION": "Chiffre d'affaires"
+  },
+  {
+    "AFFECTATION": "CR02",
+    "ORDER": 2,
+    "DESIGNATION": "Production stockée"
+  },
+  {
+    "AFFECTATION": "CR03",
+    "ORDER": 3,
+    "DESIGNATION": "Production immobilisée"
+  },
+  {
+    "AFFECTATION": "CR04",
+    "ORDER": 5,
+    "DESIGNATION": "Achats consommés"
+  },
+  {
+    "AFFECTATION": "CR05",
+    "ORDER": 6,
+    "DESIGNATION": "Services extérieurs et autres consommations"
+  },
+  {
+    "AFFECTATION": "CR06",
+    "ORDER": 9,
+    "DESIGNATION": "Charges de personnel"
+  },
+  {
+    "AFFECTATION": "CR07",
+    "ORDER": 10,
+    "DESIGNATION": "Impôts, taxes et versements assimilés"
+  },
+  {
+    "AFFECTATION": "CR08",
+    "ORDER": 12,
+    "DESIGNATION": "Autres Produits Opérationnels"
+  },
+  {
+    "AFFECTATION": "CR09",
+    "ORDER": 13,
+    "DESIGNATION": "Autres Charges Opérationnelles"
+  },
+  {
+    "AFFECTATION": "CR10",
+    "ORDER": 14,
+    "DESIGNATION": "Dotations aux amortissements, aux provisions et pertes de valeur"
+  },
+  {
+    "AFFECTATION": "CR11",
+    "ORDER": 15,
+    "DESIGNATION": "Reprise sur provisions et pertes de valeurs"
+  },
+  {
+    "AFFECTATION": "CR12",
+    "ORDER": 17,
+    "DESIGNATION": "Produits financiers"
+  },
+  {
+    "AFFECTATION": "CR13",
+    "ORDER": 18,
+    "DESIGNATION": "Charges financières"
+  },
+  {
+    "AFFECTATION": "CR14",
+    "ORDER": 21,
+    "DESIGNATION": "Impôts exigibles sur résultats"
+  },
+  {
+    "AFFECTATION": "CR15",
+    "ORDER": 26,
+    "DESIGNATION": "Eléments Extraordinaires (Produits) - à préciser"
+  },
+  {
+    "AFFECTATION": "CR16",
+    "ORDER": 27,
+    "DESIGNATION": "Eléments Extraordinaires (Charges) - à préciser"
+  },
+  {
+    "AFFECTATION": "CR1",
+    "ORDER": 22,
+    "DESIGNATION": "Impôts différés (variations)"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 4,
+    "DESIGNATION": "I - PRODUCTION DE L'EXERCICE"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 7,
+    "DESIGNATION": "II - CONSOMMATION DE L'EXERCICE"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 8,
+    "DESIGNATION": "III - VALEUR AJOUTEE D'EXPLOITATION (I-II)"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 11,
+    "DESIGNATION": "IV - EXCEDENT BRUT D'EXPLOITATION"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 16,
+    "DESIGNATION": "V - RESULTAT OPERATIONNEL"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 19,
+    "DESIGNATION": "VI - RESULTAT FINANCIER"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 20,
+    "DESIGNATION": "VII - RESULTAT AVANT IMPOTS (V+VI)"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 23,
+    "DESIGNATION": "TOTAL DES PRODUITS DES ACTIVITES ORDINAIRES"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 24,
+    "DESIGNATION": "TOTAL DES CHARGES DES ACTIVITES ORDINAIRES"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 25,
+    "DESIGNATION": "VIII - RESULTAT NET DES ACTIVITES ORDINAIRES"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 28,
+    "DESIGNATION": "IX - RESULTAT EXTRAORDINAIRE"
+  },
+  {
+    "AFFECTATION": "",
+    "ORDER": 29,
+    "DESIGNATION": "X - RESULTAT NET DE L'EXERCICE"
+  }
+]
