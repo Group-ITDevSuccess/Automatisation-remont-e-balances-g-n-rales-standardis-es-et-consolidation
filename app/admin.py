@@ -63,3 +63,4 @@ class SocieteAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('name', 'value', 'base', 'table')
     list_filter = ('active', 'connexion', 'created_at', 'updated_at')
     readonly_fields = ('created_at', 'updated_at')
+    list_editable = ('value', 'base', 'table', 'active', 'connexion',)

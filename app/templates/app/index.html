@@ -108,7 +108,7 @@
                             field: "value",
                             summaries: [function (column) {
                                 return column.sum().toLocaleString();
-                            }] 
+                            }]
                         },
                     ]
                     }
@@ -506,7 +506,7 @@
                     }
                 },
                 {
-                    title: "AGRIMOTORS", field: "AGRIMOTORS", hozAlign: "right",
+                    title: "AGRIMOTORS", field: "dbo", hozAlign: "right",
                     formatter: "money",
                     sorter: "number",
                     bottomCalc: "sum",
@@ -626,7 +626,7 @@
                     }
                 },
                 {
-                    title: "CSS SAKAY", field: "CSS SAKAY", hozAlign: "right",
+                    title: "CSS SAKAY", field: "CSS", hozAlign: "right",
                     formatter: "money",
                     sorter: "number",
                     bottomCalc: "sum",
@@ -746,7 +746,7 @@
                     }
                 },
                 {
-                    title: "ID MOTORS", field: "ID MOTORS", hozAlign: "right",
+                    title: "ID MOTORS", field: "IDMOTORS", hozAlign: "right",
                     formatter: "money",
                     sorter: "number",
                     bottomCalc: "sum",
@@ -776,7 +776,7 @@
                     }
                 },
                 {
-                    title: "INVISO", field: "INVISO", hozAlign: "right",
+                    title: "INVISO", field: "INVISO DISTRIBUTION", hozAlign: "right",
                     formatter: "money",
                     sorter: "number",
                     bottomCalc: "sum",
@@ -1094,7 +1094,7 @@
                         ],
                     },
                     {
-                        title: "31/12/{{ target_1 }}", field: "", sorter: "number",
+                        title: "31/12/{{ target_1 }}", field: "{{ target_1 }}", sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1110,7 +1110,7 @@
                         }
                     },
                     {
-                        title: "31/12/{{ target_2 }}", field: "", sorter: "number",
+                        title: "31/12/{{ target_2 }}", field: "{{ target_2 }}", sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1126,7 +1126,7 @@
                         }
                     },
                     {
-                        title: "31/12/{{ target_3 }}", field: "", sorter: "number",
+                        title: "31/12/{{ target_3 }}", field: "{{ target_3 }}", sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1140,7 +1140,7 @@
                             negativeSign: false,
                             precision: 2,
                         }
-                    },
+                    }
 
                 ],
                 PASSIF: [
@@ -1221,7 +1221,7 @@
                 {title: "LIBEL", field: "LIBEL", formatter:function(cell, formatterParams){
                     let data = cell.getData() ;
                     let value = cell.getValue();
-                     if(data.AFFECTATION == '-'){
+                     if(data.AFFECTATION === '-'){
                          return "<span style='color:#3FB449; font-weight:bold;'>" + value + "</span>";
                      }else{
                          return value;
@@ -1244,7 +1244,7 @@
                 },
                         
                 {
-                    title: "31/12/{{ target_1 }}", field: "", sorter: "number",
+                    title: "31/12/{{ target_1 }}", field: "{{ target_1 }}", sorter: "number",
                     bottomCalc: "sum",
                     bottomCalcParams: {precision: 2},
                     width: 150,
@@ -1260,7 +1260,7 @@
                     }
                 },
                 {
-                    title: "31/12/{{ target_2 }}", field: "", sorter: "number",
+                    title: "31/12/{{ target_2 }}", field: "{{ target_2 }}", sorter: "number",
                     width: 150,
                     hozAlign: "right",
                     formatter: "money",
@@ -1274,7 +1274,7 @@
                     }
                 },
                 {
-                    title: "31/12/{{ target_3 }}", field: "", sorter: "number",
+                    title: "31/12/{{ target_3 }}", field: "{{ target_3 }}", sorter: "number",
                     width: 150,
                     hozAlign: "right",
                     formatter: "money",

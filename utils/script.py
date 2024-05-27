@@ -14,7 +14,7 @@ from utils.ldap import write_log
 
 
 def load_json_file(filepath):
-    with open(filepath, 'r') as fichier:
+    with open(filepath, 'r', encoding='UTF-8') as fichier:
         comptes = pd.read_json(fichier)
     return comptes
 
@@ -24,45 +24,36 @@ def load_affectations_json_file(filepath):
         return json.load(file)
 
 
-# Fonction pour obtenir le compte UNIF correspondant
 def get_compte_unif(comptes, societe, compte_sage):
-    # Vérification des types de données et affichage des valeurs pour le débogage
-    # print(f"Recherche pour SOCIETE: {societe}, COMPTE SAGE: {compte_sage}")
+    try:
+        if isinstance(compte_sage, str):
+            result = comptes.loc[
+                (comptes['SOCIETE'].str.strip() == societe) &
+                (comptes['COMPTE_SAGE'] == int(compte_sage)), 'COMPTE_UNIF'
+            ].values
+        else:
+            result = comptes.loc[
+                (comptes['SOCIETE'].str.strip() == societe) &
+                (comptes['COMPTE_SAGE'] == compte_sage), 'COMPTE_UNIF'
+            ].values
 
-    # Assurez-vous que les types de données correspondent
-    compte_sage = int(compte_sage)  # Conversion au type int pour correspondre aux données
-
-    result = comptes.loc[
-        (comptes['SOCIETE'].str.strip() == societe) & (comptes['COMPTE SAGE'] == compte_sage), 'COMPTE UNIF'].values
-
-    # print(f"Résultat trouvé : {result}")
-    return result[0] if len(result) > 0 else ''
-
-
-def get_affectation_compte_unif(comptes, societe, compte_sage):
-    # Vérification des types de données et affichage des valeurs pour le débogage
-    # print(f"Recherche pour SOCIETE: {societe}, COMPTE SAGE: {compte_sage}")
-
-    # Assurez-vous que les types de données correspondent
-    compte_sage = int(compte_sage)  # Conversion au type int pour correspondre aux données
-
-    result = comptes.loc[
-        (comptes['SOCIETE'].str.strip() == societe) & (comptes['COMPTE SAGE'] == compte_sage), 'COMPTE UNIF'].values
-
-    # print(f"Résultat trouvé : {result}")
-    return result[0] if len(result) > 0 else ''
+        return result[0] if len(result) > 0 else ''
+    except Exception as e:
+        write_log(str(e))
+        print("Erreur de recuperation !")
+        return ''
 
 
 def connexion(value):
     conn = None
     value_input = f"Driver={{ODBC Driver 17 for SQL Server}};Server={value.connexion.server};Database={value.base};UID={value.connexion.login};" \
                   f"PWD={value.connexion.password}"
-    # print(value_input)
     try:
         # print(value_input)
         conn = pyodbc.connect(value_input)
     except pyodbc.Error as e:
         write_log(f"Erreur de connexion : {str(e)}")
+        print("Error PYODBC", str(e))
     except Exception as e:
         write_log(str(e))
         print(f"Erreur de connexion sur {value.name}: {value_input}")
@@ -77,8 +68,8 @@ def get_data_sql(connection, societe, value, target):
         with open('config.json', 'r') as fichier:
             contenu_json = json.load(fichier)
 
-        columns = contenu_json['COLUMNS'][value]
-        sql = contenu_json['SQL'][value][societe.type]
+        columns = contenu_json['HEADER']
+        sql = contenu_json['SQL'][societe.type]
         sql = str(sql) \
             .replace('{table}', str(societe.table)) \
             .replace('{base}', str(societe.base)) \
@@ -113,6 +104,8 @@ def get_data_sql(connection, societe, value, target):
                     if all(isinstance(row, tuple) for row in rows):
                         df = pd.DataFrame(rows, columns=columns)
                         df = df.assign(SOCIETE=societe.name)
+                        df = df.assign(SOCIETE_VALUE=societe.value)
+                        df = df.assign(YEAR=target)
                         df['DEBIT'] = df.apply(lambda row: row['SOLDE'] if row['SOLDE'] > 0 else 0, axis=1)
                         df['CREDIT'] = df.apply(lambda row: abs(row['SOLDE']) if row['SOLDE'] < 0 else 0, axis=1)
                         if plan_df is not None:
@@ -128,11 +121,12 @@ def get_data_sql(connection, societe, value, target):
                             axis=1
                         )
     except pyodbc.Error as e:
-        write_log(f"Erreur execute_sql : {str(e)}")
+        write_log(f"Erreur pyodbc : {str(e)}")
         print(f"Erreur execute_sql by pyodbc : {str(e)}")
     except Exception as e:
         write_log(f"Erreur execute_sql : {str(e)}")
         print(f"Erreur execute_sql : {str(e)}")
+
     return df
 
 
