@@ -73,6 +73,7 @@
         } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.min.js' %}";
 
 
+
         let CreateTable = function (id, columns, groupBy, showGroup, open, sorter='', formatter=null) {
             let table = new Tabulator('#' + id, {
                 height: '80vh',
@@ -87,7 +88,7 @@
                 },
                 ajaxURL: "{% url 'app:get-data-for-table' %}",
                 ajaxContentType: "json",
-                ajaxParams: {'value': id, 'target': '{{ target }}'},
+                ajaxParams: {'value': id, 'target': '{{ target }}', 'societes': localStorage.getItem('selectedItems')},
                 ajaxConfig: "POST",
                 progressiveLoad: "load",
                 progressiveLoadDelay: 200,
@@ -265,7 +266,6 @@
             return formattedEuro;
         }
         
-
         let config = {
             layout: {
                 name: 'layout',
@@ -406,21 +406,53 @@
                 style: 'margin: -2px 3px; padding: 2px; border-radius: 4px; border: #9bb5ff; border-width: 1px 2px; border-style: solid;',
                 items: [
                     {% for societe in societes %}
-                        { type: 'check', id: '{{ societe.uid }}', text: '{{ societe.name }}', icon: 'w2ui-icon-cross',
-                        overlay: {
-                            transparent: false,
-                            onLiveUpdate(event) {
-                                console.log(event.detail.item)
+                        { 
+                            type: 'check', 
+                            id: '{{ societe.uid }}', 
+                            text: '{{ societe.name }}', 
+                            icon: 'w2ui-icon-cross',
+                            overlay: {
+                                transparent: false,
+                                onLiveUpdate(event) {
+                                    console.log(event.detail.item);
+                                }
                             }
-                        } },
+                        },
                     {% endfor %}
                 ],
                 onClick(event) {
                     event.done(() => {
-                        console.log(event)
-                        event.detail.item.icon = event.detail.item.icon === 'w2ui-icon-cross' ? 'w2ui-icon-cross' : 'w2ui-icon-check';
-                        w2utils.notify(event.detail.item.text + " Séléctionez");
-                    })
+                        console.log(event);
+                        let selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
+            
+                        if (event.detail.item.checked) {
+                            // Item is selected, add to localStorage
+                            if (!selectedItems.includes(event.target)) {
+                                selectedItems.push(event.target);
+                            }
+                            w2utils.notify(event.detail.item.text + " Sélectionné");
+                        } else {
+                            // Item is deselected, remove from localStorage
+                            selectedItems = selectedItems.filter(item => item !== event.target);
+                            w2utils.notify(event.detail.item.text + " Désélectionné");
+                        }
+            
+                        localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+                    });
+                },
+                onRefresh(event) {
+                    let selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
+            
+                    // Update the icon of each item based on the selected items
+                    selectedItems.forEach(item => {
+                        let toolbarItem = w2ui.toolbar.get(item);
+                        if (toolbarItem) {
+                            toolbarItem.checked = true; // Mark as checked
+                            toolbarItem.icon = 'w2ui-icon-check';
+                        }
+                    });
+            
+                   //w2ui.toolbar.refresh();
                 }
             },
             BLG: [
@@ -1239,7 +1271,7 @@
                             thousand: " ",
                             symbol: " ",
                             symbolAfter: "p",
-                            negativeSign: true,
+                            negativeSign: false,
                             precision: 2,
                         }
                     },

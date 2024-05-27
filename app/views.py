@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from app.forms import SearchForm
 from app.models import Societe, Balance
 from utils.ldap import write_log
-from utils.script import connexion, get_data_sql, load_affectations_json_file
+from utils.script import are_valid_uuids, connexion, get_data_sql, load_affectations_json_file
 
 
 # Create your views here.
@@ -65,14 +65,19 @@ def get_data_for_event(request):
     records = []
     page = data.get('page', '')
     value = data['value']
-    if data['target'] != '---':
+    societes = json.loads(data['societes'])
+    if data['target'] != '---' and len(societes) > 0:
+        uids = are_valid_uuids(societes)
+        print(uids)
+
         if value in ['ACTIF', 'PASSIF', 'CN']:
             year_choices = []
             year_choices.extend(
                 str(year) for year in range(int(data['target']), int(data['target']) - 3, -1))
-            balances = Balance.objects.filter(target__in=year_choices).order_by('societe__name')
+            balances = Balance.objects.filter(target__in=year_choices, societe__uid__in=uids).order_by('societe__name')
         else:
-            balances = Balance.objects.filter(target=int(data['target'])).order_by('societe__name')
+            balances = Balance.objects.filter(target=int(data['target']), societe__uid__in=uids).order_by('societe__name')
+            
         if balances.exists():
             records = balances.annotate(
                 UID=F('uid'),
