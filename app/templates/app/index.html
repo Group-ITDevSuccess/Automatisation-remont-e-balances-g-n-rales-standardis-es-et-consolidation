@@ -79,9 +79,9 @@
                 editorEmptyValue: '',
                 downloadConfig: {
                     columnHeaders: true,
-                    columnGroups: false,
-                    rowHeaders: false,
-                    rowGroups: false,
+                    columnGroups: true,
+                    rowHeaders: true,
+                    rowGroups: true,
                     columnCalcs: true,
                     dataTree: true,
                 },
@@ -98,8 +98,8 @@
                 printStyled: true,
                 groupStartOpen: open,
                 printRowRange: "all",
-                printHeader: "<h1>Example Table Header<h1>",
-                printFooter: "<h2>Example Table Footer<h2>",
+                printHeader: `<h1>Representation du ${id} du {{target}} au {{target_3}}</h1>`,
+                printFooter: `<h2>{{target}} au {{target_3}}</h2>`,
                 footer: [ // Ajouter une ligne de total
                     { title: "Total",
                         // Calculer la somme totale de chaque agrégat
@@ -148,6 +148,16 @@
                 placeholderHeaderFilter: 'Aucun Donnée Correspondent',
                 groupClosedShowCalcs: showGroup,
                 headerSort: true,
+                groupHeader: function(value, count, data, group){
+                    return value + "<span style='color:#d00; margin-left:10px;'>(" + count + " item)</span>";
+                },
+                groupHeaderDownload: function(value, count, data, group){
+                    return value;
+                },
+                downloadEncoder:function(fileContents, mimeType){
+                
+                    return new Blob([fileContents], {type:mimeType});
+                },
                 columnDefaults: {
                     tooltip: true,
                     headerHozAlign: "center",
@@ -160,24 +170,35 @@
             })
             
             document.getElementById("download-csv").addEventListener("click", function(){
-                table.download("csv", "data.csv");
+                table.download("csv", `${id}-{{target}}.csv`);
             });
 
             //trigger download of data.json file
             document.getElementById("download-json").addEventListener("click", function(){
-                table.download("json", "data.json");
+                table.download("json", `${id}-{{target}}.json`);
             });
 
             //trigger download of data.xlsx file
             document.getElementById("download-xlsx").addEventListener("click", function(){
-                table.download("xlsx", "data.xlsx", {sheetName:"My Data"});
+                table.download("xlsx", `${id}-{{target}}.xlsx`,{compress:false, sheetName:id, documentProcessing:function(workbook){
+                    //workbook - sheetJS workbook object
+            
+                    //set some properties on the workbook file
+                    workbook.Props = {
+                        Title: `${id} du {{target}}`,
+                        Subject: `${id}`,
+                        CreatedDate: new Date()
+                    };
+            
+                    return workbook;
+                }},);
             });
 
             //trigger download of data.pdf file
             document.getElementById("download-pdf").addEventListener("click", function(){
-                table.download("pdf", "data.pdf", {
-                    orientation:"portrait", //set page orientation to portrait
-                    title:"Example Report", //add title to report
+                table.download("pdf", `${id}-{{target}}.pdf`, {
+                    orientation:"portrait",
+                    title:`Representation du ${id} du {{target}} au {{target_3}}`,
                 });
             });
 
@@ -224,7 +245,25 @@
         
             return table;
         }
+        
+        const target = "{{ target }}";
+        const target1 = "{{ target_1 }}";
+        const target2 = "{{ target_2 }}";
+        const target3 = "{{ targe_t_3 }}";
 
+        const exchangeRate = 4728.55;
+
+        function euroFormatter(cell, formatterParams, onRendered) {
+            let value = cell.getData()[formatterParams.field];
+            let euroValue = value / exchangeRate;
+        
+            const formattedEuro = euroValue.toLocaleString('fr-FR', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        
+            return formattedEuro;
+        }
 
         let config = {
             layout: {
@@ -378,10 +417,11 @@
                 }
             },
             BLG: [
-                {title: "SOCIETE", field: "SOCIETE", width: 125, visible: false, headerFilter:"input"},
-                {title: "COMPTE SAGE", hozAlign: "right", field: "COMPTE_SAGE", width: 125, frozen: true, headerFilter:"input"},
-                {title: "COMPTE UNIF", hozAlign: "right", field: "COMPTE_UNIF", width: 125, headerFilter:"input"},
-                {title: "DESIGNATION COMPTE", field: "DESIGNATION", width: 300,},
+                {title: "SOCIETE", field: "SOCIETE", width: 125, visible: false, headerFilter:"input", download:true},
+                {title: "COMPTE SAGE", hozAlign: "right", field: "COMPTE_SAGE", width: 125, frozen: true, headerFilter:"input", download:true},
+                {title: "COMPTE UNIF", hozAlign: "right", field: "COMPTE_UNIF", width: 125, headerFilter:"input", download:true},
+                {title: "YEAR", field: "YEAR", visible: false, download:true},
+                {title: "DESIGNATION COMPTE", field: "DESIGNATION", width: 300, download:true,},
                 {
                     title: "SOLDE DEBIT",
                     field: "DEBIT",
@@ -1250,32 +1290,42 @@
             CN: [
                 {title: "", field: "AFFECTATION", width: 75, frozen: true, headerSort:false, headerFilter:"input"},
                 {title: "LIBEL", field: "LIBEL", formatter:function(cell, formatterParams){
-                    let data = cell.getData() ;
+                    let data = cell.getData();
                     let value = cell.getValue();
-                     if(data.AFFECTATION === '-'){
-                         return "<span style='color:#3FB449; font-weight:bold;'>" + value + "</span>";
-                     }else{
-                         return value;
-                     }
-                 }},
-                {title: "ORDER", field: "ORDER", visible: false},
-                {
-                    title: "31/12/{{ target }}", field: "CONSO", sorter: "number",
-                    width: 150,
-                    hozAlign: "right",
-                    formatter: "money",
-                    formatterParams: {
-                        decimal: ",",
-                        thousand: " ",
-                        symbol: " ",
-                        symbolAfter: "p",
-                        negativeSign: false,
-                        precision: 2,
+                    if(data.AFFECTATION === '-') {
+                        return "<span style='color:#3FB449; font-weight:bold;'>" + value + "</span>";
+                    } else {
+                        return value;
                     }
-                },
-                        
+                }},
+                {title: "ORDER", field: "ORDER", visible: false},
+                {title: "31/12/" + target, columns: [
+                    {
+                        title: "MGA", field: target, sorter: "number",
+                        width: 150,
+                        hozAlign: "right",
+                        formatter: "money",
+                        formatterParams: {
+                            decimal: ",",
+                            thousand: " ",
+                            symbol: " ",
+                            symbolAfter: "p",
+                            negativeSign: false,
+                            precision: 2,
+                        }
+                    },
+                    {
+                        title: "EURO", field: target, sorter: "number",
+                        width: 150,
+                        hozAlign: "right",
+                        formatter: euroFormatter,
+                        formatterParams: {
+                            field: target,
+                        },
+                    },
+                ]},      
                 {
-                    title: "31/12/{{ target_1 }}", field: "{{ target_1 }}", sorter: "number",
+                    title: "31/12/" + target1, field: target1, sorter: "number",
                     bottomCalc: "sum",
                     bottomCalcParams: {precision: 2},
                     width: 150,
@@ -1291,7 +1341,7 @@
                     }
                 },
                 {
-                    title: "31/12/{{ target_2 }}", field: "{{ target_2 }}", sorter: "number",
+                    title: "31/12/" + target2, field: target2, sorter: "number",
                     width: 150,
                     hozAlign: "right",
                     formatter: "money",
@@ -1305,7 +1355,7 @@
                     }
                 },
                 {
-                    title: "31/12/{{ target_3 }}", field: "{{ target_3 }}", sorter: "number",
+                    title: "31/12/" + target3, field: target3, sorter: "number",
                     width: 150,
                     hozAlign: "right",
                     formatter: "money",
@@ -1318,9 +1368,7 @@
                         precision: 2,
                     }
                 },
-
-            ],
-
+            ]
         }
 
 
