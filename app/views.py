@@ -228,12 +228,13 @@ def get_data_for_event(request):
                         'BRUT': 0,
                         'AMORTISSEMENT': 0
                     }
-                if str(record['YEAR']) == str(data['target']):
+                target = str(record['YEAR'])
+                if target== str(data['target']):
                     merged_records[affectation_key]['CONSO'] += record['SOLDE']
                 else:
-                    if record['YEAR'] not in merged_records[affectation_key]:
-                        merged_records[affectation_key].setdefault(record['YEAR'], 0)
-                    merged_records[affectation_key][record['YEAR']] += record['SOLDE']
+                    if target not in merged_records[affectation_key]:
+                        merged_records[affectation_key].setdefault(target, 0)
+                    merged_records[affectation_key][target] += record['SOLDE']
             for key in merged_records:
                 current_affectation = merged_records[key]['AFFECTATION']
                 if current_affectation:
@@ -271,9 +272,9 @@ def get_data_for_event(request):
                 for year in record.keys():
                     if year.isdigit():  # Vérifier si la clé est une année
                         if year in final_records[key]:
-                            final_records[key][year] += record[year]
+                            final_records[key][str(year)] += record[str(year)]
                         else:
-                            final_records[key][year] = record[year]
+                            final_records[key][str(year)] = record[str(year)]
 
             for record in final_records.values():
                 record['NET'] = record['BRUT'] - record['AMORTISSEMENT']
