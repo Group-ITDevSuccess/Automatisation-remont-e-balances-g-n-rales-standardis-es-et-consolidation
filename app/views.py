@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from app.forms import SearchForm
 from app.models import Societe, Balance
 from utils.ldap import write_log
-from utils.script import connexion, get_data_sql, load_json_file, load_affectations_json_file
+from utils.script import connexion, get_data_sql, load_affectations_json_file
 
 
 # Create your views here.
@@ -228,12 +228,12 @@ def get_data_for_event(request):
                         'BRUT': 0,
                         'AMORTISSEMENT': 0
                     }
-                if str(record['YEAR']) == data['target']:
+                if str(record['YEAR']) == str(data['target']):
                     merged_records[affectation_key]['CONSO'] += record['SOLDE']
                 else:
                     if record['YEAR'] not in merged_records[affectation_key]:
                         merged_records[affectation_key].setdefault(record['YEAR'], 0)
-                    merged_records[affectation_key][str(record['YEAR'])] += record['SOLDE']
+                    merged_records[affectation_key][record['YEAR']] += record['SOLDE']
             for key in merged_records:
                 current_affectation = merged_records[key]['AFFECTATION']
                 if current_affectation:
