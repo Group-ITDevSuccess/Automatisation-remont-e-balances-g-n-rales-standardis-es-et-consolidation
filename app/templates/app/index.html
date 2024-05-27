@@ -187,7 +187,7 @@
             });
         }
 
-        function createTable(caseNumber) {
+        function configTable(event) {
             let id;
             let table =  `
                 <div>
@@ -198,17 +198,27 @@
                     <button id="download-html">Download HTML</button>
                 </div>
             `;
+
+            console.log(event.target)
         
-            switch (caseNumber) {
+            switch (event.target) {
                 case 1:
+                    id = 'BLG'
+                    table += '<main id="' + id + '"></main>'
+                    break;
+                case 2:
+                    id = 'ALL'
+                    table += '<main id="' + id + '"></main>'
+                    break;
+                case 3:
                     id = 'ACTIF';
                     table += '<main id="' + id + '"></main>';
                     break;
-                case 2:
+                case 4:
                     id = 'PASSIF';
                     table += '<main id="' + id + '"></main>';
                     break;
-                case 3:
+                case 5:
                     id = 'CN';
                     table += '<div id="' + id + '" class="slick-container" style=""></div><div id="pager' + id + '"></div>';
                     break;
