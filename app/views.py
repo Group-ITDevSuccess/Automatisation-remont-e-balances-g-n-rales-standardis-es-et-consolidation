@@ -245,6 +245,8 @@ def get_data_for_event(request):
                     exception = 'ACTIF'
                 records = [record for record in records if
                            record['GROUPE'] != '' and record['TYPE'] != '' and record['TYPE'] != exception]
+            else:
+                pass
 
     return JsonResponse({'last_page': page, 'data': records}, safe=False)
 
@@ -272,7 +274,7 @@ def add_data_for_event(request):
                                     compte_sage=row['COMPTE_SAGE'],
                                     defaults={
                                         'compte_unif': row['COMPTE_UNIF'],
-                                        'designation': row['DESIGNATION'],
+                                        'designation': row['DESI    GNATION'],
                                         'debit': debit,
                                         'credit': credit,
                                         'target': data['target'],
