@@ -158,40 +158,66 @@
                 columns: columns,
                 groupToggleElement: 'header'
             })
+            
+            document.getElementById("download-csv").addEventListener("click", function(){
+                table.download("csv", "data.csv");
+            });
+
+            //trigger download of data.json file
+            document.getElementById("download-json").addEventListener("click", function(){
+                table.download("json", "data.json");
+            });
+
+            //trigger download of data.xlsx file
+            document.getElementById("download-xlsx").addEventListener("click", function(){
+                table.download("xlsx", "data.xlsx", {sheetName:"My Data"});
+            });
+
+            //trigger download of data.pdf file
+            document.getElementById("download-pdf").addEventListener("click", function(){
+                table.download("pdf", "data.pdf", {
+                    orientation:"portrait", //set page orientation to portrait
+                    title:"Example Report", //add title to report
+                });
+            });
+
+            //trigger download of data.html file
+            document.getElementById("download-html").addEventListener("click", function(){
+                table.download("html", "data.html", {style:true});
+            });
         }
 
-        let configTable = function (event) {
-            let table;
+        function createTable(caseNumber) {
             let id;
-
-            switch (event.target) {
+            let table =  `
+                <div>
+                    <button id="download-csv">Download CSV</button>
+                    <button id="download-json">Download JSON</button>
+                    <button id="download-xlsx">Download XLSX</button>
+                    <button id="download-pdf">Download PDF</button>
+                    <button id="download-html">Download HTML</button>
+                </div>
+            `;
+        
+            switch (caseNumber) {
                 case 1:
-                    id = 'BLG'
-                    table = '<main id="' + id + '" style="padding: 10px"></main>'
+                    id = 'ACTIF';
+                    table += '<main id="' + id + '"></main>';
                     break;
                 case 2:
-                    id = 'ALL'
-                    table = '<main id="' + id + '" style="padding: 10px"></main>'
+                    id = 'PASSIF';
+                    table += '<main id="' + id + '"></main>';
                     break;
                 case 3:
-                    id = 'ACTIF'
-                    table = '<main id="' + id + '"></main>'
-                    break;
-                case 4:
-                    id = 'PASSIF'
-                    table = '<main id="' + id + '"></main>'
-                    break;
-                case 5:
-                    id = 'CN'
-                    table = '<div id="' + id + '" class="slick-container" style=""></div><div id="pager' + id + '"></div>'
+                    id = 'CN';
+                    table += '<div id="' + id + '" class="slick-container" style=""></div><div id="pager' + id + '"></div>';
                     break;
                 default:
-                    id = 'BLG'
-                    table = '<main id="' + id + '" style="padding: 10px"></main>'
+                    id = 'BLG';
+                    table += '<main id="' + id + '" style="padding: 10px"></main>';
             }
-
-
-            return table
+        
+            return table;
         }
 
 
