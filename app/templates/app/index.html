@@ -50,11 +50,9 @@
                 })
                 .then(jsonData => {
                     // Handle the JSON response data
-                    console.log('Success:', jsonData);
                 })
                 .catch(error => {
                     // Display the error message
-                    console.error('Error:', error.message);
                     alert(`Error: ${error.message}`);
                 });
         }
@@ -216,7 +214,6 @@
                 </div>
             `;
 
-            console.log(event.target)
         
             switch (event.target) {
                 case 1:
@@ -422,28 +419,34 @@
                 ],
                 onClick(event) {
                     event.done(() => {
-                        console.log(event);
                         let selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
-            
+                        let toolbarItem;
                         if (event.detail.item.checked) {
-                            // Item is selected, add to localStorage
                             if (!selectedItems.includes(event.target)) {
                                 selectedItems.push(event.target);
+                                toolbarItem = w2ui.toolbar.get(event.target);
+                                if (toolbarItem) {
+                                    toolbarItem.checked = true; 
+                                    toolbarItem.icon = 'w2ui-icon-check';
+                                }
                             }
                             w2utils.notify(event.detail.item.text + " Sélectionné");
                         } else {
-                            // Item is deselected, remove from localStorage
                             selectedItems = selectedItems.filter(item => item !== event.target);
                             w2utils.notify(event.detail.item.text + " Désélectionné");
+                            toolbarItem = w2ui.toolbar.get(event.target);
+                            if (toolbarItem) {
+                                toolbarItem.checked = false;
+                                toolbarItem.icon = 'w2ui-icon-cross';
+                            }
                         }
-            
                         localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+                        w2ui.toolbar.refresh();
                     });
                 },
                 onRefresh(event) {
                     let selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
             
-                    // Update the icon of each item based on the selected items
                     selectedItems.forEach(item => {
                         let toolbarItem = w2ui.toolbar.get(item);
                         if (toolbarItem) {
@@ -452,7 +455,6 @@
                         }
                     });
             
-                   //w2ui.toolbar.refresh();
                 }
             },
             BLG: [
