@@ -229,12 +229,10 @@ def get_data_for_event(request):
                         'AMORTISSEMENT': 0
                     }
                 target = str(record['YEAR'])
-                if target== str(data['target']):
-                    merged_records[affectation_key]['CONSO'] += record['SOLDE']
-                else:
-                    if target not in merged_records[affectation_key]:
-                        merged_records[affectation_key].setdefault(target, 0)
-                    merged_records[affectation_key][target] += record['SOLDE']
+
+                if target not in merged_records[affectation_key]:
+                    merged_records[affectation_key].setdefault(target, 0)
+                merged_records[affectation_key][target] += record['SOLDE']
             for key in merged_records:
                 current_affectation = merged_records[key]['AFFECTATION']
                 if current_affectation:
@@ -243,11 +241,11 @@ def get_data_for_event(request):
                     merged_records[key]['GROUPE'] = bilan_info.get('GROUPE', '')
                     merged_records[key]['CATEGORY'] = bilan_info.get('CATEGORY', '')
                     merged_records[key]['LIBEL'] = bilan_info.get('LIBEL', '')
-
             final_records = defaultdict(
                 lambda: {'AFFECTATION': '', 'TYPE': '', 'GROUPE': '', 'CATEGORY': '', 'LIBEL': '',
                          'CONSO': 0, 'NET': 0, 'BRUT': 0, 'AMORTISSEMENT': 0}
             )
+            conso = str(data['target'])
             for record in merged_records.values():
                 key = (record['LIBEL'], record['CATEGORY'], record['GROUPE'], record['TYPE'])
                 final_records[key]['TYPE'] = record['TYPE']
@@ -255,18 +253,22 @@ def get_data_for_event(request):
                 final_records[key]['CATEGORY'] = record['CATEGORY']
                 final_records[key]['LIBEL'] = record['LIBEL']
                 if data['value'] == 'ACTIF':
-                    final_records[key]['CONSO'] += record['CONSO']
+                    if conso not in  final_records[key]:
+                        final_records[key][conso] = record.get(conso, 0)
+                    final_records[key][conso] += record.get(conso, 0)
                     if record['AFFECTATION'] in affectation_table['ASSIGNATION']['BRUT']:
-                        final_records[key]['BRUT'] += record['CONSO']
+                        final_records[key]['BRUT'] +=  record.get(conso, 0)
                     elif record['AFFECTATION'] in affectation_table['ASSIGNATION']['AMORTISSEMENT']:
-                        final_records[key]['AMORTISSEMENT'] += (-1 * record['CONSO'])
+                        final_records[key]['AMORTISSEMENT'] += (-1 *  record.get(conso, 0))
 
                     if final_records[key]['AFFECTATION']:
                         final_records[key]['AFFECTATION'] += ', ' + record['AFFECTATION']
                     else:
                         final_records[key]['AFFECTATION'] = record['AFFECTATION']
                 else:
-                    final_records[key]['CONSO'] += (-1 * record['CONSO'])
+                    if conso not in  final_records[key]:
+                        final_records[key][conso] = record.get(conso, 0)
+                    final_records[key][conso] += (-1 *  record.get(conso, 0))
                     final_records[key]['AFFECTATION'] = record['AFFECTATION']
 
                 for year in record.keys():
@@ -320,16 +322,13 @@ def get_data_for_event(request):
                 if affectation_key in ['CR01', 'CR02', 'CR03', 'CR08', 'CR11', 'CR12', 'CR1', 'CR15']:
                     montant = -1 * montant
 
-                print(record['YEAR'], data['target'], montant)
-                if record['YEAR'] == data['target']:
-                    merged_records[affectation_key]['CONSO'] += montant
+                target = str(record['YEAR'])
+
+                years.add(target)
+                if target in merged_records[affectation_key]:
+                    merged_records[affectation_key][target] += montant
                 else:
-                    year = record['YEAR']
-                    years.add(year)
-                    if year in merged_records[affectation_key]:
-                        merged_records[affectation_key][year] += montant
-                    else:
-                        merged_records[affectation_key][year] = montant
+                    merged_records[affectation_key][target] = montant
 
             for year in years:
                 # Order 4

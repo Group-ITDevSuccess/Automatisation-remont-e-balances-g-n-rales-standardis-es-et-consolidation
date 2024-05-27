@@ -283,7 +283,7 @@
                 nodes: [
                     {
                         id: 'general',
-                        text: '{{ target }}',
+                        text: target,
                         group: true,
                         expanded: true,
                         groupShowHide: false,
@@ -373,11 +373,9 @@
                             open = true
                             order = ['ORDER']
                             formatter = function(row){
-                                //row - row component
                                 
-                                var data = row.getData();
-                                
-                                if (data.AFFECTATION == "-") {
+                                let data = row.getData();
+                                if (data.AFFECTATION === "-") {
                                     row.getElement().style.backgroundColor = "#1e3b20";
                                     row.getElement().style.fontWeight = "bold";
                                     row.getElement().style.color = "red";
@@ -459,7 +457,7 @@
                     }
                 },
                 {
-                    title: "SOLDE 31-12-{{target}}",
+                    title: "SOLDE 31-12-"+target,
                     field: "SOLDE",
                     width: 150,
                     frozen: true,
@@ -1113,7 +1111,7 @@
                     {title: "ACTIF", field: "LIBEL"},
                     {title: "NOTE", field: "NOTE", width: 100},
                     {
-                        title: "31/12/{{target}}", columns: [
+                        title: "31/12/"+target, columns: [
                             {
                                 title: "BRUT", field: "BRUT", sorter: "number",
                                 bottomCalc: "sum",
@@ -1165,7 +1163,7 @@
                         ],
                     },
                     {
-                        title: "31/12/{{ target_1 }}", field: "{{ target_1 }}", sorter: "number",
+                        title: "31/12/"+target1, field: target1, sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1181,7 +1179,7 @@
                         }
                     },
                     {
-                        title: "31/12/{{ target_2 }}", field: "{{ target_2 }}", sorter: "number",
+                        title: "31/12/"+target2, field:target2, sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1197,7 +1195,7 @@
                         }
                     },
                     {
-                        title: "31/12/{{ target_3 }}", field: "{{ target_3 }}", sorter: "number",
+                        title: "31/12/"+target3, field: target3, sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1221,7 +1219,7 @@
                     {title: "ACTIF", field: "LIBEL"},
                     {title: "NOTE", field: "NOTE", width: 100},
                     {
-                        title: "31/12/{{target}}", field: "CONSO", sorter: "number",
+                        title: "31/12/"+target, field: target, sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1237,7 +1235,7 @@
                         }
                     },
                     {
-                        title: "31/12/{{ target_1 }}", field: "", sorter: "number",
+                        title: "31/12/"+target1, field: target1, sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1253,7 +1251,7 @@
                         }
                     },
                     {
-                        title: "31/12/{{ target_2 }}", field: "", sorter: "number",
+                        title: "31/12/"+target2, field: target2, sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
@@ -1269,7 +1267,7 @@
                         }
                     },
                     {
-                        title: "31/12/{{ target_3 }}", field: "", sorter: "number",
+                        title: "31/12/"+target3, field: target3, sorter: "number",
                         bottomCalc: "sum",
                         bottomCalcParams: {precision: 2},
                         width: 150,
