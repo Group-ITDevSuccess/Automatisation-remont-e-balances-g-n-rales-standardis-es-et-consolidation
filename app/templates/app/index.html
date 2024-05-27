@@ -181,21 +181,16 @@
                 });
             });
 
-            //trigger download of data.html file
-            document.getElementById("download-html").addEventListener("click", function(){
-                table.download("html", "data.html", {style:true});
-            });
         }
 
         function configTable(event) {
             let id;
             let table =  `
-                <div>
-                    <button id="download-csv">Download CSV</button>
-                    <button id="download-json">Download JSON</button>
-                    <button id="download-xlsx">Download XLSX</button>
-                    <button id="download-pdf">Download PDF</button>
-                    <button id="download-html">Download HTML</button>
+                <div class="mb-2">
+                    <button id="download-csv" class="btn btn-secondary">Download CSV</button>
+                    <button id="download-json" class="btn btn-danger">Download JSON</button>
+                    <button id="download-xlsx" class="btn btn-success">Download XLSX</button>
+                    <button id="download-pdf" class="btn btn-primary">Download PDF</button>
                 </div>
             `;
 
