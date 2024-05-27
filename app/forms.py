@@ -35,15 +35,15 @@ class SearchForm(forms.Form):
         label="Date antérieure",
     )
     begin = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'selectpicker ml-2'}),
+        widget=forms.Select(attrs={'class': 'selectpicker'}),
         choices=month_choices,
-        required=False,
+        required=True,
         label="Debut",
     )
     end = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'selectpicker ml-2'}),
+        widget=forms.Select(attrs={'class': 'selectpicker'}),
         choices=month_choices,
-        required=False,
+        required=True,
         label="Fin",
     )
 
