@@ -33,7 +33,8 @@ def index(request):
         'target_2': str(int(target) - 2) if target != '---' else '',
         'target_3': str(int(target) - 3) if target != '---' else '',
         'saved': saved,
-        'search_form': form
+        'search_form': form,
+        'societes': Societe.objects.filter(active=True).order_by('name')
     })
 
 

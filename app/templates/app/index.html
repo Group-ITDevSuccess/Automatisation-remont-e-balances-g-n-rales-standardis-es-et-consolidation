@@ -75,7 +75,7 @@
 
         let CreateTable = function (id, columns, groupBy, showGroup, open, sorter='', formatter=null) {
             let table = new Tabulator('#' + id, {
-                height: '85vh',
+                height: '80vh',
                 editorEmptyValue: '',
                 downloadConfig: {
                     columnHeaders: true,
@@ -264,6 +264,7 @@
         
             return formattedEuro;
         }
+        
 
         let config = {
             layout: {
@@ -404,14 +405,22 @@
                 name: 'toolbar',
                 style: 'margin: -2px 3px; padding: 2px; border-radius: 4px; border: #9bb5ff; border-width: 1px 2px; border-style: solid;',
                 items: [
-                    {type: 'button', id: 'add', text: 'Ajouter', icon: 'w2ui-icon-plus'},
-                    {type: 'button', id: 'append', text: 'Valider', icon: 'w2ui-icon-check'},
-                    {type: 'button', id: 'delete', text: 'Suprimer', icon: 'w2ui-icon-cross'},
+                    {% for societe in societes %}
+                        { type: 'check', id: '{{ societe.uid }}', text: '{{ societe.name }}', icon: 'w2ui-icon-cross',
+                        overlay: {
+                            transparent: false,
+                            onLiveUpdate(event) {
+                                console.log(event.detail.item)
+                            }
+                        } },
+                    {% endfor %}
                 ],
                 onClick(event) {
-                    {#if (event.target === 'add') lock({spinner: true, msg: 'Enregistrement ...'})#}
-                    {#if (event.target === 'hide') unlock(true)#}
-                    if (event.target === 'add') openPopup()
+                    event.done(() => {
+                        console.log(event)
+                        event.detail.item.icon = event.detail.item.icon === 'w2ui-icon-cross' ? 'w2ui-icon-cross' : 'w2ui-icon-check';
+                        w2utils.notify(event.detail.item.text + " Séléctionez");
+                    })
                 }
             },
             BLG: [

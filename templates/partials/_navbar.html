@@ -8,11 +8,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item {% if path == '/' %}{% endif %}">
+      <li class="nav-item {% if path == '/' %}active{% endif %}">
         <a class="nav-link" href="{% url 'app:index' %}">Accueil <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item {% if path == '/accounts/administration/' %}{% endif %}">
-        <a class="nav-link {% if not user.is_staff %}{% endif %}" href="{% url 'auths:administration' %}">Administration</a>
+      <li class="nav-item {% if path == '/accounts/administration/' %}active{% endif %}">
+        <a class="nav-link {% if not user.is_staff %}disabled{% endif %}" href="{% url 'auths:administration' %}">Administration</a>
       </li>
     </ul>
 
