@@ -65,10 +65,13 @@ def get_data_for_event(request):
     records = []
     page = data.get('page', '')
     value = data['value']
-    societes = json.loads(data['societes'])
+    societes_json = data.get('societes')
+    if societes_json is None:
+        societes = []  # Default to an empty list if 'societes' is None
+    else:
+        societes = json.loads(societes_json)
     if data['target'] != '---' and len(societes) > 0:
         uids = are_valid_uuids(societes)
-        print(uids)
 
         year_choices = []
         if value in ['ACTIF', 'PASSIF', 'CN']:
@@ -104,12 +107,10 @@ def get_data_for_event(request):
                             conn = connexion(societe)
                             if conn is not None:
                                 with conn:
-                                    if value in ['ACTIF', 'PASSIF', 'CN']:
-                                        gets = get_data_sql(connection=conn, societe=societe, value=data['value'],
-                                                            target=year)
-                                        if gets is not None:
-                                            records.extend(gets.to_dict(orient='records'))
-
+                                    gets = get_data_sql(connection=conn, societe=societe, value=data['value'],
+                                                        target=year)
+                                    if gets is not None:
+                                        records.extend(gets.to_dict(orient='records'))
                                     if gets is not None:
                                         pass
                             else:
