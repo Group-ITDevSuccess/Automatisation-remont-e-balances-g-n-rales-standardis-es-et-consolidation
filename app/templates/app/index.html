@@ -263,7 +263,7 @@
             return formattedEuro;
         }
 
-        let communstyle = "background-color: lightgreen; border-radius: 0px; color: red !important;"
+        let communstyle = "font-weight: bold; color: green !important;"
         
         let config = {
             layout: {
@@ -442,7 +442,7 @@
                             toolbarItem = w2ui.toolbar.get(event.target);
                             if (toolbarItem) {
                                 toolbarItem.checked = false;
-                                toolbarItem.color  = null
+                                toolbarItem.style  = null
                                 toolbarItem.icon = 'w2ui-icon-cross';
                             }
                         }
@@ -453,7 +453,6 @@
                 },
                 onRefresh(event) {
                     let selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
-            
                     selectedItems.forEach(item => {
                         let toolbarItem = w2ui.toolbar.get(item);
                         if (toolbarItem) {
