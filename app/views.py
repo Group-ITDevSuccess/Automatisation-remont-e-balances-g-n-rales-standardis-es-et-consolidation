@@ -1,4 +1,5 @@
 import json
+import pandas as pd
 from collections import defaultdict
 
 from django.contrib.auth.decorators import login_required
@@ -7,9 +8,9 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-
+from django.core.serializers.json import DjangoJSONEncoder
 from app.forms import SearchForm
-from app.models import Societe, Balance
+from app.models import Societe, Balance, Compte
 from utils.ldap import write_log
 from utils.script import are_valid_uuids, connexion, get_data_sql, load_affectations_json_file
 
@@ -30,7 +31,7 @@ def index(request):
                 str(year) for year in range(int(target), int(target) - 3, -1))
     else:
         form = SearchForm()
-    
+
     return render(request, 'app/index.html', {
         'path': request.path,
         'target': target,
@@ -64,6 +65,18 @@ def get_societe_balances():
     return balances_data
 
 
+def get_comptes():
+    comptes_model = Compte.objects.all().annotate(
+        SOCIETE=F('societe'),
+        COMPTE_SAGE=F('compte_sage'),
+        COMPTE_UNIF=F('compte_unif')
+    ).values('SOCIETE', 'COMPTE_SAGE', 'COMPTE_UNIF')
+
+    comptes_list = list(comptes_model)
+    comptes_df = pd.DataFrame(comptes_list)
+    return comptes_df
+
+
 @csrf_exempt
 @login_required
 def get_data_for_event(request):
@@ -78,7 +91,7 @@ def get_data_for_event(request):
         societes = json.loads(societes_json)
     if data['target'] != '---' and len(societes) > 0:
         uids = are_valid_uuids(societes)
-
+        comptes = get_comptes()
         year_choices = []
         if value in ['ACTIF', 'PASSIF', 'CN']:
             year_choices.extend(
@@ -88,7 +101,7 @@ def get_data_for_event(request):
 
         for year in year_choices:
             balances = Balance.objects.filter(target=int(year), societe__uid__in=uids).order_by('societe__name')
-            
+
             if balances.exists():
                 value_append = balances.annotate(
                     UID=F('uid'),
@@ -102,7 +115,7 @@ def get_data_for_event(request):
                     SOCIETE_VALUE=F('societe__value'),
                     YEAR=F('target')
                 ).values('UID', 'SOCIETE', 'SOCIETE_VALUE', 'COMPTE_SAGE', 'COMPTE_UNIF', 'DEBIT', 'CREDIT', 'SOLDE',
-                        'DESIGNATION', 'YEAR')
+                         'DESIGNATION', 'YEAR')
                 records.extend(list(value_append))
             else:
                 societes = Societe.objects.filter(active__exact=True, uid__in=uids).order_by('name')
@@ -113,8 +126,8 @@ def get_data_for_event(request):
                             conn = connexion(societe)
                             if conn is not None:
                                 with conn:
-                                    gets = get_data_sql(connection=conn, societe=societe, value=data['value'],
-                                                        target=year)
+                                    gets = get_data_sql(connection=conn, societe=societe,
+                                                        target=year, comptes=comptes)
                                     if gets is not None:
                                         records.extend(gets.to_dict(orient='records'))
                                     if gets is not None:
@@ -133,7 +146,7 @@ def get_data_for_event(request):
                     write_log(str(e))
                     print("Error in processing societes:", e)
                     return JsonResponse({'last_page': page, 'data': records}, safe=False)
-            
+
         if data['value'] == 'BLG':
             records = [{key: value for key, value in record.items()} for record in records]
         elif data['value'] == 'ALL':
@@ -260,22 +273,22 @@ def get_data_for_event(request):
                 final_records[key]['CATEGORY'] = record['CATEGORY']
                 final_records[key]['LIBEL'] = record['LIBEL']
                 if data['value'] == 'ACTIF':
-                    if conso not in  final_records[key]:
+                    if conso not in final_records[key]:
                         final_records[key][conso] = record.get(conso, 0)
                     final_records[key][conso] += record.get(conso, 0)
                     if record['AFFECTATION'] in affectation_table['ASSIGNATION']['BRUT']:
-                        final_records[key]['BRUT'] +=  record.get(conso, 0)
+                        final_records[key]['BRUT'] += record.get(conso, 0)
                     elif record['AFFECTATION'] in affectation_table['ASSIGNATION']['AMORTISSEMENT']:
-                        final_records[key]['AMORTISSEMENT'] += (-1 *  record.get(conso, 0))
+                        final_records[key]['AMORTISSEMENT'] += (-1 * record.get(conso, 0))
 
                     if final_records[key]['AFFECTATION']:
                         final_records[key]['AFFECTATION'] += ', ' + record['AFFECTATION']
                     else:
                         final_records[key]['AFFECTATION'] = record['AFFECTATION']
                 else:
-                    if conso not in  final_records[key]:
+                    if conso not in final_records[key]:
                         final_records[key][conso] = record.get(conso, 0)
-                    final_records[key][conso] += (-1 *  record.get(conso, 0))
+                    final_records[key][conso] += (-1 * record.get(conso, 0))
                     final_records[key]['AFFECTATION'] = record['AFFECTATION']
 
                 for year in record.keys():
@@ -380,7 +393,9 @@ def get_data_for_event(request):
 
                 # Order 16
                 cr_values_16 = ['CR08', 'CR09', 'CR10', 'CR11']
-                conso_sum_16 = sum(merged_records[cr].get(str(year), 0) if cr in ['CR08', 'CR11'] else -merged_records[cr].get(str(year), 0) for cr in cr_values_16 if cr in merged_records)
+                conso_sum_16 = sum(
+                    merged_records[cr].get(str(year), 0) if cr in ['CR08', 'CR11'] else -merged_records[cr].get(
+                        str(year), 0) for cr in cr_values_16 if cr in merged_records)
                 conso_sum_16 = conso_sum_11 + conso_sum_16
                 merged_records["V - RESULTAT OPERATIONNEL"] = {
                     'AFFECTATION': '-',
@@ -391,7 +406,9 @@ def get_data_for_event(request):
 
                 # Order 19
                 cr_values_19 = ['CR12', 'CR13']
-                conso_sum_19 = sum(merged_records[cr].get(str(year), 0) if cr in ['CR12'] else -merged_records[cr].get(str(year), 0) for cr in cr_values_19 if cr in merged_records)
+                conso_sum_19 = sum(
+                    merged_records[cr].get(str(year), 0) if cr in ['CR12'] else -merged_records[cr].get(str(year), 0)
+                    for cr in cr_values_19 if cr in merged_records)
                 merged_records["VI - RESULTAT FINANCIER"] = {
                     'AFFECTATION': '-',
                     'ORDER': 19,
@@ -440,14 +457,15 @@ def get_data_for_event(request):
 
                 # Order 28
                 cr_values_28 = ['CR15', 'CR16']
-                conso_sum_28 = sum(merged_records[cr].get(str(year), 0) if cr in ['CR15'] else -merged_records[cr].get(str(year), 0) for cr in cr_values_28 if cr in merged_records)
+                conso_sum_28 = sum(
+                    merged_records[cr].get(str(year), 0) if cr in ['CR15'] else -merged_records[cr].get(str(year), 0)
+                    for cr in cr_values_28 if cr in merged_records)
                 merged_records["IX - RESULTAT EXTRAORDINAIRE"] = {
                     'AFFECTATION': '-',
                     'ORDER': 28,
                     'LIBEL': "IX - RESULTAT EXTRAORDINAIRE",
                     f'{str(year)}': conso_sum_28
                 }
-
 
                 # Order 29
                 conso_sum_29 = conso_sum_25 + conso_sum_28
@@ -462,7 +480,7 @@ def get_data_for_event(request):
                 records = sorted(records, key=lambda r: r['ORDER'], reverse=False)
 
                 records = [record for record in records if record['AFFECTATION'] != '']
-        
+
     return JsonResponse({'last_page': page, 'data': records}, safe=False)
 
 
@@ -472,13 +490,14 @@ def add_data_for_event(request):
     data = json.loads(request.body)
     societes = Societe.objects.filter(active__exact=True).order_by('name')
     try:
+        comptes = get_comptes()
         for societe in societes:
             conn = None
             try:
                 conn = connexion(societe)
                 if conn is not None:
                     with conn:
-                        gets = get_data_sql(connection=conn, societe=societe, value='BLG', target=data['target'])
+                        gets = get_data_sql(connection=conn, societe=societe, comptes=comptes, target=data['target'])
                         if not gets.empty:
                             for index, row in gets.iterrows():
                                 debit = float(row.get('DEBIT', None))

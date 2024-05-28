@@ -10,6 +10,7 @@ import pandas as pd
 import pyodbc
 from django.conf import settings
 
+from app.models import Compte
 from utils.ldap import write_log
 
 
@@ -24,23 +25,15 @@ def load_affectations_json_file(filepath):
         return json.load(file)
 
 
-def get_compte_unif(comptes, societe, compte_sage):
+def get_compte_unif(comptes_df, societe, compte_sage):
     try:
-        if isinstance(compte_sage, str):
-            result = comptes.loc[
-                (comptes['SOCIETE'].str.strip() == societe) &
-                (comptes['COMPTE_SAGE'] == int(compte_sage)), 'COMPTE_UNIF'
-            ].values
-        else:
-            result = comptes.loc[
-                (comptes['SOCIETE'].str.strip() == societe) &
-                (comptes['COMPTE_SAGE'] == compte_sage), 'COMPTE_UNIF'
-            ].values
-
+        result = comptes_df.loc[
+            (comptes_df['SOCIETE'].str.strip() == societe) &
+            (comptes_df['COMPTE_SAGE'] == compte_sage), 'COMPTE_UNIF'
+        ].values
         return result[0] if len(result) > 0 else ''
     except Exception as e:
         write_log(str(e))
-        print("Erreur de recuperation !")
         return ''
 
 
@@ -62,7 +55,7 @@ def connexion(value):
     return conn
 
 
-def get_data_sql(connection, societe, value, target):
+def get_data_sql(connection, societe, comptes, target):
     df = None
     try:
         with open('config.json', 'r') as fichier:
@@ -80,7 +73,6 @@ def get_data_sql(connection, societe, value, target):
             .replace('{table}', str(societe.table)) \
             .replace('{base}', str(societe.base))
 
-        comptes = load_json_file('compte.json')
 
         if sql and sql_plan:
             with connection.cursor() as cursor:
@@ -116,7 +108,7 @@ def get_data_sql(connection, societe, value, target):
 
                         # Appliquer la fonction get_compte_unif à chaque ligne
                         df['COMPTE_UNIF'] = df.apply(
-                            lambda row: get_compte_unif(comptes=comptes, societe=row['SOCIETE'],
+                            lambda row: get_compte_unif(comptes_df=comptes, societe=row['SOCIETE'],
                                                         compte_sage=row['COMPTE_SAGE']),
                             axis=1
                         )

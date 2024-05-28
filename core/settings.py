@@ -14,20 +14,21 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv()
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+env_path = os.path.join(BASE_DIR, '.env')
+
+# Chargement des variables d'environnement à partir du fichier .env
+load_dotenv(dotenv_path=env_path)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True)
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG_VALUE') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 
 # Application definition
 
@@ -92,15 +93,13 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.setdefault("PROJECT_BASE", ''),
-        'USER': os.environ.setdefault("USER_MYSQL",''),
-        'PASSWORD': os.environ.setdefault("PASSWORD_MYSQL", ''),
-        'HOST': os.environ.setdefault("HOST_MYSQL", ''),
-        'PORT': os.environ.setdefault("PORT_MYSQL", ''),
-    },
+        'NAME': os.getenv('PROJECT_BASE'),
+        'USER': os.getenv('USER_MYSQL'),
+        'PASSWORD': os.getenv('PASSWORD_MYSQL'),
+        'HOST': os.getenv('HOST_MYSQL'),
+        'PORT': os.getenv('PORT_MYSQL'),
+    }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -142,7 +141,7 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'production')
+    STATIC_ROOT = os.path.join(BASE_DIR, os.getenv('DIRECTORY_STATIC_ROOT'))
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     CACHES = {
         "default": {

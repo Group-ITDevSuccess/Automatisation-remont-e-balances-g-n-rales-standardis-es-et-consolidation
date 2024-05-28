@@ -1,59 +1,76 @@
 {% load static %}
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-  <a class="navbar-brand" href="{% url 'app:index' %}">
-    <img src="{% static 'assets/images/inviso-group.png' %}" class="border m-0 p-0" width="40" height="40" alt="" />
-    Balance General
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <a class="navbar-brand" href="{% url 'app:index' %}">
+        <img src="{% static 'assets/images/inviso-group.png' %}" class="border m-0 p-0" width="40" height="40" alt=""/>
+        Balance General
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item {% if path == '/' %}active{% endif %}">
-        <a class="nav-link" href="{% url 'app:index' %}">Accueil <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item {% if path == '/accounts/administration/' %}active{% endif %}">
-        <a class="nav-link {% if not user.is_staff %}disabled{% endif %}" href="{% url 'auths:administration' %}">Administration</a>
-      </li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {% if path == '/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'app:index' %}">Accueil <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item {% if path == '/accounts/administration/' %}active{% endif %}">
+                <a class="nav-link {% if not user.is_staff %}disabled{% endif %}"
+                   href="{% url 'auths:administration' %}">Administration</a>
+            </li>
+        </ul>
 
-    <form class="form-inline" method="post" action="{% url 'app:index' %}">
-        {% csrf_token %}
-      <div class="form-row align-items-center">
-        <div class="col-auto">
-          <label class="sr-only" for="inlineFormInputGroup">Une Année</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Année</div>
+        <form class="form-inline" method="post" action="{% url 'app:index' %}">
+            {% csrf_token %}
+            <div class="form-row align-items-center">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Une Année</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Année</div>
+                        </div>
+                        {{ search_form.target }}
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Debut Mois</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Début</div>
+                        </div>
+                        {{ search_form.begin }}
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Fin Mois</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Fin</div>
+                        </div>
+                        {{ search_form.end }}
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-outline-success my-2 ml-2 my-sm-0" type="submit">Chercher</button>
+                </div>
             </div>
-            {{ search_form.target }}
-          </div>
-        </div>
-        <div class="col-auto">
-            <label class="sr-only" for="inlineFormInputGroup">Debut Mois</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">Début</div>
-              </div>
-              {{ search_form.begin }}
-            </div>
-          </div>
-          <div class="col-auto">
-            <label class="sr-only" for="inlineFormInputGroup">Fin Mois</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">Fin</div>
-              </div>
-              {{ search_form.end }}
-            </div>
-          </div>
-        <div class="col-auto">
-            <button class="btn btn-outline-success my-2 ml-2 my-sm-0" type="submit">Chercher</button>
-            {% if user.is_staff %}
-              <a href="/admin" class="btn btn-outline-info ml-2 my-sm-0"><i class="fas fa-cog"></i></a>
-            {% endif %}
-            <a href="{% url 'auths:logout' %}" class="btn btn-outline-danger ml-2 my-sm-0"><i class="fas fa-sign-out-alt"></i></a>
-        </div>
-      </div>
-    </form>
-  </div>
+        </form>
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <div class="nav-link" href="#">
+                    <div class="badge badge-secondary rounded-circle p-2">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="ml-2">{{ user.username }}</span>
+                    {% if user.is_staff %}
+                        <a href="/admin" class="btn btn-outline-info ml-2 my-sm-0"><i class="fas fa-cog"></i></a>
+                    {% endif %}
+                    <a href="{% url 'auths:logout' %}" class="btn btn-outline-danger ml-2 my-sm-0">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+
+            </li>
+        </ul>
+    </div>
 </nav>
