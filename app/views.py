@@ -70,69 +70,63 @@ def get_data_for_event(request):
         uids = are_valid_uuids(societes)
         print(uids)
 
+        year_choices = []
         if value in ['ACTIF', 'PASSIF', 'CN']:
-            year_choices = []
             year_choices.extend(
                 str(year) for year in range(int(data['target']), int(data['target']) - 3, -1))
-            balances = Balance.objects.filter(target__in=year_choices, societe__uid__in=uids).order_by('societe__name')
         else:
-            balances = Balance.objects.filter(target=int(data['target']), societe__uid__in=uids).order_by('societe__name')
+            year_choices.append(data['target'])
+
+        for year in year_choices:
+            balances = Balance.objects.filter(target=int(year), societe__uid__in=uids).order_by('societe__name')
             
-        if balances.exists():
-            records = balances.annotate(
-                UID=F('uid'),
-                DEBIT=F('debit'),
-                CREDIT=F('credit'),
-                SOLDE=F('montant'),
-                DESIGNATION=F('designation'),
-                COMPTE_SAGE=F('compte_sage'),
-                COMPTE_UNIF=F('compte_unif'),
-                SOCIETE=F('societe__name'),
-                SOCIETE_VALUE=F('societe__value'),
-                YEAR=F('target')
-            ).values('UID', 'SOCIETE', 'SOCIETE_VALUE', 'COMPTE_SAGE', 'COMPTE_UNIF', 'DEBIT', 'CREDIT', 'SOLDE',
-                     'DESIGNATION', 'YEAR')
-        else:
-            societes = Societe.objects.filter(active__exact=True).order_by('name')
-            try:
-                for societe in societes:
-                    conn = None
-                    try:
-                        conn = connexion(societe)
-                        if conn is not None:
-                            with conn:
-                                if value in ['ACTIF', 'PASSIF', 'CN']:
-                                    year_choices = []
-                                    year_choices.extend(
-                                        str(year) for year in range(int(data['target']), int(data['target']) - 3, -1))
-                                    for year in year_choices:
+            if balances.exists():
+                value_append = balances.annotate(
+                    UID=F('uid'),
+                    DEBIT=F('debit'),
+                    CREDIT=F('credit'),
+                    SOLDE=F('montant'),
+                    DESIGNATION=F('designation'),
+                    COMPTE_SAGE=F('compte_sage'),
+                    COMPTE_UNIF=F('compte_unif'),
+                    SOCIETE=F('societe__name'),
+                    SOCIETE_VALUE=F('societe__value'),
+                    YEAR=F('target')
+                ).values('UID', 'SOCIETE', 'SOCIETE_VALUE', 'COMPTE_SAGE', 'COMPTE_UNIF', 'DEBIT', 'CREDIT', 'SOLDE',
+                        'DESIGNATION', 'YEAR')
+                records.extend(list(value_append))
+            else:
+                societes = Societe.objects.filter(active__exact=True, uid__in=uids).order_by('name')
+                try:
+                    for societe in societes:
+                        conn = None
+                        try:
+                            conn = connexion(societe)
+                            if conn is not None:
+                                with conn:
+                                    if value in ['ACTIF', 'PASSIF', 'CN']:
                                         gets = get_data_sql(connection=conn, societe=societe, value=data['value'],
                                                             target=year)
                                         if gets is not None:
                                             records.extend(gets.to_dict(orient='records'))
-                                else:
-                                    gets = get_data_sql(connection=conn, societe=societe, value=data['value'],
-                                                        target=data['target'])
+
                                     if gets is not None:
-                                        records.extend(gets.to_dict(orient='records'))
+                                        pass
+                            else:
+                                print("Connection not established for:", societe.name)
 
-                                if gets is not None:
-                                    pass
-                        else:
-                            print("Connection not established for:", societe.name)
+                        except Exception as e:
+                            write_log(str(e))
+                            pass
+                        finally:
+                            if conn is not None:
+                                conn.close()
 
-                    except Exception as e:
-                        write_log(str(e))
-                        pass
-                    finally:
-                        if conn is not None:
-                            conn.close()
-
-            except Exception as e:
-                write_log(str(e))
-                print("Error in processing societes:", e)
-                return JsonResponse({'last_page': page, 'data': records}, safe=False)
-        
+                except Exception as e:
+                    write_log(str(e))
+                    print("Error in processing societes:", e)
+                    return JsonResponse({'last_page': page, 'data': records}, safe=False)
+            
         if data['value'] == 'BLG':
             records = [{key: value for key, value in record.items()} for record in records]
         elif data['value'] == 'ALL':

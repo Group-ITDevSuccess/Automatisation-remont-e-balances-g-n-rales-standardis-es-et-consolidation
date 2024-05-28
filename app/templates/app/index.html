@@ -262,6 +262,8 @@
         
             return formattedEuro;
         }
+
+        let communstyle = "background-color: lightgreen; border-radius: 0px; color: red !important;"
         
         let config = {
             layout: {
@@ -421,12 +423,15 @@
                     event.done(() => {
                         let selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
                         let toolbarItem;
+                        //let action = query(event.target).attr('action')
+                        //console.log(action)
                         if (event.detail.item.checked) {
                             if (!selectedItems.includes(event.target)) {
                                 selectedItems.push(event.target);
                                 toolbarItem = w2ui.toolbar.get(event.target);
                                 if (toolbarItem) {
                                     toolbarItem.checked = true; 
+                                    toolbarItem.style  = communstyle;
                                     toolbarItem.icon = 'w2ui-icon-check';
                                 }
                             }
@@ -437,11 +442,13 @@
                             toolbarItem = w2ui.toolbar.get(event.target);
                             if (toolbarItem) {
                                 toolbarItem.checked = false;
+                                toolbarItem.color  = null
                                 toolbarItem.icon = 'w2ui-icon-cross';
                             }
                         }
                         localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
                         w2ui.toolbar.refresh();
+                        console.log(event)
                     });
                 },
                 onRefresh(event) {
@@ -450,7 +457,8 @@
                     selectedItems.forEach(item => {
                         let toolbarItem = w2ui.toolbar.get(item);
                         if (toolbarItem) {
-                            toolbarItem.checked = true; // Mark as checked
+                            toolbarItem.checked = true;
+                            toolbarItem.style  = communstyle;
                             toolbarItem.icon = 'w2ui-icon-check';
                         }
                     });
