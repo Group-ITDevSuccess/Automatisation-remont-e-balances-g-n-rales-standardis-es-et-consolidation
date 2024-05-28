@@ -48,7 +48,10 @@
           </div>
         <div class="col-auto">
             <button class="btn btn-outline-success my-2 ml-2 my-sm-0" type="submit">Chercher</button>
-            <a href="{% url 'auths:logout' %}" class="btn btn-outline-danger ml-2 my-sm-0" type="submit"><i class="fas fa-sign-out-alt"></i></a>
+            {% if user.is_staff %}
+              <a href="/admin" class="btn btn-outline-info ml-2 my-sm-0"><i class="fas fa-cog"></i></a>
+            {% endif %}
+            <a href="{% url 'auths:logout' %}" class="btn btn-outline-danger ml-2 my-sm-0"><i class="fas fa-sign-out-alt"></i></a>
         </div>
       </div>
     </form>

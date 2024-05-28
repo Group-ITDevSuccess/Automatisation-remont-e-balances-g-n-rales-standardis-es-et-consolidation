@@ -98,7 +98,7 @@
                 groupStartOpen: open,
                 printRowRange: "all",
                 printHeader: `<h1>Representation du ${id} du {{target}} au {{target_3}}</h1>`,
-                printFooter: `<h2>{{target}} au {{target_3}}</h2>`,
+                printFooter: `Societes Concernés: ${localStorage.getItem('selectedItems')}`,
                 footer: [ // Ajouter une ligne de total
                     { title: "Total",
                         // Calculer la somme totale de chaque agrégat
@@ -106,6 +106,7 @@
                         {
                             field: "value",
                             summaries: [function (column) {
+                                console.log(column)
                                 return column.sum().toLocaleString();
                             }]
                         },
@@ -154,7 +155,6 @@
                     return value;
                 },
                 downloadEncoder:function(fileContents, mimeType){
-                
                     return new Blob([fileContents], {type:mimeType});
                 },
                 columnDefaults: {
@@ -469,7 +469,7 @@
                 {title: "COMPTE SAGE", hozAlign: "right", field: "COMPTE_SAGE", width: 125, frozen: true, headerFilter:"input", download:true},
                 {title: "COMPTE UNIF", hozAlign: "right", field: "COMPTE_UNIF", width: 125, headerFilter:"input", download:true},
                 {title: "YEAR", field: "YEAR", visible: false, download:true},
-                {title: "DESIGNATION COMPTE", field: "DESIGNATION", width: 300, download:true,},
+                {title: "DESIGNATION COMPTE", field: "DESIGNATION", width: 300, download:true, headerFilter:"input"},
                 {
                     title: "SOLDE DEBIT",
                     field: "DEBIT",
@@ -532,7 +532,7 @@
                 {title: "C3", field: "C3", width: 75, frozen: true, headerFilter:"input"},
                 {title: "Compte", field: "COMPTE", width: 100, hozAlign: "right", frozen: true, headerFilter:"input"},
                 {title: "Affectation", field: "AFFECTATION", width: 100, frozen: true, headerFilter:"input"},
-                {title: "Désignation", field: "DESIGNATION", width: 250, frozen: true},
+                {title: "Désignation", field: "DESIGNATION", width: 250, frozen: true, headerFilter:"input"},
                 {
                     title: "AGRIVET ANTSIRABE", field: "AGRIVET ANTSIRABE", hozAlign: "right",
                     formatter: "money",
@@ -1158,7 +1158,7 @@
                     {title: "AFFECTATION", field: "AFFECTATION", frozen: true, headerFilter:"input"},
                     {title: "GROUPE", field: "GROUPE", visible: false},
                     {title: "CATEGORY", field: "CATEGORY", visible: false},
-                    {title: "ACTIF", field: "LIBEL"},
+                    {title: "ACTIF", field: "LIBEL", headerFilter:"input"},
                     {title: "NOTE", field: "NOTE", width: 100},
                     {
                         title: "31/12/"+target, columns: [
@@ -1260,13 +1260,12 @@
                             precision: 2,
                         }
                     }
-
                 ],
                 PASSIF: [
                     {title: "AFFECTATION", field: "AFFECTATION", frozen: true, headerFilter:"input"},
                     {title: "GROUPE", field: "GROUPE", visible: false},
                     {title: "CATEGORY", field: "CATEGORY", visible: false},
-                    {title: "ACTIF", field: "LIBEL"},
+                    {title: "PASSIF", field: "LIBEL", headerFilter:"input"},
                     {title: "NOTE", field: "NOTE", width: 100},
                     {
                         title: "31/12/"+target, field: target, sorter: "number",
@@ -1337,7 +1336,7 @@
             },
             CN: [
                 {title: "", field: "AFFECTATION", width: 75, frozen: true, headerSort:false, headerFilter:"input"},
-                {title: "LIBEL", field: "LIBEL", formatter:function(cell, formatterParams){
+                {title: "LIBEL", field: "LIBEL", headerFilter:"input", formatter:function(cell, formatterParams){
                     let data = cell.getData();
                     let value = cell.getValue();
                     if(data.AFFECTATION === '-') {
