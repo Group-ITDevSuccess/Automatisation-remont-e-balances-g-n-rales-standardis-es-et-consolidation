@@ -71,8 +71,7 @@
         } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.min.js' %}";
 
 
-
-        let CreateTable = function (id, columns, groupBy, showGroup, open, sorter='', formatter=null) {
+        let CreateTable = function (id, columns, groupBy, showGroup, open, sorter = '', formatter = null) {
             let table = new Tabulator('#' + id, {
                 height: '80vh',
                 editorEmptyValue: '',
@@ -100,17 +99,18 @@
                 printHeader: `<h1>Representation du ${id} du {{target}} au {{target_3}}</h1>`,
                 printFooter: `Societes Concernés: ${localStorage.getItem('selectedItems')}`,
                 footer: [ // Ajouter une ligne de total
-                    { title: "Total",
+                    {
+                        title: "Total",
                         // Calculer la somme totale de chaque agrégat
-                    columns: [
-                        {
-                            field: "value",
-                            summaries: [function (column) {
-                                console.log(column)
-                                return column.sum().toLocaleString();
-                            }]
-                        },
-                    ]
+                        columns: [
+                            {
+                                field: "value",
+                                summaries: [function (column) {
+                                    console.log(column)
+                                    return column.sum().toLocaleString();
+                                }]
+                            },
+                        ]
                     }
                 ],
                 footerElement: "<button type='button' class='btn btn-warning btn-sm mr-2' id='reload-table' onClick=''><i class='fas fa-sync-alt'></i></button>",
@@ -148,14 +148,14 @@
                 placeholderHeaderFilter: 'Aucun Donnée Correspondent',
                 groupClosedShowCalcs: showGroup,
                 headerSort: true,
-                groupHeader: function(value, count, data, group){
+                groupHeader: function (value, count, data, group) {
                     return value + "<span style='color:#d00; margin-left:10px;'>(" + count + " item)</span>";
                 },
-                groupHeaderDownload: function(value, count, data, group){
+                groupHeaderDownload: function (value, count, data, group) {
                     return value;
                 },
-                downloadEncoder:function(fileContents, mimeType){
-                    return new Blob([fileContents], {type:mimeType});
+                downloadEncoder: function (fileContents, mimeType) {
+                    return new Blob([fileContents], {type: mimeType});
                 },
                 columnDefaults: {
                     tooltip: true,
@@ -167,37 +167,39 @@
                 columns: columns,
                 groupToggleElement: 'header'
             })
-            
-            document.getElementById("download-csv").addEventListener("click", function(){
+
+            document.getElementById("download-csv").addEventListener("click", function () {
                 table.download("csv", `${id}-{{target}}.csv`);
             });
 
             //trigger download of data.json file
-            document.getElementById("download-json").addEventListener("click", function(){
+            document.getElementById("download-json").addEventListener("click", function () {
                 table.download("json", `${id}-{{target}}.json`);
             });
 
             //trigger download of data.xlsx file
-            document.getElementById("download-xlsx").addEventListener("click", function(){
-                table.download("xlsx", `${id}-{{target}}.xlsx`,{compress:false, sheetName:id, documentProcessing:function(workbook){
-                    //workbook - sheetJS workbook object
-            
-                    //set some properties on the workbook file
-                    workbook.Props = {
-                        Title: `${id} du {{target}}`,
-                        Subject: `${id}`,
-                        CreatedDate: new Date()
-                    };
-            
-                    return workbook;
-                }},);
+            document.getElementById("download-xlsx").addEventListener("click", function () {
+                table.download("xlsx", `${id}-{{target}}.xlsx`, {
+                    compress: false, sheetName: id, documentProcessing: function (workbook) {
+                        //workbook - sheetJS workbook object
+
+                        //set some properties on the workbook file
+                        workbook.Props = {
+                            Title: `${id} du {{target}}`,
+                            Subject: `${id}`,
+                            CreatedDate: new Date()
+                        };
+
+                        return workbook;
+                    }
+                },);
             });
 
             //trigger download of data.pdf file
-            document.getElementById("download-pdf").addEventListener("click", function(){
+            document.getElementById("download-pdf").addEventListener("click", function () {
                 table.download("pdf", `${id}-{{target}}.pdf`, {
-                    orientation:"portrait",
-                    title:`Representation du ${id} du {{target}} au {{target_3}}`,
+                    orientation: "portrait",
+                    title: `Representation du ${id} du {{target}} au {{target_3}}`,
                 });
             });
 
@@ -205,7 +207,7 @@
 
         function configTable(event) {
             let id;
-            let table =  `
+            let table = `
                 <div class="mb-2">
                     <button id="download-csv" class="btn btn-secondary">Download CSV</button>
                     <button id="download-json" class="btn btn-danger">Download JSON</button>
@@ -214,7 +216,7 @@
                 </div>
             `;
 
-        
+
             switch (event.target) {
                 case 1:
                     id = 'BLG'
@@ -240,10 +242,10 @@
                     id = 'BLG';
                     table += '<main id="' + id + '" style="padding: 10px"></main>';
             }
-        
+
             return table;
         }
-        
+
         const target = "{{ target }}";
         const target1 = "{{ target_1 }}";
         const target2 = "{{ target_2 }}";
@@ -253,18 +255,22 @@
 
         function euroFormatter(cell, formatterParams, onRendered) {
             let value = cell.getData()[formatterParams.field];
-            let euroValue = value / exchangeRate;
-        
+            let euroValue = 0
+            if (value) {
+                euroValue = value / exchangeRate;
+            }
+             
+
             const formattedEuro = euroValue.toLocaleString('fr-FR', {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
             });
-        
+
             return formattedEuro;
         }
 
         let communstyle = "font-weight: bold; color: green !important;"
-        
+
         let config = {
             layout: {
                 name: 'layout',
@@ -372,8 +378,8 @@
                             target = config.CN
                             open = true
                             order = ['ORDER']
-                            formatter = function(row){
-                                
+                            formatter = function (row) {
+
                                 let data = row.getData();
                                 if (data.AFFECTATION === "-") {
                                     row.getElement().style.backgroundColor = "#1e3b20";
@@ -405,10 +411,10 @@
                 style: 'margin: -2px 3px; padding: 2px; border-radius: 4px; border: #9bb5ff; border-width: 1px 2px; border-style: solid;',
                 items: [
                     {% for societe in societes %}
-                        { 
-                            type: 'check', 
-                            id: '{{ societe.uid }}', 
-                            text: '{{ societe.name }}', 
+                        {
+                            type: 'check',
+                            id: '{{ societe.uid }}',
+                            text: '{{ societe.name }}',
                             icon: 'w2ui-icon-cross',
                             overlay: {
                                 transparent: false,
@@ -430,8 +436,8 @@
                                 selectedItems.push(event.target);
                                 toolbarItem = w2ui.toolbar.get(event.target);
                                 if (toolbarItem) {
-                                    toolbarItem.checked = true; 
-                                    toolbarItem.style  = communstyle;
+                                    toolbarItem.checked = true;
+                                    toolbarItem.style = communstyle;
                                     toolbarItem.icon = 'w2ui-icon-check';
                                 }
                             }
@@ -442,7 +448,7 @@
                             toolbarItem = w2ui.toolbar.get(event.target);
                             if (toolbarItem) {
                                 toolbarItem.checked = false;
-                                toolbarItem.style  = null
+                                toolbarItem.style = null
                                 toolbarItem.icon = 'w2ui-icon-cross';
                             }
                         }
@@ -457,19 +463,34 @@
                         let toolbarItem = w2ui.toolbar.get(item);
                         if (toolbarItem) {
                             toolbarItem.checked = true;
-                            toolbarItem.style  = communstyle;
+                            toolbarItem.style = communstyle;
                             toolbarItem.icon = 'w2ui-icon-check';
                         }
                     });
-            
+
                 }
             },
             BLG: [
-                {title: "SOCIETE", field: "SOCIETE", width: 125, visible: false, headerFilter:"input", download:true},
-                {title: "COMPTE SAGE", hozAlign: "right", field: "COMPTE_SAGE", width: 125, frozen: true, headerFilter:"input", download:true},
-                {title: "COMPTE UNIF", hozAlign: "right", field: "COMPTE_UNIF", width: 125, headerFilter:"input", download:true},
-                {title: "YEAR", field: "YEAR", visible: false, download:true},
-                {title: "DESIGNATION COMPTE", field: "DESIGNATION", width: 300, download:true, headerFilter:"input"},
+                {title: "SOCIETE", field: "SOCIETE", width: 125, visible: false, headerFilter: "input", download: true},
+                {
+                    title: "COMPTE SAGE",
+                    hozAlign: "right",
+                    field: "COMPTE_SAGE",
+                    width: 125,
+                    frozen: true,
+                    headerFilter: "input",
+                    download: true
+                },
+                {
+                    title: "COMPTE UNIF",
+                    hozAlign: "right",
+                    field: "COMPTE_UNIF",
+                    width: 125,
+                    headerFilter: "input",
+                    download: true
+                },
+                {title: "YEAR", field: "YEAR", visible: false, download: true},
+                {title: "DESIGNATION COMPTE", field: "DESIGNATION", width: 300, download: true, headerFilter: "input"},
                 {
                     title: "SOLDE DEBIT",
                     field: "DEBIT",
@@ -507,7 +528,7 @@
                     }
                 },
                 {
-                    title: "SOLDE 31-12-"+target,
+                    title: "SOLDE 31-12-" + target,
                     field: "SOLDE",
                     width: 150,
                     frozen: true,
@@ -527,28 +548,28 @@
                 },
             ],
             ALL: [
-                {title: "C1", field: "C1", width: 75, frozen: true, headerFilter:"input"},
-                {title: "C2", field: "C2", width: 75, frozen: true, headerFilter:"input"},
-                {title: "C3", field: "C3", width: 75, frozen: true, headerFilter:"input"},
-                {title: "Compte", field: "COMPTE", width: 100, hozAlign: "right", frozen: true, headerFilter:"input"},
-                {title: "Affectation", field: "AFFECTATION", width: 100, frozen: true, headerFilter:"input"},
-                {title: "Désignation", field: "DESIGNATION", width: 250, frozen: true, headerFilter:"input"},
+                {title: "C1", field: "C1", width: 75, frozen: true, headerFilter: "input"},
+                {title: "C2", field: "C2", width: 75, frozen: true, headerFilter: "input"},
+                {title: "C3", field: "C3", width: 75, frozen: true, headerFilter: "input"},
+                {title: "Compte", field: "COMPTE", width: 100, hozAlign: "right", frozen: true, headerFilter: "input"},
+                {title: "Affectation", field: "AFFECTATION", width: 100, frozen: true, headerFilter: "input"},
+                {title: "Désignation", field: "DESIGNATION", width: 250, frozen: true, headerFilter: "input"},
                 {% for societe in societes %}
-                {
-                    title: "{{societe.name}}", field: "{{societe.value}}", hozAlign: "right",
-                    formatter: "money",
-                    sorter: "number",
-                    bottomCalc: "sum",
-                    bottomCalcParams: {precision: 2},
-                    formatterParams: {
-                        decimal: ",",
-                        thousand: " ",
-                        symbol: " ",
-                        symbolAfter: "p",
-                        negativeSign: false,
-                        precision: 2,
-                    }
-                },
+                    {
+                        title: "{{societe.name}}", field: "{{societe.value}}", hozAlign: "right",
+                        formatter: "money",
+                        sorter: "number",
+                        bottomCalc: "sum",
+                        bottomCalcParams: {precision: 2},
+                        formatterParams: {
+                            decimal: ",",
+                            thousand: " ",
+                            symbol: " ",
+                            symbolAfter: "p",
+                            negativeSign: false,
+                            precision: 2,
+                        }
+                    },
                 {% endfor %}
                 {
                     title: "CONSO",
@@ -571,13 +592,13 @@
             ],
             BILAN: {
                 ACTIF: [
-                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true, headerFilter:"input"},
+                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true, headerFilter: "input"},
                     {title: "GROUPE", field: "GROUPE", visible: false},
                     {title: "CATEGORY", field: "CATEGORY", visible: false},
-                    {title: "ACTIF", field: "LIBEL", headerFilter:"input"},
+                    {title: "ACTIF", field: "LIBEL", headerFilter: "input"},
                     {title: "NOTE", field: "NOTE", width: 100},
                     {
-                        title: "31/12/"+target, columns: [
+                        title: "31/12/" + target, columns: [
                             {
                                 title: "BRUT", field: "BRUT", sorter: "number",
                                 bottomCalc: "sum",
@@ -628,209 +649,116 @@
                             },
                         ],
                     },
-                    {
-                        title: "31/12/"+target1, field: target1, sorter: "number",
-                        bottomCalc: "sum",
-                        bottomCalcParams: {precision: 2},
-                        width: 150,
-                        hozAlign: "right",
-                        formatter: "money",
-                        formatterParams: {
-                            decimal: ",",
-                            thousand: " ",
-                            symbol: " ",
-                            symbolAfter: "p",
-                            negativeSign: false,
-                            precision: 2,
-                        }
-                    },
-                    {
-                        title: "31/12/"+target2, field:target2, sorter: "number",
-                        bottomCalc: "sum",
-                        bottomCalcParams: {precision: 2},
-                        width: 150,
-                        hozAlign: "right",
-                        formatter: "money",
-                        formatterParams: {
-                            decimal: ",",
-                            thousand: " ",
-                            symbol: " ",
-                            symbolAfter: "p",
-                            negativeSign: false,
-                            precision: 2,
-                        }
-                    },
-                    {
-                        title: "31/12/"+target3, field: target3, sorter: "number",
-                        bottomCalc: "sum",
-                        bottomCalcParams: {precision: 2},
-                        width: 150,
-                        hozAlign: "right",
-                        formatter: "money",
-                        formatterParams: {
-                            decimal: ",",
-                            thousand: " ",
-                            symbol: " ",
-                            symbolAfter: "p",
-                            negativeSign: false,
-                            precision: 2,
-                        }
-                    }
+                    {% for t in targets %}
+                        {% if t != target %}
+                            {
+                                title: "31/12/{{ t }}", field: '{{ t }}', sorter: "number",
+                                bottomCalc: "sum",
+                                bottomCalcParams: {precision: 2},
+                                width: 150,
+                                hozAlign: "right",
+                                formatter: "money",
+                                formatterParams: {
+                                    decimal: ",",
+                                    thousand: " ",
+                                    symbol: " ",
+                                    symbolAfter: "p",
+                                    negativeSign: false,
+                                    precision: 2,
+                                }
+                            },
+                        {% endif %}
+                    {% endfor %}
                 ],
                 PASSIF: [
-                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true, headerFilter:"input"},
+                    {title: "AFFECTATION", field: "AFFECTATION", frozen: true, headerFilter: "input"},
                     {title: "GROUPE", field: "GROUPE", visible: false},
                     {title: "CATEGORY", field: "CATEGORY", visible: false},
-                    {title: "PASSIF", field: "LIBEL", headerFilter:"input"},
+                    {title: "PASSIF", field: "LIBEL", headerFilter: "input"},
                     {title: "NOTE", field: "NOTE", width: 100},
-                    {
-                        title: "31/12/"+target, field: target, sorter: "number",
-                        bottomCalc: "sum",
-                        bottomCalcParams: {precision: 2},
-                        width: 150,
-                        hozAlign: "right",
-                        formatter: "money",
-                        formatterParams: {
-                            decimal: ",",
-                            thousand: " ",
-                            symbol: " ",
-                            symbolAfter: "p",
-                            negativeSign: false,
-                            precision: 2,
-                        }
-                    },
-                    {
-                        title: "31/12/"+target1, field: target1, sorter: "number",
-                        bottomCalc: "sum",
-                        bottomCalcParams: {precision: 2},
-                        width: 150,
-                        hozAlign: "right",
-                        formatter: "money",
-                        formatterParams: {
-                            decimal: ",",
-                            thousand: " ",
-                            symbol: " ",
-                            symbolAfter: "p",
-                            negativeSign: false,
-                            precision: 2,
-                        }
-                    },
-                    {
-                        title: "31/12/"+target2, field: target2, sorter: "number",
-                        bottomCalc: "sum",
-                        bottomCalcParams: {precision: 2},
-                        width: 150,
-                        hozAlign: "right",
-                        formatter: "money",
-                        formatterParams: {
-                            decimal: ",",
-                            thousand: " ",
-                            symbol: " ",
-                            symbolAfter: "p",
-                            negativeSign: false,
-                            precision: 2,
-                        }
-                    },
-                    {
-                        title: "31/12/"+target3, field: target3, sorter: "number",
-                        bottomCalc: "sum",
-                        bottomCalcParams: {precision: 2},
-                        width: 150,
-                        hozAlign: "right",
-                        formatter: "money",
-                        formatterParams: {
-                            decimal: ",",
-                            thousand: " ",
-                            symbol: " ",
-                            symbolAfter: "p",
-                            negativeSign: false,
-                            precision: 2,
-                        }
-                    },
+                    {% for target in targets %}
+                        {
+                            title: "31/12/{{ target }}", field: '{{ target }}', sorter: "number",
+                            bottomCalc: "sum",
+                            bottomCalcParams: {precision: 2},
+                            width: 150,
+                            hozAlign: "right",
+                            formatter: "money",
+                            formatterParams: {
+                                decimal: ",",
+                                thousand: " ",
+                                symbol: " ",
+                                symbolAfter: "p",
+                                negativeSign: false,
+                                precision: 2,
+                            }
+                        },
+                    {% endfor %}
 
                 ]
             },
             CN: [
-                {title: "", field: "AFFECTATION", width: 75, frozen: true, headerSort:false, headerFilter:"input"},
-                {title: "LIBEL", field: "LIBEL", headerFilter:"input", formatter:function(cell, formatterParams){
-                    let data = cell.getData();
-                    let value = cell.getValue();
-                    if(data.AFFECTATION === '-') {
-                        return "<span style='color:#3FB449; font-weight:bold;'>" + value + "</span>";
-                    } else {
-                        return value;
-                    }
-                }},
-                {title: "ORDER", field: "ORDER", visible: false},
-                {title: "31/12/" + target, columns: [
-                    {
-                        title: "MGA", field: target, sorter: "number",
-                        width: 150,
-                        hozAlign: "right",
-                        formatter: "money",
-                        formatterParams: {
-                            decimal: ",",
-                            thousand: " ",
-                            symbol: " ",
-                            symbolAfter: "p",
-                            negativeSign: false,
-                            precision: 2,
+                {title: "", field: "AFFECTATION", width: 75, frozen: true, headerSort: false, headerFilter: "input"},
+                {
+                    title: "LIBEL", field: "LIBEL", headerFilter: "input", formatter: function (cell, formatterParams) {
+                        let data = cell.getData();
+                        let value = cell.getValue();
+                        if (data.AFFECTATION === '-') {
+                            return "<span style='color:#3FB449; font-weight:bold;'>" + value + "</span>";
+                        } else {
+                            return value;
                         }
-                    },
-                    {
-                        title: "EURO", field: target, sorter: "number",
-                        width: 150,
-                        hozAlign: "right",
-                        formatter: euroFormatter,
-                        formatterParams: {
-                            field: target,
+                    }
+                },
+                {title: "ORDER", field: "ORDER", visible: false},
+                {
+                    title: "31/12/" + target, columns: [
+                        {
+                            title: "MGA", field: target, sorter: "number",
+                            width: 150,
+                            hozAlign: "right",
+                            formatter: "money",
+                            formatterParams: {
+                                decimal: ",",
+                                thousand: " ",
+                                symbol: " ",
+                                symbolAfter: "p",
+                                negativeSign: false,
+                                precision: 2,
+                            }
                         },
-                    },
-                ]},      
-                {
-                    title: "31/12/" + target1, field: target1, sorter: "number",
-                    bottomCalc: "sum",
-                    bottomCalcParams: {precision: 2},
-                    width: 150,
-                    hozAlign: "right",
-                    formatter: "money",
-                    formatterParams: {
-                        decimal: ",",
-                        thousand: " ",
-                        symbol: " ",
-                        symbolAfter: "p",
-                        negativeSign: false,
-                        precision: 2,
-                    }
+                        {
+                            title: "EURO", field: target, sorter: "number",
+                            width: 150,
+                            hozAlign: "right",
+                            formatter: euroFormatter,
+                            formatterParams: {
+                                field: target,
+                            },
+                        },
+                    ]
                 },
-                {
-                    title: "31/12/" + target2, field: target2, sorter: "number",
-                    width: 150,
-                    hozAlign: "right",
-                    formatter: "money",
-                    formatterParams: {
-                        decimal: ",",
-                        thousand: " ",
-                        symbol: " ",
-                        symbolAfter: "p",
-                        negativeSign: false,
-                        precision: 2,
-                    }
-                },
-                {
-                    title: "31/12/" + target3, field: target3, sorter: "number",
-                    width: 150,
-                    hozAlign: "right",
-                    formatter: "money",
-                    formatterParams: {
-                        decimal: ",",
-                        thousand: " ",
-                        symbol: " ",
-                        symbolAfter: "p",
-                        negativeSign: false,
-                        precision: 2,
-                    }
-                },
+                {% for t in targets %}
+                    {% if t != target %}
+                        {
+                            title: "31/12/{{ t }}", field: '{{ t }}',
+                            sorter: "number",
+                            bottomCalc: "sum",
+                            bottomCalcParams: {precision: 2},
+                            width: 150,
+                            hozAlign: "right",
+                            formatter: "money",
+                            formatterParams: {
+                                decimal: ",",
+                                thousand: " ",
+                                symbol: " ",
+                                symbolAfter: "p",
+                                negativeSign: false,
+                                precision: 2,
+                            }
+                        },
+                    {% endif %}
+                {% endfor %}
             ]
         }
 
