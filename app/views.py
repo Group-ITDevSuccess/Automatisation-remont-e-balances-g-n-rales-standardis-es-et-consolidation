@@ -19,19 +19,25 @@ from utils.script import are_valid_uuids, connexion, get_data_sql, load_affectat
 def index(request):
     target = '---'
     saved = False
+    targets = ['20..', '20..', '20..']
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
             target = form.cleaned_data['target']
             saved = Balance.objects.filter(target=int(target)).exists()
+            targets = []
+            targets.extend(
+                str(year) for year in range(int(target), int(target) - 3, -1))
     else:
         form = SearchForm()
+    
     return render(request, 'app/index.html', {
         'path': request.path,
         'target': target,
         'target_1': str(int(target) - 1) if target != '---' else '',
         'target_2': str(int(target) - 2) if target != '---' else '',
         'target_3': str(int(target) - 3) if target != '---' else '',
+        'targets': targets,
         'saved': saved,
         'search_form': form,
         'societes': Societe.objects.filter(active=True).order_by('name')
