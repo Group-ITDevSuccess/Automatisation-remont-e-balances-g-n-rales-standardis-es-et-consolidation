@@ -68,9 +68,7 @@
             w2popup,
             w2ui,
             w2form
-        } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.min.js' %}";
-
-
+        } from "{% static 'dist/w2ui-2.0/w2ui-2.0.es6.js' %}";
 
         let CreateTable = function (id, columns, groupBy, showGroup, open, sorter='', formatter=null) {
             let table = new Tabulator('#' + id, {
@@ -264,7 +262,7 @@
         }
 
         let communstyle = "font-weight: bold; color: green !important;"
-        
+
         let config = {
             layout: {
                 name: 'layout',
@@ -399,56 +397,87 @@
                     CreateTable(event.object.text, target, groupBy, showGroup, open, order, formatter)
                 }
             },
-            topbar: {
+            toolbar: {
                 box: '#toolbar',
                 name: 'toolbar',
-                style: 'margin: -2px 3px; padding: 2px; border-radius: 4px; border: #9bb5ff; border-width: 1px 2px; border-style: solid;',
                 items: [
-                    {% for societe in societes %}
-                        { 
-                            type: 'check', 
-                            id: '{{ societe.uid }}', 
-                            text: '{{ societe.name }}', 
-                            icon: 'w2ui-icon-cross',
-                            overlay: {
-                                transparent: false,
-                                onLiveUpdate(event) {
-                                    console.log(event.detail.item);
-                                }
-                            }
-                        },
-                    {% endfor %}
+                    { type: 'button', id: 'all', text: 'Tous les sociétes', icon: 'w2ui-icon-paste' },
+                    { type: 'break' },
+                    {
+                        type: 'group',
+                        id: 'group1',
+                        overflow: true,
+                        style: 'margin: -2px 3px; padding: 2px; border-radius: 4px; border: #9bb5ff; border-width: 1px 2px; border-style: solid;',
+                        items: [
+                            {% for societe in societes %}
+                                {
+                                    type: 'check',
+                                    id: '{{ societe.uid }}',
+                                    text: '{{ societe.name }}',
+                                    icon: 'w2ui-icon-cross',
+                                    overlay: {
+                                        transparent: false,
+                                        onLiveUpdate(event) {
+                                            console.log(event.detail.item);
+                                        }
+                                    }
+                                },
+                            {% endfor %}
+                        ]
+                    },
                 ],
                 onClick(event) {
                     event.done(() => {
                         let selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
                         let toolbarItem;
-                        //let action = query(event.target).attr('action')
-                        //console.log(action)
-                        if (event.detail.item.checked) {
-                            if (!selectedItems.includes(event.target)) {
-                                selectedItems.push(event.target);
+                        let allChecked = selectedItems.length === [{{ societes|length }}][0];
+                        if (event.target === 'all') {
+                            w2ui.toolbar.items[2].items.forEach(item => {
+                                toolbarItem = w2ui.toolbar.get(item.id);
+                                if (allChecked) {
+                                    toolbarItem.checked = false;
+                                    toolbarItem.style = null;
+                                    toolbarItem.icon = 'w2ui-icon-cross';
+                                    selectedItems = [];
+                                } else {
+                                    toolbarItem.checked = true;
+                                    toolbarItem.style = communstyle;
+                                    toolbarItem.icon = 'w2ui-icon-check';
+                                    if (!selectedItems.includes(item.id)) {
+                                        selectedItems.push(item.id);
+                                    }
+                                }
+                                localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+                                w2ui.toolbar.refresh();
+                            });
+                            localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+                            w2ui.toolbar.refresh();
+
+                        } else {
+                            if (event.detail.item.checked) {
+                                if (!selectedItems.includes(event.target)) {
+                                    selectedItems.push(event.target);
+                                    toolbarItem = w2ui.toolbar.get(event.target);
+                                    if (toolbarItem) {
+                                        toolbarItem.checked = true;
+                                        toolbarItem.style = communstyle;
+                                        toolbarItem.icon = 'w2ui-icon-check';
+                                    }
+                                }
+                                w2utils.notify(event.detail.item.text + " Sélectionné");
+                            } else {
+                                selectedItems = selectedItems.filter(item => item !== event.target);
+                                w2utils.notify(event.detail.item.text + " Désélectionné");
                                 toolbarItem = w2ui.toolbar.get(event.target);
                                 if (toolbarItem) {
-                                    toolbarItem.checked = true; 
-                                    toolbarItem.style  = communstyle;
-                                    toolbarItem.icon = 'w2ui-icon-check';
+                                    toolbarItem.checked = false;
+                                    toolbarItem.style = null;
+                                    toolbarItem.icon = 'w2ui-icon-cross';
                                 }
                             }
-                            w2utils.notify(event.detail.item.text + " Sélectionné");
-                        } else {
-                            selectedItems = selectedItems.filter(item => item !== event.target);
-                            w2utils.notify(event.detail.item.text + " Désélectionné");
-                            toolbarItem = w2ui.toolbar.get(event.target);
-                            if (toolbarItem) {
-                                toolbarItem.checked = false;
-                                toolbarItem.style  = null
-                                toolbarItem.icon = 'w2ui-icon-cross';
-                            }
+                            localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+                            w2ui.toolbar.refresh();
                         }
-                        localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
-                        w2ui.toolbar.refresh();
-                        console.log(event)
                     });
                 },
                 onRefresh(event) {
@@ -457,13 +486,13 @@
                         let toolbarItem = w2ui.toolbar.get(item);
                         if (toolbarItem) {
                             toolbarItem.checked = true;
-                            toolbarItem.style  = communstyle;
+                            toolbarItem.style = communstyle;
                             toolbarItem.icon = 'w2ui-icon-check';
                         }
                     });
-            
                 }
             },
+
             BLG: [
                 {title: "SOCIETE", field: "SOCIETE", width: 125, visible: false, headerFilter:"input", download:true},
                 {title: "COMPTE SAGE", hozAlign: "right", field: "COMPTE_SAGE", width: 125, frozen: true, headerFilter:"input", download:true},
@@ -837,11 +866,13 @@
 
         let layout = new w2layout(config.layout);
         let sidebar = new w2sidebar(config.sidebar);
-        let topbar = new w2toolbar(config.topbar);
+        let toolbar = new w2toolbar(config.toolbar);
 
         layout.render('#main');
         layout.html('left', sidebar)
-        layout.html('top', topbar)
+        layout.html('top', toolbar)
+        
+        toolbar.show('break1', 'group1')
 
 
         window.showAlert = function (message) {
